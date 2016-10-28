@@ -1,0 +1,199 @@
+<!--
+Author: W3layouts
+Author URL: http://w3layouts.com
+License: Creative Commons Attribution 3.0 Unported
+License URL: http://creativecommons.org/licenses/by/3.0/
+-->
+<!DOCTYPE HTML>
+{% load staticfiles %}
+{% load bootstrap3 %}
+<html ng-app="freesounds">
+<head>
+    <link rel="shortcut icon" type="image/png" href="http://image.flaticon.com/icons/png/512/78/78049.png">
+    <title>Free Sounds | Home :: w3layouts</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <!-- Custom Theme files -->
+    <link href="../../static/css/style.css" rel='stylesheet' type='text/css'/>
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
+    <style type="text/css">
+        .float-message {
+            position: fixed;
+            top: 1%;
+            width: 100%;
+            z-index: 9999;
+        }
+        /*noinspection CssUnusedSymbol*/
+        .form-group label.error {
+            color: #FB3A3A;
+            display: inline-block;
+            text-align: right;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+<!--banner-->
+<div class="banner-1" id="home">
+    <div class="header-top">
+        <div class="header-bottom">
+            <div class="fixed-header">
+                <div class="logo">
+                    <h1><a href="#/pieces">Free<span>Sounds</span></a></h1>
+                </div>
+                <div class="hd-lt">
+                    <span class="menu"> </span>
+                    <div class="top-menu">
+                        <nav class="cl-effect-21">
+                            <ul>
+                                <li><a  href="/">Home</a></li>
+                                {% if user.is_authenticated %}
+                                    <li><a href="{% url 'profile' id_user=user.id %}" id="id_editar"><span class="glyphicon glyphicon-user"></span> Profile</a></li>
+                                    <li>
+                                        <a class="active" href="{% url 'add_piece' id_user=user.id %}"><span class="glyphicon glyphicon-music"></span> Upload Piece</a>
+                                    </li>
+                                    <li><a href="{% url 'library' id_user=user.id %}" id="id_editar"><span class="glyphicon glyphicon-book"></span> My Library</a></li>
+
+                                    <li>
+                                        <a href="/logout"><span class="glyphicon glyphicon-log-out"></span> Logout</a>
+                                    </li>
+                                {% else %}
+                                    <li><a href="#" id="id_register"><span class="glyphicon glyphicon-user"></span> Register</a></li>
+                                    <li><a href="#" id="id_login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+                                {% endif %}
+                                <div class="clearfix"></div>
+                            </ul>
+                        </nav>
+                    </div>
+                    <div class="header-right">
+                        <h6>Follows Us :</h6>
+                        <ul class="f-icons">
+                            <li><a href="#" class="facebook"> </a></li>
+                            <li><a href="#" class="p"> </a></li>
+                            <li><a href="#" class="twitter"> </a></li>
+                        </ul>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div class="about">
+        <h3>Upload new piece</h3>
+
+        <form role="form" action="{% url 'add_piece' id_user=id_user %}" method="post" enctype="multipart/form-data" id="edit-form" novalidate="novalidate">
+            {% csrf_token %}
+            <div class="modal-body">
+                {% for field in form_piece %}
+                    <div class="form-group">
+                        {{ field.label_tag }}
+                        {{ field }}
+                    </div>
+                {% endfor %}
+            </div>
+            <div class="modal-footer btn-toolbar">
+                <button type="submit" id="id_grabar" class="btn btn-default btn-success pull-right">
+                    <span class="glyphicon glyphicon-save"></span> Save
+                </button>
+                <button type="submit" class="btn btn-default btn-default pull-right" data-dismiss="modal"
+                        style="margin-left: 5px">
+                    <span class="glyphicon glyphicon-remove"></span> Cancel
+                </button>
+            </div>
+        </form>
+
+    </div>
+
+</div>
+
+<div class="footer">
+    <div class="container">
+        <div class="col-md-4 footer-left">
+            <h3>More Info</h3>
+            <li>01-8000-agile-republic</li>
+        </div>
+        <div class="col-md-4 footer-left">
+            <h3>Contact Us</h3>
+            <p>Yell loudly</p>
+        </div>
+        <div class="col-md-4 social">
+            <h3>Follow Us</h3>
+            <ul>
+                <li><a href="#" class="facebook"> </a></li>
+                <li><a href="#" class="p"> </a></li>
+                <li><a href="#" class="twitter"> </a></li>
+                <li><a href="#" class="goog"> </a></li>
+            </ul>
+        </div>
+        <div class="clearfix"></div>
+        <div class="footer-bottom">
+            <p>Copyrights © 2016 FreeSounds. All rights reserved | Design by <a
+                    href="http://w3layouts.com/">W3layouts</a></p>
+        </div>
+    </div>
+</div>
+<!-- footer -->
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+<script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.9/jquery.validate.min.js"></script>
+{% bootstrap_javascript %}
+<script src="{% static "lib/angular/angular.min.js" %}"></script>
+<script src="{% static "lib/angular/angular-route.min.js" %}"></script>
+<script src="{% static "lib/angular/angular-resource.min.js" %}"></script>
+<script src="{% static "lib/angular/angular-cookies.min.js" %}"></script>
+<script src="{% static "lib/angular/angular-messages.js" %}"></script>
+<script src="{% static "js/app.js" %}"></script>
+<!-- Controllers -->
+<script src="{% static "js/controllers/piecesController.js" %}"></script>
+<script src="{% static "js/controllers/collectionController.js" %}"></script>
+<script src="{% static "js/controllers/pieceDetailController.js" %}"></script>
+<script src="{% static "js/controllers/addPieceController.js" %}"></script>
+<script src="{% static "js/controllers/artistController.js" %}"></script>
+<!-- Services -->
+<script src="{% static "js/services/S3UploadService.js" %}"></script>
+<script src="{% static "js/services/piecesService.js" %}"></script>
+<script src="{% static "js/services/collectionService.js" %}"></script>
+<!-- Other -->
+<script src="{% static "js/services/categoryService.js" %}"></script>
+<script src="{% static "js/services/artistService.js" %}"></script>
+<script src="{% static "js/csrfToken.js" %}"></script>
+<script src="https://angular-file-upload.appspot.com/js/ng-file-upload.js"></script>
+<script src="https://sdk.amazonaws.com/js/aws-sdk-2.1.48.min.js"></script>
+<script>
+    $("span.menu").click(function () {
+        $(".top-menu").slideToggle("slow", function () {
+            // Animation complete.
+        });
+    });
+</script>
+<!-- script for menu -->
+<script>
+    $(document).ready(function () {
+
+        var navoffeset = $(".header-bottom").offset().top;
+        $(window).scroll(function () {
+            var scrollpos = $(window).scrollTop();
+            if (scrollpos >= navoffeset) {
+                $(".header-bottom").addClass("fixed");
+            } else {
+                $(".header-bottom").removeClass("fixed");
+            }
+        });
+        $('#id_login').click(function () {
+            $('#login_modal').modal();
+        });
+        $('#id_register').click(function () {
+            $('#register_modal').modal();
+        });
+    });
+</script>
+{% include "register.html" %}
+{% include "login.html" %}
+</body>
+</html>
