@@ -16,3 +16,14 @@ Git repository for FreeSounds Project
 > python -m pip install django-bootstrap3
 
 > python -m pip install python-social-auth
+
+* Install bower packages
+
+> install npm : http://blog.teamtreehouse.com/install-node-js-npm-windows
+
+> install bower : https://www.npmjs.com/package/bower
+
+* install sound manager : 
+
+>> cd static
+>> bower install angular-soundmanager2
