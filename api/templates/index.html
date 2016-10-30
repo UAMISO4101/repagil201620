@@ -50,7 +50,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                                 {% if user.is_authenticated %}
                                     <li><a href="{% url 'profile' id_user=user.id %}" id="id_editar"><span class="glyphicon glyphicon-user"></span> Profile</a></li>
                                     <li>
-                                        <a href="{% url 'add_piece' id_user=user.id %}"><span class="glyphicon glyphicon-music"></span> Upload Piece</a>
+                                        <a href="#/addPiece"><span class="glyphicon glyphicon-music"></span> Upload Piece</a>
                                     </li>
                                     <li><a href="{% url 'library' id_user=user.id %}" id="id_editar"><span class="glyphicon glyphicon-book"></span> My Library</a></li>
                                     <li>
@@ -136,6 +136,9 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <script src="{% static "js/services/categoryService.js" %}"></script>
 <script src="{% static "js/services/artistService.js" %}"></script>
 <script src="{% static "js/csrfToken.js" %}"></script>
+
+<script src="{% static "bower_components/angular-soundmanager2/dist/angular-soundmanager2.js" %}"></script>
+
 <script src="https://angular-file-upload.appspot.com/js/ng-file-upload.js"></script>
 <script src="https://sdk.amazonaws.com/js/aws-sdk-2.1.48.min.js"></script>
 <script>
