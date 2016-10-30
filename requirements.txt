@@ -1,0 +1,15 @@
+Django==1.10
+pip==8.1.2
+psycopg2
+setuptools
+wheel
+whitenoise
+gunicorn
+django-bootstrap3
+PyJWT
+oauthlib
+python-openid
+python-social-auth
+requests
+requests-oauthlib
+six
