@@ -49,14 +49,11 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                             <ul>
                                 <li><a class="active" href="#/pieces">Home</a></li>
                                 {% if user.is_authenticated %}
-                                    <li><a href="{% url 'profile' id_user=user.id %}" id="id_editar"><span
-                                            class="glyphicon glyphicon-user"></span> Profile</a></li>
+                                    <li><a href="#/profile" id="id_editar"><span class="glyphicon glyphicon-user"></span> Profile</a></li>
                                     <li>
-                                        <a href="#/addPiece"><span class="glyphicon glyphicon-music"></span> Upload
-                                            Piece</a>
+                                        <a href="#/add_piece"><span class="glyphicon glyphicon-music"></span> Upload Piece</a>
                                     </li>
-                                    <li><a href="{% url 'library' id_user=user.id %}" id="id_editar"><span
-                                            class="glyphicon glyphicon-book"></span> My Library</a></li>
+                                    <li><a href="#/library" id="id_editar"><span class="glyphicon glyphicon-book"></span> My Library</a></li>
                                     <li>
                                         <a href="logout"><span class="glyphicon glyphicon-log-out"></span> Logout</a>
                                     </li>
