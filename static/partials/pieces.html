@@ -4,12 +4,17 @@
             <div class="tp-lt">
                 <div class="top-lft">
                     <a href="" ng-click="viewDetail(piece.pk)">
-                        <img src='{{ piece.fields.image_cover }}' alt=" " class="img-responsive" style="width: 150px;height: 150px">
+                       <!-- {{  piece.fields.image_cover}}-->
+                       <img src='{{  piece.fields.image_cover}}' alt=" " class="img-responsive" style="width: 150px;height: 150px">
                     </a>
                 </div>
                 <div class="top-rgt">
-                    <a href="" ng-click="viewDetail(piece.pk)"><h4>{{ piece.fields.name }}</h4></a>
+                    <a ng-click="viewDetail(piece.pk)"><h4>{{ piece.fields.name }}</h4></a>
                     <p><b>Duration: </b>{{ piece.fields.duration }}</p>
+                    <a ng-href="{{piece.fields.url}}" target="_blank" download="MyGoogleLogo" style="color:yellow">
+                        <img border="0" src="../../../static/images/dwnload.png" alt="download" width="20" height="20">
+                        Download
+                    </a>
                 </div>
                 <div class="clearfix"></div>
             </div>
