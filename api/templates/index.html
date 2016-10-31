@@ -15,7 +15,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <!-- Custom Theme files -->
     <link href="../../static/css/style.css" rel='stylesheet' type='text/css'/>
-    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"/>
     <style type="text/css">
         .float-message {
             position: fixed;
@@ -23,6 +23,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
             width: 100%;
             z-index: 9999;
         }
+
         /*noinspection CssUnusedSymbol*/
         .form-group label.error {
             color: #FB3A3A;
@@ -48,17 +49,22 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                             <ul>
                                 <li><a class="active" href="#/pieces">Home</a></li>
                                 {% if user.is_authenticated %}
-                                    <li><a href="{% url 'profile' id_user=user.id %}" id="id_editar"><span class="glyphicon glyphicon-user"></span> Profile</a></li>
+                                    <li><a href="{% url 'profile' id_user=user.id %}" id="id_editar"><span
+                                            class="glyphicon glyphicon-user"></span> Profile</a></li>
                                     <li>
-                                        <a href="#/addPiece"><span class="glyphicon glyphicon-music"></span> Upload Piece</a>
+                                        <a href="#/addPiece"><span class="glyphicon glyphicon-music"></span> Upload
+                                            Piece</a>
                                     </li>
-                                    <li><a href="{% url 'library' id_user=user.id %}" id="id_editar"><span class="glyphicon glyphicon-book"></span> My Library</a></li>
+                                    <li><a href="{% url 'library' id_user=user.id %}" id="id_editar"><span
+                                            class="glyphicon glyphicon-book"></span> My Library</a></li>
                                     <li>
                                         <a href="logout"><span class="glyphicon glyphicon-log-out"></span> Logout</a>
                                     </li>
                                 {% else %}
-                                    <li><a href="#" id="id_register"><span class="glyphicon glyphicon-user"></span> Register</a></li>
-                                    <li><a href="#" id="id_login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+                                    <li><a href="#" id="id_register"><span class="glyphicon glyphicon-user"></span>
+                                        Register</a></li>
+                                    <li><a href="#" id="id_login"><span class="glyphicon glyphicon-log-in"></span> Login</a>
+                                    </li>
                                 {% endif %}
                                 <div class="clearfix"></div>
                             </ul>
@@ -83,6 +89,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 </div>
 
 <div ng-view></div>
+<ng-include src="'{% static 'partials/audioPlayer.html' %}'"></ng-include>
 
 <div class="footer">
     <div class="container">
@@ -128,6 +135,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <script src="{% static "js/controllers/pieceDetailController.js" %}"></script>
 <script src="{% static "js/controllers/addPieceController.js" %}"></script>
 <script src="{% static "js/controllers/artistController.js" %}"></script>
+<script src="{% static "js/controllers/audioPlayerController.js" %}"></script>
 <!-- Services -->
 <script src="{% static "js/services/S3UploadService.js" %}"></script>
 <script src="{% static "js/services/piecesService.js" %}"></script>
