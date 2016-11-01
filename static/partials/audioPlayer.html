@@ -1,11 +1,10 @@
 <!-- audio player -->
 <div class="container" ng-controller="AudioPlayerCrtl">
-    <div class="col-md-2"></div>
-    <div class="col-md-8" style="background-color: black">
+    <div class="col-md-12" style="background-color: black">
         <div class="col">
             <sound-manager></sound-manager>
             <div style="float: left">
-                <button style="background-color: black" ng-click="togglePlayButton()" ng-if="isPlay" play-all="songs">
+                <button style="background-color: black" ng-click="togglePlayButton()" ng-if="isPlay" play-music>
                     <img src="http://images.cwtv.com/images/r14/play2.png" alt=""
                          class="img-responsive " style="width: 100px;height: 100px;float:left">
                 </button>
@@ -16,12 +15,12 @@
             </div>
             <div style="float: left;margin-left: 10px">
                 <br>
-                <p style="color: white">
+                <p style="color: yellow">
                     Playing: {{ currentPlaying.title }} by {{ currentPlaying.artist }} ({{ currentPostion }}
                     / {{ currentDuration }})
                 </p>
                 <div class="seekBase" seek-track>
-                    <div class="seekLoad" ng-style="{width : ( progress + '%' ) }" style="background-color: #5bc0de"></div>
+                    <div class="seekLoad" ng-style="{width : ( progress + '%' ), background-color: #5bc0de }" ></div>
                 </div>
             </div>
         </div>
