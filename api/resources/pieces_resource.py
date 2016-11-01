@@ -26,6 +26,8 @@ def pieces_list(request):
 def collection_by_artist(request, artist_name):
     collection = get_list_or_404(Collection.objects.filter(name=artist_name))
     return HttpResponse(serializers.serialize("json", collection))
+
+@csrf_exempt
 def piece_by_id(request, piece_id):
     piece = get_list_or_404(Piece.objects.filter(pk = piece_id))
     return HttpResponse(serializers.serialize("json", piece))
