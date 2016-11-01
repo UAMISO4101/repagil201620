@@ -1,18 +1,14 @@
 <div class="modal-body">
     <ul class="nav nav-tabs">
-        <li class="active"><a href="#tab1" target="_self" data-toggle="tab" onclick="clear()">Sign Up</a></li>
-        <li><a href="#tab2" target="_self" data-toggle="tab" onclick="clear()">Login</a></li>
+        <li><a href="#tab1" data-toggle="tab" ng-click="clear()">Sign Up</a></li>
+        <li><a href="#tab2" data-toggle="tab" ng-click="clear()">Login</a></li>
     </ul>
     <div class="tab-content">
         <div class="tab-pane active" id="tab1">
             <div class="register-form">
                 <br/>
-                <div class="alert alert-danger" ng-if="error">
-                    <p id="action-fail">{{ mensaje }}</p>
-                </div>
-
-                <div class="alert alert-success" ng-if="success">
-                    <p id="action-success">{{ mensaje }}</p>
+                <div id = "regiser-success" ng-class="{'alert': success, 'alert': error, 'alert-success':success, 'alert-danger':error}" ng-if = "show">
+                    <p id="register-message">{{ mensaje }}</p>
                 </div>
                 <form class="form-horizontal" name="formRegister" novalidate>
                     <div class = "modal-logo">
@@ -103,8 +99,9 @@
         </div>
         <div class="tab-pane" id="tab2">
             <div class="register-form">
-                <div class="alert alert-success" ng-if="success">
-                    {{ mensaje }}
+                <br/>
+                <div id = "login-success" ng-class="{'alert': success, 'alert': error, 'alert-success':success, 'alert-danger':error}" ng-if="show">
+                    <p id="login-message">{{ mensaje }}</p>
                 </div>
                 <div class = "modal-logo">
                     <p>FREE<span>SOUNDS</span></p>

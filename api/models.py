@@ -10,8 +10,8 @@ class Category(models.Model):
     name = models.CharField(max_length=60)
 
 class Artist(models.Model):
-    name = models.CharField(max_length=1000)
-    last_name = models.CharField(max_length=1000)
+    name = models.CharField(max_length=1000, null=True)
+    last_name = models.CharField(max_length=1000, null=True)
     avatar = models.ImageField(upload_to='static/avatars/', null=True, blank=True)
     name_artistic = models.CharField(max_length=50, blank=True)
     email = models.CharField(max_length=1000)
