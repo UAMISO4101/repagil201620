@@ -6,9 +6,9 @@
 
     var AudioPlayerCrtl = function ($rootScope, $scope, $location, piecesService, angularPlayer) {
 
-        $scope.isPlay = true;
-        $scope.togglePlayButton = function () {
-            $scope.isPlay = !$scope.isPlay;
+        $rootScope.isPlay = true;
+        $rootScope.togglePlayButton = function () {
+            $rootScope.isPlay = !$rootScope.isPlay;
         };
     };
 
