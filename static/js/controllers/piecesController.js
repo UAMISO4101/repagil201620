@@ -12,7 +12,7 @@
             for (var i = 0; i < data.length; i++) {
 
                 var tempSong = {
-                    id: data[i].pk,
+                    id: data[i].pk.toString(),
                     title: data[i].fields.name,
                     artist: data[i].fields.artist.name,
                     url: data[i].fields.url,
@@ -30,6 +30,16 @@
         $scope.viewDetail = function (piece_id) {
             $location.url('/pieces/' + piece_id);
         };
+
+        $scope.$on('track:loaded', function (event, data) {
+            $rootScope.isPlay = false;
+        });
+
+        $scope.$on('track:progress', function (event, data) {
+            if (data > 99.9){
+                $rootScope.isPlay = true;
+            }
+        });
 
     };
 
