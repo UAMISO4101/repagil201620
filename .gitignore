@@ -1,4 +1,6 @@
 .idea/
 api/migrations/*
 sql/*
+static/avatars/*
+static/covers/*
 *.pyc

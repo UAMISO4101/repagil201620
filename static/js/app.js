@@ -6,7 +6,7 @@
     'use strict';
 
 
-    var freesounds = angular.module('freesounds', ['ngCookies', 'ngRoute', 'ngResource', 'ngMessages', 'freesounds.controllers', 'freesounds.services', 'ngFileUpload', 'ui.bootstrap']);
+    var freesounds = angular.module('freesounds', ['ngCookies', 'ngRoute', 'ngResource', 'ngMessages', 'freesounds.controllers', 'freesounds.services', 'ngFileUpload', 'ui.bootstrap', 'angularSoundManager']);
 
     var freesoundsControllers = angular.module('freesounds.controllers', []);
     var freesoundsServices = angular.module('freesounds.services', []);

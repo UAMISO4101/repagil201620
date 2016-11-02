@@ -57,6 +57,7 @@
                             });
                         return promise;
                     }
+
                 };
 
                 return piecesService;

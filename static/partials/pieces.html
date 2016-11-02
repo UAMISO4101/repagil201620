@@ -1,17 +1,24 @@
 <div class="topstr">
     <div class="container">
-        <div class="col-md-6 topstr-left" data-ng-repeat="piece in pieces">
+        <div class="col-md-6 topstr-left" data-ng-repeat="piece in songs">
             <div class="tp-lt">
                 <div class="top-lft">
-                    <a href="" ng-click="viewDetail(piece.pk)">
+                    <a href="" ng-click="viewDetail(piece.id)">
                        <!-- {{  piece.fields.image_cover}}-->
-                       <img src='{{  piece.fields.image_cover}}' alt=" " class="img-responsive" style="width: 150px;height: 150px">
+                       <img src='{{piece.image_cover}}' alt=" " class="img-responsive" style="width: 150px;height: 150px">
                     </a>
                 </div>
                 <div class="top-rgt">
-                    <a ng-click="viewDetail(piece.pk)"><h4>{{ piece.fields.name }}</h4></a>
-                    <p><b>Duration: </b>{{ piece.fields.duration }}</p>
-                    <a ng-href="{{piece.fields.url}}" target="_blank" download="MyGoogleLogo" style="color:yellow">
+                    <a ng-click="viewDetail(piece.pk)"><h4>{{ piece.title }}</h4></a>
+                    <p><b>Duration: </b>{{ piece.duration }}</p>
+                    <span class="label label-default" ng-click="showCollections(piece)"
+                          style="background-color: yellow;color: #1c1b17;float: left;font-size: 20px"><a
+                            href="">+</a></span>
+                    <select style="float: left" ng-if="piece.viewCollections"
+                            ng-model="selectedCollection" ng-change="addToCollection(piece, selectedCollection)"
+                            ng-options="collection.fields.name for collection in availableCollections"></select>
+                    <a href="" music-player="play" add-song="piece"><h4>PLAY</h4></a>
+                    <a ng-href="{{piece.url}}" target="_blank" download="MyGoogleLogo" style="color:yellow">
                         <img border="0" src="../../../static/images/dwnload.png" alt="download" width="20" height="20">
                         Download
                     </a>
