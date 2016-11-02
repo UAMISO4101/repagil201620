@@ -26,4 +26,5 @@ urlpatterns = [
     url(r'^register', views.register),
     url(r'^collections/$', collections_list, name='collections_list'),
     url(r'^collections/delete$', collections_delete, name='collections_delete'),
+    url(r'^collections/add$', collections_add, name='collections_add'),
 ]
