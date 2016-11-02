@@ -15,7 +15,7 @@ def login_view(request):
             login(request, user)
             mensaje = "ok"
         else:
-            mensaje = "Invalid login or password. Please try again. "
+            mensaje = "Invalid login or password. Please try again."
     return JsonResponse({"mensaje": mensaje})
 
 @csrf_exempt
