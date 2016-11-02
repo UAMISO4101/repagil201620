@@ -33,6 +33,27 @@ License URL: http://creativecommons.org/licenses/by/3.0/
             width: 100%;
         }
     </style>
+
+    <script src="{% static "lib/jquery.js" %}"></script>
+    <!--webfonts-->
+    <link href='//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,400,300,600,700|Six+Caps'
+          rel='stylesheet' type='text/css'>
+    <!--//webfonts-->
+
+    <script type="text/javascript">
+        function clear() {
+            document.getElementById("register-success").innerHTML = "";
+            document.getElementById("register-fail").innerHTML = "";
+            document.getElementById("login-success").innerHTML = "";
+            document.getElementById("login-fail").innerHTML = "";
+            document.getElementById("nombre").innerHTML = "";
+            document.getElementById("apellido").innerHTML = "";
+            document.getElementById("email").innerHTML = "";
+            document.getElementById("password").innerHTML = "";
+            document.getElementById("username-login").innerHTML = "";
+            document.getElementById("password-login").innerHTML = "";
+        }
+    </script>
 </head>
 <body>
 <!--banner-->
@@ -135,10 +156,9 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <script src="{% static "js/services/collectionService.js" %}"></script>
 <script src="{% static "js/services/userService.js" %}"></script>
 <!-- Other -->
-<script src="{% static "js/services/collectionService.js" %}"></script>
 <script src="{% static "js/services/categoryService.js" %}"></script>
 <script src="{% static "js/services/artistService.js" %}"></script>
-<script src="{% static "js/moment.js" %}"></script>
+<script src="{% static "js/csrfToken.js" %}"></script>
 <script src="https://angular-file-upload.appspot.com/js/ng-file-upload.js"></script>
 <script src="https://sdk.amazonaws.com/js/aws-sdk-2.1.48.min.js"></script>
 <script>

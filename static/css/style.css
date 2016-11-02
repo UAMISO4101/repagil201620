@@ -45,13 +45,51 @@ ul{
 label{
 	margin:0;
 }
+
+.logo span {
+    color: #fff;
+}
+
+.modal-logo{
+    font-weight: 400;
+    color: #000;
+    text-transform: uppercase;
+    font-family: 'Six Caps', sans-serif;
+    letter-spacing: 4px;
+    font-size: 60px;
+    text-align:center;
+}
+
+.btn-modal{
+    color:#fff;
+    background-color: #f0ad4e;
+}
+
+.modal-logo span{
+    color: #FEF356;
+}
+
+.terms-agreements{
+    font-size: 0.8em;
+    font-style: italic;
+    color:#979faf;
+}
+
+.error-register {
+    color: red;
+}
+
+.nav-tabs li {
+    width: 50%;
+}
+
 .logo {
   float: left;
   width: 20%;
   text-align: left;
 }
 .logo h1 a {
-  font-size: 1.5em;
+  font-size: 3.0em;
   margin-top: 0em;
   font-weight: 400;
   color: #000;
