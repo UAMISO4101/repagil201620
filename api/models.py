@@ -6,14 +6,12 @@ from django.db import models
 from django.forms import ModelForm
 from datetime import datetime
 
-
 class Category(models.Model):
     name = models.CharField(max_length=60)
 
-
 class Artist(models.Model):
-    name = models.CharField(max_length=1000, null=True)
-    last_name = models.CharField(max_length=1000, null=True)
+    name = models.CharField(max_length=1000)
+    last_name = models.CharField(max_length=1000)
     avatar = models.ImageField(upload_to='static/avatars/', null=True, blank=True)
     name_artistic = models.CharField(max_length=50, blank=True)
     email = models.CharField(max_length=1000)
@@ -26,16 +24,14 @@ class Artist(models.Model):
 class Piece(models.Model):
     name = models.CharField(max_length=60)
     url = models.CharField(max_length=100, null=True, blank=True)
-    image_cover = models.ImageField(upload_to='static/covers/', null=True, blank=True)
-    duration = models.IntegerField(null=False)
+    image_cover = models.CharField(max_length=100, null=True, blank=True)
+    duration = models.CharField(max_length=10, null=True, blank=True)
     category = models.ForeignKey(Category, null=True, blank=True)
-    artist = models.OneToOneField(Artist, on_delete=models.CASCADE, null=True)
+    artist = models.ForeignKey(Artist, on_delete=models.CASCADE, null=True)
     lyrics = models.TextField(blank=True, null=True)
-
 
 class Collection(models.Model):
     name = models.CharField(max_length=60)
-
 
 class ArtistaForm(ModelForm):
     name = forms.CharField(
@@ -54,9 +50,9 @@ class ArtistaForm(ModelForm):
     date_range = 100
     this_year = datetime.now().year
     birth_date = forms.DateField(
-        widget=forms.SelectDateWidget(years=range(this_year - date_range, this_year + 1), attrs={
-            'class': 'form-control date-field '
-        }),
+        widget= forms.SelectDateWidget(years=range(this_year - date_range, this_year + 1 ),attrs = {
+                'class': 'form-control date-field '
+            }),
         label='BirthDate'
     )
 
@@ -66,6 +62,7 @@ class ArtistaForm(ModelForm):
     country = forms.CharField(
         widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Country'})
     )
+
 
     class Meta:
         model = Artist
@@ -86,7 +83,6 @@ class UserForm(ModelForm):
         model = User
         fields = ['username', 'password']
 
-
 class PieceForm(ModelForm):
     name = forms.CharField(
         widget=forms.TextInput(attrs={'class': 'form-control'}),
@@ -97,7 +93,7 @@ class PieceForm(ModelForm):
         label='URL'
     )
 
-    duration = forms.CharField(
+    duration =forms.CharField(
         widget=forms.TextInput(attrs={'class': 'form-control'}),
         label='Duration'
     )
@@ -112,12 +108,6 @@ class PieceForm(ModelForm):
         widget=forms.Textarea(attrs={'class': 'form-control'}),
         label='Lyrics'
     )
-
     class Meta:
         model = Piece
-        fields = ['name', 'url', 'image_cover', 'duration', 'category', 'lyrics']
-
-
-class PieceCollection(models.Model):
-    collection = models.ForeignKey(Collection, on_delete=models.CASCADE, null=False)
-    piece = models.ForeignKey(Piece, on_delete=models.CASCADE, null=False)
+        fields = ['name', 'url','image_cover','duration', 'category', 'lyrics' ]

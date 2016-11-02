@@ -4,9 +4,7 @@
 (function () {
     'use strict';
 
-    var PiecesCrtl = function ($rootScope, $scope, $location, piecesService, collectionService) {
-
-        $scope.selectedCollection = {};
+    var PiecesCrtl = function ($rootScope, $scope, $location, piecesService) {
 
         $rootScope.songs = [];
 
@@ -15,10 +13,6 @@
         }, function (response) {
             $scope.error = true;
             console.log('Error: ' + response);
-        });
-
-        collectionService.list().then(function (data) {
-            $scope.availableCollections = data;
         });
 
         $scope.viewDetail = function (piece_id) {
@@ -45,7 +39,8 @@
                 piece.viewCollections = false;
             })
         };
+
     };
 
-    angular.module('freesounds.controllers').controller('PiecesCrtl', ['$rootScope', '$scope', '$location', 'piecesService', 'collectionService', PiecesCrtl]);
+    angular.module('freesounds.controllers').controller('PiecesCrtl', ['$rootScope', '$scope', '$location', 'piecesService', PiecesCrtl]);
 }());

@@ -7,7 +7,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 html, body{
 	font-family: 'Open Sans', sans-serif;
 	font-size: 100%;
-    background-image: url(/static/images/fondo-abstracto-negro.jpg);
+    background-color: black;
     background-size: 100% 500px;
 }
 body a,.grid_1,plan_1,plan_1.one,plan_1.two,i.icon1, i.icon2, i.icon3, i.icon4, i.icon5, i.icon6 {
@@ -593,7 +593,7 @@ ul.f-icons{
   color: #837B05;
 }
 .banner-1{
-  background: url(../../../static/images/live-sound-microphone.jpg) no-repeat 0px 0px;
+  background: url(../../../static/images/freesounds.jpg) no-repeat 0px 0px;
   background-size: cover;
   -webkit-background-size: cover;
   -o-background-size: cover;

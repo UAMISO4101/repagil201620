@@ -26,15 +26,15 @@
         }).when('/pieces/:piece_id', {
             templateUrl: 'static/partials/pieceDetail.html',
             controller: 'PieceDetailCrtl'
-        }).when('/addPiece', {
+                 }).when('/addPiece', {
             templateUrl: 'static/partials/addPiece.html',
-            controller: 'AddPiecesCrtl'
-        }).when('/createArtist', {
-            templateUrl: 'static/partials/createArtist.html',
-            controller: 'ArtistCrtl'
+            controller:'AddPiecesCrtl'
         }).when('/library', {
             templateUrl: 'static/partials/library.html',
             controller: 'LibraryCrtl'
+        }).when('/createArtist', {
+            templateUrl: 'static/partials/createArtist.html',
+            controller: 'ArtistCrtl'
         }).otherwise({
             redirectTo: '/pieces'
         });
