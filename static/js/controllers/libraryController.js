@@ -63,6 +63,18 @@
             })
             collection.expanded = true;
         };
+
+        $scope.putSongs = function (collection) {
+
+            $scope.loadPieces(collection).then(function () {
+                if (collection.pieces) {
+                    $rootScope.transformToSongs(collection.pieces);
+                    $rootScope.isPlay = false;
+                } else {
+                    $rootScope.songs = [];
+                }
+            });
+        };
     };
 
     angular.module('freesounds.controllers').controller('LibraryCrtl', ['$rootScope', '$scope', '$location', '$routeParams', '$route', 'collectionService', LibraryCrtl]);

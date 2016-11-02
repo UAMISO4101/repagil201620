@@ -17,7 +17,6 @@
                     <select style="float: left" ng-if="piece.viewCollections"
                             ng-model="selectedCollection" ng-change="addToCollection(piece, selectedCollection)"
                             ng-options="collection.fields.name for collection in availableCollections"></select>
-                    <br>
                     <a href="" music-player="play" add-song="piece"><h4>PLAY</h4></a>
                 </div>
                 <div class="clearfix"></div>
