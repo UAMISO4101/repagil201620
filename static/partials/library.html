@@ -1,5 +1,10 @@
 <div class="topstr">
     <div class="container">
+
+        <div class="alert alert-danger" role="alert" ng-if="validationError">
+            <strong>Oops!</strong> {{ mensaje }}
+        </div>
+
         <h1 style="color: yellow">My Collections</h1>
 
         <div class="col-md-12" style="color: white">
@@ -29,9 +34,11 @@
 
             <div class="col-md-12" ng-repeat="collection in collections">
                 <div class="col-md-12" style="height: 20px"></div>
-                <h3 style="border-left-style: solid; border-left-color: yellow; border-left-width: 20px">
-                    {{ collection.name }}
-                </h3>
+                <label style="border-left-style: solid; border-left-color: yellow; border-left-width: 20px; font-size: 20px">
+                    {{ collection.fields.name }}
+                </label>
+                <span class="label label-default"
+                      style="background-color: yellow;color: #1c1b17;float: right;font-size: 20px">Delete</span>
             </div>
 
         </div>

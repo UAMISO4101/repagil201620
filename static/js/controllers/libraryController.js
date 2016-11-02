@@ -4,11 +4,12 @@
 (function () {
     'use strict';
 
-    var LibraryCrtl = function ($rootScope, $scope, $location, $routeParams, $route) {
+    var LibraryCrtl = function ($rootScope, $scope, $location, $routeParams, $route, collectionService) {
 
         $scope.isNewCollection = true;
         $scope.newCollection = {};
         $scope.collections = [];
+        $scope.validationError = false;
 
         $scope.toggleIsNewCollection = function () {
             $scope.isNewCollection = !$scope.isNewCollection;
@@ -16,11 +17,27 @@
         };
 
         $scope.saveCollection = function () {
-            console.log($scope.newCollection);
-            $scope.collections.push($scope.newCollection);
-            $scope.isNewCollection = true;
+            if($scope.newCollection.name) {
+                $scope.validationError = false;
+                var res = collectionService.create($scope.newCollection).then(function (data) {
+                        if (data.mensaje == "ok") {
+                            $scope.collections.push(JSON.parse(data.data)[0]);
+                            $scope.isNewCollection = true;
+                            $scope.newCollection = {};
+                        }
+                        else {
+                            console.log('ocurrio un error: ' + JSON.stringify(data));
+                        }
+                    }
+                )
+            }
+            else {
+                $scope.mensaje = "el nombre no puede ser vacio";
+                $scope.validationError = true;
+            }
+
         };
     };
 
-    angular.module('freesounds.controllers').controller('LibraryCrtl', ['$rootScope', '$scope', '$location', '$routeParams', '$route', LibraryCrtl]);
+    angular.module('freesounds.controllers').controller('LibraryCrtl', ['$rootScope', '$scope', '$location', '$routeParams', '$route', 'collectionService', LibraryCrtl]);
 }());
