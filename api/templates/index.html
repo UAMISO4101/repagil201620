@@ -79,7 +79,6 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                                 <li ng-show="isLoggedIn()"><a href="#/createCollections/">Create a Collection</a></li>
                                 <li ng-show="isLoggedIn()"><a href="#/library" id="id_editar"><span class="glyphicon glyphicon-book"></span> My Library</a></li>
                                 <li ng-show="isLoggedIn()"><a href="#" event.preventDefault(); ng-click="logout()">Logout</a></li>
-
                                 <div class="clearfix"></div>
                             </ul>
                         </nav>
@@ -156,9 +155,10 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <script src="{% static "js/services/collectionService.js" %}"></script>
 <script src="{% static "js/services/userService.js" %}"></script>
 <!-- Other -->
+<script src="{% static "js/services/collectionService.js" %}"></script>
 <script src="{% static "js/services/categoryService.js" %}"></script>
 <script src="{% static "js/services/artistService.js" %}"></script>
-<script src="{% static "js/csrfToken.js" %}"></script>
+<script src="{% static "js/moment.js" %}"></script>
 <script src="https://angular-file-upload.appspot.com/js/ng-file-upload.js"></script>
 <script src="https://sdk.amazonaws.com/js/aws-sdk-2.1.48.min.js"></script>
 <script>

@@ -2,49 +2,77 @@
 (function () {
     'use strict';
 
-    var AddPiecesCrtl = function ($rootScope, $scope, Upload, $q, S3UploadService,piecesService,categoryService ) {
-
-         categoryService.list().then(function (data) {
+    var AddPiecesCrtl = function ($rootScope, $scope, Upload, $q, $cookieStore,S3UploadService,piecesService,categoryService ) {
+        categoryService.list().then(function (data) {
             $scope.categories = data;
         });
+
         $scope.Errors=[];
         $rootScope.Locations=[];
         $scope.newPiece={};
         $scope.upload={}
-        $scope.addPiece=function(){
 
-            console.log($scope.newPiece)
-            $scope.uploadFiles($scope.newPiece.cover).then(function(data)
-            {
-                 $scope.uploadFiles($scope.newPiece.sound).then(function(data)
-            {
-                console.log($scope.newPiece.category);
-                var data={name:$scope.newPiece.name,
-                      sound:$rootScope.Locations[1].Location,
-                      cover: $rootScope.Locations[0].Location,
-                      duration:$scope.newPiece.duration,
-                      category:$scope.newPiece.category,
-                      artist:1
+        $scope.addPiece=function(){
+            $scope.Errors=[]
+            if($scope.newPiece.cover!=undefined && $scope.newPiece.sound!=undefined){
+
+             console.log($scope.newPiece.sound[0]);
+                    var objectUrl= URL.createObjectURL($scope.newPiece.sound[0])
+                   // console.log(x);
+                 $("#audio").prop("src", objectUrl);
+                $("#audio").on("canplaythrough", function(e){
+                 var seconds = e.currentTarget.duration;
+                    var duration = moment.duration(seconds, "seconds");
+
+                 var time = "";
+                var hours = duration.hours();
+                if (hours > 0) { time = hours + ":" ; }
+
+    time = time + duration.minutes() + ":" + duration.seconds();
+    $scope.newPiece.duration=time;
+
+    URL.revokeObjectURL(objectUrl);
+});
+           // if($scope.newPiece.cover[0].type.contains("image") && $scope.newPiece.sound[0].type.contains("audio")) {
+                $scope.uploadFiles($scope.newPiece.cover).then(function (data) {
+
+                    $scope.uploadFiles($scope.newPiece.sound).then(function (data) {
+                        console.log($cookieStore.get('username'))
+                        var data = {
+                            name: $scope.newPiece.name,
+                            sound: $rootScope.Locations[1].Location,
+                            cover: $rootScope.Locations[0].Location,
+                            duration: $scope.newPiece.duration,
+                            category: $scope.newPiece.category,
+                            artist: $cookieStore.get('username')
                         }
                         piecesService.add(data).then(function (result) {
-                // Mark as success
-                            console.log(result);
-                             $scope.Errors=[];
-                             $rootScope.Locations=[];
-                             $scope.newPiece={};
-                            $scope.upload.success=true
+                            // Mark as success
+                            if (result.status == undefined) {
+                                $scope.Errors = [];
+                                $rootScope.Locations = [];
+                                $scope.newPiece = {};
+                                $scope.upload.success = true
+                            }
+                            else {
+                                $scope.Errors.push("An error has ocurred, please contact the system administrator ");
+                                $scope.upload.success = false
+                            }
 
-            });
-            });
-            });
+                        });
+                    });
+                });
 
 
-
-
+            }else
+                {
+                     $scope.Errors.push("You have to select a image cover and piece ")
+                }
         }
         $scope.addCover=function(files){
             $scope.Errors=[];
-            if(files[0].name.includes(".png")||files[0].name.includes(".jpg")||files[0].name.includes(".jpeg"))
+            console.log(files[0]);
+            if(files[0].type.includes("image"))
             {
                 $scope.newPiece.cover=files;
             }else
@@ -58,7 +86,8 @@
         }
         $scope.addSound=function(files){
             $scope.Errors=[];
-              if(files[0].name.includes(".mp3")||files[0].name.includes(".bmw")||files[0].name.includes(".wav"))
+            console.log(files[0]);
+              if(files[0].type.includes("audio"))
             {
                  $scope.newPiece.sound=files;
             }else
@@ -98,5 +127,5 @@
            return promise}
     };
 
-    angular.module('freesounds.controllers').controller('AddPiecesCrtl', ['$rootScope', '$scope','Upload','$q', 'S3UploadService','piecesService','categoryService', AddPiecesCrtl]);
+    angular.module('freesounds.controllers').controller('AddPiecesCrtl', ['$rootScope', '$scope','Upload','$q', '$cookieStore','S3UploadService','piecesService','categoryService', AddPiecesCrtl]);
  }());

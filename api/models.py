@@ -24,10 +24,10 @@ class Artist(models.Model):
 class Piece(models.Model):
     name = models.CharField(max_length=60)
     url = models.CharField(max_length=100, null=True, blank=True)
-    image_cover = models.ImageField(upload_to='static/covers/', null=True, blank=True)
-    duration = models.IntegerField(null=False)
+    image_cover = models.CharField(max_length=100, null=True, blank=True)
+    duration = models.CharField(max_length=10, null=True, blank=True)
     category = models.ForeignKey(Category, null=True, blank=True)
-    artist = models.OneToOneField(Artist, on_delete=models.CASCADE, null=True)
+    artist = models.ForeignKey(Artist, on_delete=models.CASCADE, null=True)
     lyrics = models.TextField(blank=True, null=True)
 
 class Collection(models.Model):
