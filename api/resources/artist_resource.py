@@ -27,9 +27,11 @@ def create_artist(request):
            return JsonResponse({"mensaje": "el usuario ya existe"})
 
         try:
-            usuario = User.objects.create(first_name=nombre, last_name=apellido, email=email, username=username,
-                                          password=password)
-            artist = Artist.objects.create(user=usuario)
+            usuario = User.objects.create(first_name=nombre, last_name=apellido, email=email, username=username)
+            usuario.set_password(password)
+            usuario.save()
+
+            artist = Artist.objects.create(userId=usuario)
             if usuario is not None:
                 mensaje = "ok"
             else:

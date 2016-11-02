@@ -18,6 +18,7 @@
                     var logged = userService.islogged($http).then(function (data) {
                         if (data.mensaje == 'ok') {
                             $rootScope.authenticated = true;
+                            $rootScope.auth_user = $scope.login.username;
                             $scope.closeModal();
                             $location.url("/pieces");
                         } else {
@@ -28,6 +29,8 @@
                 } else {
                     console.log('Ocurrio un error:' + JSON.stringify(data));
                     $scope.error = true;
+                    $scope.show = true;
+                    $scope.mensaje = data.mensaje;
                 }
             }, function (response) {
                 $scope.error = true;
@@ -41,8 +44,10 @@
         $scope.create = function () {
             var res = userService.create($scope.form, $http).then(function (data) {
                 console.log(JSON.stringify(data));
+                $scope.show = true;
                 if (data.mensaje == 'ok') {
                     $scope.success = true;
+
                     $scope.mensaje = 'User was created successfully';
                 } else {
                     console.log('Error:' + data);
@@ -93,7 +98,8 @@
          * Funcion para limpiar mensajes de creacion de usuario
          */
         $scope.clear = function() {
-            $scope.mensaje.clear()
+            $scope.show = false;
+           delete $scope.mensaje
         }
     };
         angular.module('freesounds.controllers').controller('UserCrtl', ['$rootScope', 'userService', '$uibModal', '$http', '$location','$scope', UserCrtl]);

@@ -29,6 +29,9 @@
         }).when('/addPiece', {
             templateUrl: 'static/partials/addPiece.html',
             controller:'AddPiecesCrtl'
+        }).when('/library', {
+            templateUrl: 'static/partials/library.html',
+            controller: 'LibraryCrtl'
         }).when('/createArtist', {
             templateUrl: 'static/partials/createArtist.html',
             controller: 'ArtistCrtl'
