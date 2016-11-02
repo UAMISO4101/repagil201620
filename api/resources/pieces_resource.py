@@ -76,7 +76,7 @@ def add_piece(request):
             image_cover=jsonPiece['body']['cover'],
             duration=jsonPiece['body']['duration'],
             category=get_object_or_404(Category.objects.filter(id=jsonPiece['body']['category'])),
-            artist=Artist.objects.get(userId__username=jsonPiece['body']['artist']),
+            artist=Artist.objects.get(id=jsonPiece['body']['artist']),
         );
         new_piece.save();
         return HttpResponse(serializers.serialize("json", [new_piece]))

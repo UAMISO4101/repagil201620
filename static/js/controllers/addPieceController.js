@@ -2,7 +2,7 @@
 (function () {
     'use strict';
 
-    var AddPiecesCrtl = function ($rootScope, $scope, Upload, $q, $cookieStore,S3UploadService,piecesService,categoryService ) {
+    var AddPiecesCrtl = function ($rootScope, $scope, Upload, $q, S3UploadService,piecesService,categoryService ) {
         categoryService.list().then(function (data) {
             $scope.categories = data;
         });
@@ -37,14 +37,14 @@
                 $scope.uploadFiles($scope.newPiece.cover).then(function (data) {
 
                     $scope.uploadFiles($scope.newPiece.sound).then(function (data) {
-                        console.log($cookieStore.get('username'))
+
                         var data = {
                             name: $scope.newPiece.name,
                             sound: $rootScope.Locations[1].Location,
                             cover: $rootScope.Locations[0].Location,
                             duration: $scope.newPiece.duration,
                             category: $scope.newPiece.category,
-                            artist: $cookieStore.get('username')
+                            artist: 1
                         }
                         piecesService.add(data).then(function (result) {
                             // Mark as success
@@ -127,5 +127,5 @@
            return promise}
     };
 
-    angular.module('freesounds.controllers').controller('AddPiecesCrtl', ['$rootScope', '$scope','Upload','$q', '$cookieStore','S3UploadService','piecesService','categoryService', AddPiecesCrtl]);
+    angular.module('freesounds.controllers').controller('AddPiecesCrtl', ['$rootScope', '$scope','Upload','$q', 'S3UploadService','piecesService','categoryService', AddPiecesCrtl]);
  }());

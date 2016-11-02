@@ -11,17 +11,10 @@
                 <div class="top-rgt">
                     <a ng-click="viewDetail(piece.pk)"><h4>{{ piece.fields.name }}</h4></a>
                     <p><b>Duration: </b>{{ piece.fields.duration }}</p>
-                    <span class="label label-default" ng-click="showCollections(piece)"
-                          style="background-color: yellow;color: #1c1b17;float: left;font-size: 20px"><a
-                            href="">+</a></span>
-                    <select style="float: left" ng-if="piece.viewCollections"
-                            ng-model="selectedCollection" ng-change="addToCollection(piece, selectedCollection)"
-                            ng-options="collection.fields.name for collection in availableCollections"></select>
-                     <a ng-href="{{piece.fields.url}}" target="_blank" download="MyGoogleLogo" style="color:yellow">
+                    <a ng-href="{{piece.fields.url}}" target="_blank" download="MyGoogleLogo" style="color:yellow">
                         <img border="0" src="../../../static/images/dwnload.png" alt="download" width="20" height="20">
                         Download
                     </a>
-
                 </div>
                 <div class="clearfix"></div>
             </div>
