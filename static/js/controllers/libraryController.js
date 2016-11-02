@@ -8,7 +8,6 @@
 
         $scope.isNewCollection = true;
         $scope.newCollection = {};
-        $scope.collections = [];
         $scope.validationError = false;
 
         $scope.toggleIsNewCollection = function () {
@@ -17,7 +16,7 @@
         };
 
         $scope.saveCollection = function () {
-            if($scope.newCollection.name) {
+            if ($scope.newCollection.name) {
                 $scope.validationError = false;
                 var res = collectionService.create($scope.newCollection).then(function (data) {
                         if (data.mensaje == "ok") {
@@ -35,8 +34,15 @@
                 $scope.mensaje = "el nombre no puede ser vacio";
                 $scope.validationError = true;
             }
-
         };
+
+        $scope.loadCollections = function () {
+            var res = collectionService.list().then(function (data) {
+                    $scope.collections = data;
+                }
+            )
+        };
+        $scope.loadCollections();
     };
 
     angular.module('freesounds.controllers').controller('LibraryCrtl', ['$rootScope', '$scope', '$location', '$routeParams', '$route', 'collectionService', LibraryCrtl]);

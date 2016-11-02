@@ -21,6 +21,13 @@
                         }
                     );
                     return promise;
+                },
+                list: function () {
+                     var promise = $http.get('/api/collections/',{}).then(function (response) {
+                            return response.data;
+                        }
+                    );
+                    return promise;
                 }
             };
             return CreateCollectionService;
