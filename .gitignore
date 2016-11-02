@@ -3,3 +3,4 @@ api/migrations/*
 sql/*
 *.pyc
 static/avatars/*
+static/covers/*

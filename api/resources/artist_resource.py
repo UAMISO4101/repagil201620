@@ -14,7 +14,7 @@ def create_artist(request):
     if request.method == 'POST':
         jsonUser = json.loads(request.body)
         nombre = jsonUser['body']['nombre']
-        apellido = jsonUser['body']['nombre']
+        apellido = jsonUser['body']['apellido']
         email = jsonUser['body']['email']
         username = jsonUser['body']['username']
         password = jsonUser['body']['password']
@@ -23,9 +23,11 @@ def create_artist(request):
            return JsonResponse({"mensaje": "el usuario ya existe"})
 
         try:
-            usuario = User.objects.create(first_name=nombre, last_name=apellido, email=email, username=username,
-                                          password=password)
-            artist = Artist.objects.create(user=usuario)
+            usuario = User.objects.create_user(first_name=nombre, last_name=apellido, email=email, username=username)
+            usuario.set_password(password)
+            usuario.save()
+
+            artist = Artist.objects.create(userId=usuario)
             if usuario is not None:
                 mensaje = "ok"
             else:
