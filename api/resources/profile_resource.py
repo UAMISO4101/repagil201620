@@ -18,10 +18,10 @@ def view_profile(request,user_id):
 def update_profile(request):
     if request.method == "POST":
         jsonPiece = json.loads(request.body)
-        user_id = jsonPiece['body']['user_id']
-        profile = get_list_or_404(Artist.objects.filter(userId=user_id))
+        userId = jsonPiece['body']['userId']
+        profile = get_list_or_404(Artist.objects.filter(userId=userId))
         if len(profile) == 0:
-            return JsonResponse({"mensaje": "There are no profile with id" + user_id})
+            return JsonResponse({"mensaje": "There are no profile with id" + userId})
         else:
             name = jsonPiece['body']['fields']['name']
             last_name = jsonPiece['body']['fields']['last_name']

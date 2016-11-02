@@ -16,15 +16,15 @@
             $scope.viewProfileInput = !$scope.viewProfileInput;
         };
 
-        $scope.saveProfile = function (artist) {
-            if (!artist.fields.name || 0 === artist.fields.name.length) {
+        $scope.saveProfile = function (artista) {
+            if (!artista.fields.name || 0 === artista.fields.name.length) {
                 $scope.nameErrorMessage = 'Name of a piece must not be empty !!';
                 $scope.nameError = true;
             }
             else {
                 $scope.lyricsError = false;
                 $scope.nameError = false;
-                profileService.update(artist).then(function (data) {
+                profileService.update(artista).then(function (data) {
                     $route.reload();
                 })
             }
