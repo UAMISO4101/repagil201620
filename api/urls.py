@@ -2,7 +2,7 @@ from django.conf.urls import url
 
 
 from api.resources.pieces_resource import pieces_list
-from api.resources.collection_resource import create_collection
+from api.resources.collection_resource import *
 
 
 from api.resources.pieces_resource import pieces_list, piece_by_id, update_piece,add_piece
@@ -20,9 +20,12 @@ urlpatterns=[
     url(r'^credentials/$', getCredentials, name='getCredentials'),
     url(r'^pieces/add_piece/$', add_piece, name='add_piece'),
     url(r'^createArtist/$', create_artist, name='create_artist'),
-    url(r'^createCollections/$', create_collection, name='create_collection'),
+    url(r'^collections/create$', create_collection, name='create_collection'),
     url(r'^logout$', logout_view, name="logout"),
     url(r'^login/$', login_view, name="login"),
     url(r'^islogged$', is_logged, name="is_logged"),
-
+    url(r'^collections/$', collections_list, name='collections_list'),
+    url(r'^collections/delete$', collections_delete, name='collections_delete'),
+    url(r'^collections/add$', collections_add, name='collections_add'),
+    url(r'^collections/(?P<collection_id>\d+)/pieces$', collections_pieces, name='collections_pieces'),
 ]

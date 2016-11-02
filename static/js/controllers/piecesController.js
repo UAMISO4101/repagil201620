@@ -4,15 +4,34 @@
 (function () {
     'use strict';
 
-    var PiecesCrtl = function ($rootScope, $scope, $location, piecesService) {
+    var PiecesCrtl = function ($rootScope, $scope, $location, piecesService, collectionService) {
+
+        $scope.selectedCollection = {};
 
         $rootScope.songs = [];
 
         var res = piecesService.list().then(function (data) {
-            $rootScope.transformToSongs(data);
+            for (var i = 0; i < data.length; i++) {
+
+                var tempSong = {
+                    id: data[i].pk.toString(),
+                    title: data[i].fields.name,
+                    artist: data[i].fields.artist.name,
+                    url: data[i].fields.url,
+                    duration: data[i].fields.duration,
+                    image_cover: data[i].fields.image_cover,
+                    viewCollections: false
+                };
+
+                $rootScope.songs.push(tempSong);
+            }
         }, function (response) {
             $scope.error = true;
             console.log('Error: ' + response);
+        });
+
+        collectionService.list().then(function (data) {
+            $scope.availableCollections = data;
         });
 
         $scope.viewDetail = function (piece_id) {
@@ -39,8 +58,7 @@
                 piece.viewCollections = false;
             })
         };
-
     };
 
-    angular.module('freesounds.controllers').controller('PiecesCrtl', ['$rootScope', '$scope', '$location', 'piecesService', PiecesCrtl]);
+    angular.module('freesounds.controllers').controller('PiecesCrtl', ['$rootScope', '$scope', '$location', 'piecesService', 'collectionService', PiecesCrtl]);
 }());

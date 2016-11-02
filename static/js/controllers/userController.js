@@ -6,7 +6,7 @@
 (function () {
     'use strict';
 
-    var UserCrtl = function ($rootScope, userService, $uibModal, $http, $location, $scope) {
+    var UserCrtl = function ($rootScope,$cookieStore, userService, $uibModal, $http, $location, $scope) {
         $scope.error = false;
 
         /**
@@ -21,6 +21,7 @@
                             $rootScope.auth_user = $scope.login.username;
                             $scope.closeModal();
                             $location.url("/pieces");
+                            $cookieStore.put('username',$scope.login.username);
                         } else {
                             console.log('Error while trying to log user');
                         }
@@ -102,5 +103,5 @@
            delete $scope.mensaje
         }
     };
-        angular.module('freesounds.controllers').controller('UserCrtl', ['$rootScope', 'userService', '$uibModal', '$http', '$location','$scope', UserCrtl]);
+        angular.module('freesounds.controllers').controller('UserCrtl', ['$rootScope','$cookieStore', 'userService', '$uibModal', '$http', '$location','$scope', UserCrtl]);
 }());
