@@ -13,3 +13,4 @@ python-social-auth
 requests
 requests-oauthlib
 six
+Pillow
