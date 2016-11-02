@@ -19,7 +19,7 @@ urlpatterns=[
     url(r'^credentials/$', getCredentials, name='getCredentials'),
     url(r'^pieces/add_piece/$', add_piece, name='add_piece'),
     url(r'^createArtist/$', create_artist, name='create_artist'),
-    url(r'^createCollections/$', create_collection, name='create_collection'),
+    url(r'^collections/create$', create_collection, name='create_collection'),
     url(r'^login$', views.login),
     url(r'^register', views.register),
 
