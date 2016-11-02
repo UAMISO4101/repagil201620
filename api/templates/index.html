@@ -76,7 +76,6 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                                 <li ng-hide="isLoggedIn()"><a href="#" target="_self" ng-click="openModal()">Sign Up</a></li>
                                 <li ng-show="isLoggedIn()"><a href="#/profile" id="id_editar"><span class="glyphicon glyphicon-user"></span> Profile</a></li>
                                 <li ng-show="isLoggedIn()"><a href="#/addPiece">Add Piece</a></li>
-                                <li ng-show="isLoggedIn()"><a href="#/createCollections/">Create a Collection</a></li>
                                 <li ng-show="isLoggedIn()"><a href="#/library" id="id_editar"><span class="glyphicon glyphicon-book"></span> My Library</a></li>
                                 <li ng-show="isLoggedIn()"><a href="#" event.preventDefault(); ng-click="logout()">Logout</a></li>
                                 <div class="clearfix"></div>
@@ -149,6 +148,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <script src="{% static "js/controllers/pieceDetailController.js" %}"></script>
 <script src="{% static "js/controllers/addPieceController.js" %}"></script>
 <script src="{% static "js/controllers/artistController.js" %}"></script>
+<script src="{% static "js/controllers/libraryController.js" %}"></script>
 <!-- Services -->
 <script src="{% static "js/services/S3UploadService.js" %}"></script>
 <script src="{% static "js/services/piecesService.js" %}"></script>
