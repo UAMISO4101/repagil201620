@@ -43,6 +43,26 @@
             )
         };
         $scope.loadCollections();
+
+        $scope.hasPieces = function (collection) {
+            if (collection.expanded && collection.pieces) {
+                return true;
+            }
+            else {
+                return false;
+            }
+        };
+
+        $scope.collapse = function (collection) {
+            collection.expanded = false;
+        };
+
+        $scope.loadPieces = function (collection) {
+            collectionService.piecesById(collection.pk).then(function (data) {
+                collection.pieces = data;
+            })
+            collection.expanded = true;
+        };
     };
 
     angular.module('freesounds.controllers').controller('LibraryCrtl', ['$rootScope', '$scope', '$location', '$routeParams', '$route', 'collectionService', LibraryCrtl]);

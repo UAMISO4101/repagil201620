@@ -44,6 +44,13 @@
                         }
                     );
                     return promise;
+                },
+                piecesById: function (collection_id) {
+                    var promise = $http.get('/api/collections/' + collection_id + '/pieces', {}).then(function (response) {
+                            return response.data;
+                        }
+                    );
+                    return promise;
                 }
             };
             return CreateCollectionService;

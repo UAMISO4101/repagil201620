@@ -31,14 +31,38 @@
                                      style="background-color: yellow;color: #1c1b17">Cancel</span></a>
                 </label>
             </div>
+            <div class="col-md-12" style="height: 15px"></div>
 
             <div class="col-md-12" ng-repeat="collection in collections">
-                <div class="col-md-12" style="height: 20px"></div>
-                <label style="border-left-style: solid; border-left-color: yellow; border-left-width: 20px; font-size: 20px">
-                    {{ collection.fields.name }}
-                </label>
-                <span class="label label-default"
-                      style="background-color: yellow;color: #1c1b17;float: right;font-size: 20px">Delete</span>
+                <div class="col-md-12" style="height: 5px"></div>
+                <div class="col-md-12">
+                    <label style="border-left-style: solid; border-left-color: yellow; border-left-width: 20px; font-size: 20px">
+                        {{ collection.fields.name }}
+                    </label>
+                    <span class="label label-default"
+                    style="background-color: yellow;color: #1c1b17;float: right;font-size: 20px">Delete</span>
+                    <span class="label label-default"
+                    style="background-color: yellow;color: #1c1b17;float: right;font-size: 20px">Play All</span>
+                    <span class="label label-default" ng-if="collection.expanded" ng-click="collapse(collection)"
+                          style="background-color: yellow;color: #1c1b17;float: right;font-size: 20px">
+                        <a href="">Collapse</a>
+                    </span>
+                    <span class="label label-default" ng-if="!collection.expanded" ng-click="loadPieces(collection)"
+                          style="background-color: yellow;color: #1c1b17;float: right;font-size: 20px">
+                        <a href="">Expand</a>
+                    </span>
+                </div>
+                <div class="col-md-12" ng-repeat="piece in collection.pieces" ng-if="hasPieces(collection)">
+                    <div class="col-md-12" style="height: 15px"></div>
+                    <label style="font-size: 15px">
+                        {{ piece.fields.name }}
+                    </label>
+                    <span class="label label-default"
+                          style="background-color: yellow;color: #1c1b17;float: right;font-size: 20px">Delete</span>
+                    <span class="label label-default"
+                          style="background-color: yellow;color: #1c1b17;float: right;font-size: 20px">Play</span>
+                </div>
+                <div class="col-md-12" style="height: 5px"></div>
             </div>
 
         </div>

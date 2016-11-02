@@ -15,18 +15,21 @@ def create_collection(request):
         pname = json_collection['body']['name']
         new_collection = Collection(name=pname)
         new_collection.save()
-        return JsonResponse({"mensaje": "ok", "data": serializers.serialize("json",[new_collection])})
+        return JsonResponse({"mensaje": "ok", "data": serializers.serialize("json", [new_collection])})
+
 
 @csrf_exempt
 def collections_list(request):
     collection_list = Collection.objects.all()
     return HttpResponse(serializers.serialize("json", collection_list))
 
+
 @csrf_exempt
 def collections_delete(request):
     if request.method == 'DELETE':
         Collection.objects.all().delete()
         return JsonResponse({"mensaje": "All collections deleted"})
+
 
 @csrf_exempt
 def collections_add(request):
@@ -40,4 +43,18 @@ def collections_add(request):
 
         new_piece_collection = PieceCollection(piece=piece, collection=collection)
         new_piece_collection.save()
-        return JsonResponse({"mensaje": "ok", "data": serializers.serialize("json",[new_piece_collection])})
+        return JsonResponse({"mensaje": "ok", "data": serializers.serialize("json", [new_piece_collection])})
+
+
+@csrf_exempt
+def collections_pieces(request, collection_id):
+    collection = Collection.objects.get(pk=collection_id)
+    try:
+        collection_pieces = PieceCollection.objects.filter(collection=collection)
+        answer = []
+        for cp in collection_pieces:
+            answer.append(Piece.objects.get(pk=cp.piece.pk))
+
+    except PieceCollection.DoesNotExist:
+        answer = []
+    return HttpResponse(serializers.serialize("json", answer))
