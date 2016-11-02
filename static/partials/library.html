@@ -3,37 +3,42 @@
         <h1 style="color: yellow">My Collections</h1>
 
         <div class="col-md-12" style="color: white">
-            <div class="col-md-12">
-                <h3 style="border-left-style: solid; border-left-color: yellow; border-left-width: 20px">Nombre de la
-                    lista</h3>
-                <div class="col-sm-10">
-                    <label>cancion 1</label>
-                    <label>cancion 1</label>
-                    <label>cancion 1</label>
-                </div>
-            </div>
 
-            <div class="col-md-12" style="height: 30px"></div>
+            <div class="col-md-12" style="height: 10px"></div>
             <div class="col-md-12">
-                <label style="font-size: 200%">
+                <label style="font-size: 200%" ng-if="isNewCollection" ng-click="toggleIsNewCollection()">
                     <a href=""><span class="label label-default"
                                      style="background-color: yellow;color: #1c1b17">New Collection</span></a>
                 </label>
-                <label style="font-size: 200%">
+            </div>
+
+            <div class="col-md-12" style="border-style: solid;border-color: yellow" ng-if="!isNewCollection">
+                <div class="col-md-12" style="height: 20px"></div>
+                <label>New collection name:</label>
+                <input type="text" ng-model="newCollection.name"
+                       style="width: 100%; background-color: #1c1b17;color: white;padding-bottom: 10px">
+                <label style="font-size: 200%" ng-click="saveCollection()">
                     <a href=""><span class="label label-default"
                                      style="background-color: yellow;color: #1c1b17">Save</span></a>
                 </label>
-                <label style="font-size: 200%">
+                <label style="font-size: 200%" ng-click="toggleIsNewCollection()">
                     <a href=""><span class="label label-default"
                                      style="background-color: yellow;color: #1c1b17">Cancel</span></a>
                 </label>
             </div>
-            <div class="col-md-12" style="border-style: solid;border-color: yellow">
-                <br>
-                <label>New collection name:</label>
-                <input type="text" style="width: 100%; background-color: #1c1b17;color: white;padding-bottom: 10px">
 
+            <div class="col-md-12" ng-repeat="collection in collections">
+                <div class="col-md-12" style="height: 20px"></div>
+                <h3 style="border-left-style: solid; border-left-color: yellow; border-left-width: 20px">
+                    {{ collection.name }}
+                </h3>
+{#                <div class="col-sm-10">#}
+{#                    <label>cancion 1</label>#}
+{#                    <label>cancion 1</label>#}
+{#                    <label>cancion 1</label>#}
+{#                </div>#}
             </div>
+
         </div>
 
     </div>
