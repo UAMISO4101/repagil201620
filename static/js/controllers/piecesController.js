@@ -33,7 +33,10 @@
         };
 
         $scope.addToCollection = function (piece, collection) {
-            piece.viewCollections = false;
+            collectionService.add({piece_id:piece.pk, collection_id:collection.pk}).then(function (response) {
+                console.log(JSON.stringify(response));
+                piece.viewCollections = false;
+            })
         };
     };
 

@@ -23,7 +23,23 @@
                     return promise;
                 },
                 list: function () {
-                     var promise = $http.get('/api/collections/',{}).then(function (response) {
+                    var promise = $http.get('/api/collections/', {}).then(function (response) {
+                            return response.data;
+                        }
+                    );
+                    return promise;
+                },
+                add: function (data) {
+                    var heads = {
+                        'X-Requested-With': 'XMLHttpRequest',
+                        'Content-Type': 'application/x-www-form-urlencoded'
+                    };
+                    var promise = $http.put('/api/collections/add',
+                        {
+                            headers: heads,
+                            body: data
+                        }
+                    ).then(function (response) {
                             return response.data;
                         }
                     );
