@@ -1,8 +1,9 @@
 from unittest import TestCase
 from django.test import Client
 from selenium import webdriver
+from freeSounds import settings
+
 import json
-from django.conf import settings
 
 #clase para pruebas funcionales con selenium
 class FunctionalTest(TestCase):
