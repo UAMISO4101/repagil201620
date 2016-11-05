@@ -52,10 +52,12 @@
                             .then(function (response) {
                                 return response.data;
                             }, function (error) {
+                                console.log("entro en error");
                                return error;
                             });
                         return promise;
                     }
+
                 };
 
                 return piecesService;

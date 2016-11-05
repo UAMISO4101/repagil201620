@@ -1,13 +1,9 @@
 import json
 
-from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
-from django.core import serializers
-from django.http import HttpResponseRedirect, HttpResponse
 from django.http.response import JsonResponse
-from django.shortcuts import get_list_or_404, get_object_or_404
-from django.shortcuts import render
 from django.views.decorators.csrf import csrf_exempt
+
 from api.models import Artist
 
 #Resource del artista que posee las funciones relacionadas a este
@@ -27,9 +23,11 @@ def create_artist(request):
            return JsonResponse({"mensaje": "el usuario ya existe"})
 
         try:
-            usuario = User.objects.create(first_name=nombre, last_name=apellido, email=email, username=username,
-                                          password=password)
-            artist = Artist.objects.create(user=usuario)
+            usuario = User.objects.create(first_name=nombre, last_name=apellido, email=email, username=username)
+            usuario.set_password(password)
+            usuario.save()
+
+            artist = Artist.objects.create(userId=usuario)
             if usuario is not None:
                 mensaje = "ok"
             else:
