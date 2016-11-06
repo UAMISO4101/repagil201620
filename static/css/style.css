@@ -106,7 +106,6 @@ label{
 .body-middle::before {
   content: '';
   position: absolute;
-  background: url(../../../static/images/shape4.png)no-repeat;
   width: 100%;
   height: 94px;
   z-index: 9;
@@ -181,7 +180,6 @@ label{
   text-decoration: none;
   height: 80px;
   width: 40px;
-  background: transparent url("../../../static/images/arrows.png") no-repeat left top;
     margin-top: 4%;
 	  display: none;
 }
@@ -218,7 +216,7 @@ label{
   opacity:1;
 }
 .banner{
-  background: url(../../../static/images/ban.jpg) no-repeat 0px 0px;
+  background: url(../images/ban.jpg) no-repeat 0px 0px;
   background-size: cover;
   -webkit-background-size: cover;
   -o-background-size: cover;
@@ -257,7 +255,7 @@ label{
 	position:absolute;
 }
 .header-top {
-  background: url(../../../static/images/shape-3.png)no-repeat;
+  background: url(../images/shape-3.png)no-repeat;
    background-size: cover;
   -webkit-background-size: cover;
   -o-background-size: cover;
@@ -331,19 +329,19 @@ ul.f-icons{
  float:right;
 }
 .header-right ul li a.facebook,.header-right ul li a.p,.header-right ul li a.twitter{
-	background: url(../../../static/images/icons.png) no-repeat -5px -8px;
+	background: url(../images/icons.png) no-repeat -5px -8px;
 	display:inline-block;
 	height: 34px;
 	width: 34px;
 }
 .header-right ul li a.p{
-	background: url(../../../static/images/icons.png) no-repeat -46px -8px;
+	background: url(../images/icons.png) no-repeat -46px -8px;
 }
 .header-right ul li a.twitter{
-	background: url(../../../static/images/icons.png) no-repeat -85px -8px;
+	background: url(../images/icons.png) no-repeat -85px -8px;
 }
 .header-right ul li a.goog{
-	background: url(../../../static/images/icons.png) no-repeat -127px -8px;
+	background: url(../images/icons.png) no-repeat -127px -8px;
 }
 .header-right ul li a.facebook:hover, .header-right ul li a:hover.p, .header-right ul li a.twitter:hover {
   transform: rotateY(360deg);
@@ -360,7 +358,7 @@ ul.f-icons{
     span.menu {
     width: 35px;
     height: 35px;
-    background: url('../../../static/images/nav.png') no-repeat;
+    background: url('../images/nav.png') no-repeat;
     display: inline-block;
     float: left;
     cursor: pointer;
@@ -510,19 +508,19 @@ ul.f-icons{
   background:#FEF356;
 }
 .social ul li a.facebook,.social ul li a.p,.social ul li a.twitter,.social ul li a.goog{
-	background: url(../../../static/images/icons.png) no-repeat -5px -8px;
+	background: url(../images/icons.png) no-repeat -5px -8px;
 	display:inline-block;
 	height: 34px;
 	width: 34px;
 }
 .social ul li a.p{
-	background: url(../../../static/images/icons.png) no-repeat -46px -8px;
+	background: url(../images/icons.png) no-repeat -46px -8px;
 }
 .social ul li a.twitter{
-	background: url(../../../static/images/icons.png) no-repeat -85px -8px;
+	background: url(../images/icons.png) no-repeat -85px -8px;
 }
 .social ul li a.goog{
-	background: url(../../../static/images/icons.png) no-repeat -127px -8px;
+	background: url(../images/icons.png) no-repeat -127px -8px;
 }
 .social ul li a.facebook:hover, .social ul li a:hover.p, .social ul li a.twitter:hover,.social ul li a.goog:hover{
   transform: rotateY(360deg);
@@ -593,7 +591,7 @@ ul.f-icons{
   color: #837B05;
 }
 .banner-1{
-  background: url(../../../static/images/freesounds.jpg) no-repeat 0px 0px;
+  background: url(../images/freesounds.jpg) no-repeat 0px 0px;
   background-size: cover;
   -webkit-background-size: cover;
   -o-background-size: cover;
@@ -885,7 +883,7 @@ img.lb-image{
     font-size: 2.5em;
 }
 .header-top {
-    background: url(../../../static/images/shape-3.png)no-repeat -37px 0px;
+    background: url(../images/shape-3.png)no-repeat -37px 0px;
     background-size: cover;
     -webkit-background-size: cover;
     -o-background-size: cover;
@@ -968,7 +966,7 @@ img.lb-image{
     font-size: 2em;
 }
 .header-top {
-    background: url(../../../static/images/shape-3.png)no-repeat -13px 0px;
+    background: url(../images/shape-3.png)no-repeat -13px 0px;
     background-size: cover;
     -webkit-background-size: cover;
     -o-background-size: cover;
@@ -1285,7 +1283,7 @@ img.lb-image{
     padding: 0.5em 0 0;
 }
 .header-top {
-    background: url(../../../static/images/shape-3.png)no-repeat -15px 0px;
+    background: url(../images/shape-3.png)no-repeat -15px 0px;
     background-size: cover;
     -webkit-background-size: cover;
     -o-background-size: cover;
@@ -1310,7 +1308,7 @@ span.menu {
     width: 33%;
 }
 .banner {
-    background: url(../../../static/images/ban.jpg) no-repeat -83px 0px;
+    background: url(../images/ban.jpg) no-repeat -83px 0px;
     background-size: cover;
     -webkit-background-size: cover;
     -o-background-size: cover;
