@@ -56,6 +56,14 @@
                                return error;
                             });
                         return promise;
+                    },
+
+                    categoryQuery:function (category) {
+                        var promise = $http.get('/api/piecesByCategory/'+category, {})
+                            .then(function (response) {
+                                return response.data;
+                            });
+                        return promise;
                     }
 
                 };

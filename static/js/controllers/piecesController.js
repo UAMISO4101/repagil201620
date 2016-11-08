@@ -58,6 +58,12 @@
                 piece.viewCollections = false;
             })
         };
+
+        $scope.listByCategory = function (category) {
+            //FALTA TODO
+            piecesService.categoryQuery()
+            
+        }
     };
 
     angular.module('freesounds.controllers').controller('PiecesCrtl', ['$rootScope', '$scope', '$location', 'piecesService', 'collectionService', PiecesCrtl]);
