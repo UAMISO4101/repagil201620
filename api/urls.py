@@ -5,7 +5,7 @@ from api.resources.pieces_resource import pieces_list
 from api.resources.collection_resource import *
 
 
-from api.resources.pieces_resource import pieces_list, piece_by_id, update_piece,add_piece
+from api.resources.pieces_resource import pieces_list, piece_by_id, update_piece,add_piece, piece_by_category
 from api.resources.category_resource import category_list
 from api.resources.awsS3_resource import getCredentials
 from api.resources.artist_resource import create_artist
@@ -28,4 +28,5 @@ urlpatterns=[
     url(r'^collections/delete$', collections_delete, name='collections_delete'),
     url(r'^collections/add$', collections_add, name='collections_add'),
     url(r'^collections/(?P<collection_id>\d+)/pieces$', collections_pieces, name='collections_pieces'),
+    url(r'^pieces/bycategory/(?P<piece_category>\d+)/$', piece_by_category, name='piece_by_category'),
 ]

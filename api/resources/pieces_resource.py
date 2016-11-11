@@ -81,3 +81,6 @@ def add_piece(request):
         new_piece.save();
         return HttpResponse(serializers.serialize("json", [new_piece]))
 
+def piece_by_category(request, piece_category):
+    piece = get_list_or_404(Piece.objects.filter(pk = piece_category))
+    return HttpResponse(serializers.serialize("json", piece))

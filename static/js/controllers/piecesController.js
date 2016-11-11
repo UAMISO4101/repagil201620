@@ -59,11 +59,10 @@
             })
         };
 
-        $scope.listByCategory = function (category) {
+        $scope.listByCategory = function (piece_category) {
             //FALTA TODO
-            piecesService.categoryQuery()
-            
-        }
+            $location.url('/pieces/byCategory/' + piece_category);
+        };
     };
 
     angular.module('freesounds.controllers').controller('PiecesCrtl', ['$rootScope', '$scope', '$location', 'piecesService', 'collectionService', PiecesCrtl]);

@@ -57,7 +57,7 @@
                             });
                         return promise;
                     },
-
+//Puede que me termine volando este pedazo de codigo
                     categoryQuery:function (category) {
                         var promise = $http.get('/api/piecesByCategory/'+category, {})
                             .then(function (response) {
