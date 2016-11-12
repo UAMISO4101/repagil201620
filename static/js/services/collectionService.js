@@ -51,6 +51,21 @@
                         }
                     );
                     return promise;
+                },
+                delete: function (collection_id) {
+                    var promise = $http.delete('/api/collections/' + collection_id + '/delete', {}).then(function (response) {
+                            return response.data;
+                        }
+                    );
+                    return promise;
+                },
+                update: function (collection_id, new_name) {
+                    var promise = $http.put('/api/collections/' + collection_id + '/update', {name: new_name})
+                        .then(function (response) {
+                            return response.data;
+                        }
+                    );
+                    return promise;
                 }
             };
             return CreateCollectionService;

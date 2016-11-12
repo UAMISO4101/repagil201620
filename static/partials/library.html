@@ -39,8 +39,8 @@
                     <label style="border-left-style: solid; border-left-color: yellow; border-left-width: 20px; font-size: 20px">
                         {{ collection.fields.name }}
                     </label>
-                    <span class="label label-default"
-                    style="background-color: yellow;color: #1c1b17;float: right;font-size: 20px">Delete</span>
+                    <span class="label label-default"  ng-click="deleteCollection(collection.pk)"
+                    style="background-color: yellow;color: #1c1b17;float: right;font-size: 20px"><a href="">Delete</a></span>
                     <span class="label label-default" ng-click="putSongs(collection)" play-all="songs"
                     style="background-color: yellow;color: #1c1b17;float: right;font-size: 20px"><a href="">Play All</a></span>
                     <span class="label label-default" ng-if="collection.expanded" ng-click="collapse(collection)"

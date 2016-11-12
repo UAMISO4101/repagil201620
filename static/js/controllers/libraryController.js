@@ -75,6 +75,12 @@
                 }
             });
         };
+
+        $scope.deleteCollection = function (collection_id) {
+            collectionService.delete(collection_id).then(function (data) {
+                $scope.loadCollections();
+            });
+        };
     };
 
     angular.module('freesounds.controllers').controller('LibraryCrtl', ['$rootScope', '$scope', '$location', '$routeParams', '$route', 'collectionService', LibraryCrtl]);
