@@ -71,7 +71,7 @@ def collection_delete_by_id(request, collection_id):
 def update_collection(request, collection_id):
     if request.method == "PUT":
         json_colection = json.loads(request.body)
-        collection_name = json_colection['body']['name']
+        collection_name = json_colection['name']
         collection = get_object_or_404(Collection, pk=collection_id)
         collection.name = collection_name
         collection.save()
