@@ -29,4 +29,5 @@ urlpatterns=[
     url(r'^collections/add$', collections_add, name='collections_add'),
     url(r'^collections/(?P<collection_id>\d+)/pieces$', collections_pieces, name='collections_pieces'),
     url(r'^collections/(?P<collection_id>\d+)/delete$', collection_delete_by_id, name='collection_delete_by_id'),
+    url(r'^collections/(?P<collection_id>\d+)/update$', update_collection, name='update_collection'),
 ]

@@ -3,6 +3,7 @@ import json
 from django.core import serializers
 from django.http import HttpResponse
 from django.http import JsonResponse
+from django.shortcuts import get_object_or_404
 from django.views.decorators.csrf import csrf_exempt
 
 from api.models import *
@@ -65,3 +66,13 @@ def collection_delete_by_id(request, collection_id):
         collection = Collection.objects.get(pk=collection_id)
         collection.delete()
         return JsonResponse({"mensaje": "ok"})
+
+@csrf_exempt
+def update_collection(request, collection_id):
+    if request.method == "PUT":
+        json_colection = json.loads(request.body)
+        collection_name = json_colection['body']['name']
+        collection = get_object_or_404(Collection, pk=collection_id)
+        collection.name = collection_name
+        collection.save()
+        return JsonResponse({"mensaje": "successfully updated"})
