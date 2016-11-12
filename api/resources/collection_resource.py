@@ -58,3 +58,10 @@ def collections_pieces(request, collection_id):
     except PieceCollection.DoesNotExist:
         answer = []
     return HttpResponse(serializers.serialize("json", answer))
+
+@csrf_exempt
+def collection_delete_by_id(request, collection_id):
+    if request.method == 'DELETE':
+        collection = Collection.objects.get(pk=collection_id)
+        collection.delete()
+        return JsonResponse({"mensaje": "ok"})
