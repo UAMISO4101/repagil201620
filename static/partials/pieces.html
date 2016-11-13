@@ -34,14 +34,12 @@
                         <span class="label label-default" ng-if="!piece.upvoted"
                               style="background-color: yellow; display:inline-block;color: #1c1b17">
                             <img src="../../../static/images/up.png"
-                                 style="height: 20px"/>
-                            Upvote
+                                 style="height: 20px"/><a href="" ng-click="upVote(piece)">Upvote</a>
                         </span>
                         <span class="label label-default" ng-if="piece.upvoted"
                               style="background-color: yellow; display:inline-block;color: #1c1b17">
                             <img src="../../../static/images/down.png"
-                                 style="height: 20px"/>
-                            Downvote
+                                 style="height: 20px"/><a href="" ng-click="downVote(piece)">Downvote</a>
                         </span>
                         <a ng-href="{{ piece.url }}" target="_blank" download="MyGoogleLogo"
                            style="color:yellow; float: right">

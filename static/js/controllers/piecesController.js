@@ -29,7 +29,7 @@
 
                         piecesService.getLikes(piece_id).then(function (likes) {
                             tempSong.likes = likes;
-                            piecesService.getLikes(piece_id, $cookieStore.get('username')).then(function (liked) {
+                            piecesService.wasLiked(piece_id, $cookieStore.get('username')).then(function (liked) {
                                 tempSong.upvoted = liked;
                                 $rootScope.songs.push(tempSong);
                             });
@@ -69,6 +69,28 @@
                     console.log(JSON.stringify(response));
                     piece.viewCollections = false;
                 })
+            };
+
+            $scope.upVote = function (piece) {
+                var username = $cookieStore.get('username');
+                var piece_id = piece.id;
+                piecesService.like(piece_id, username).then(function (data) {
+                    piece.upvoted = true;
+                    piecesService.getLikes(piece_id).then(function (likes) {
+                        piece.likes = likes;
+                    });
+                });
+            };
+
+            $scope.downVote = function (piece) {
+                var username = $cookieStore.get('username');
+                var piece_id = piece.id;
+                piecesService.unlike(piece_id, username).then(function (data) {
+                    piece.upvoted = false;
+                    piecesService.getLikes(piece_id).then(function (likes) {
+                        piece.likes = likes;
+                    });
+                });
             };
 
         };
