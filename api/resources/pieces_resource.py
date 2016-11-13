@@ -114,9 +114,9 @@ def is_liked_piece_by_username(request, piece_id):
         piece=get_object_or_404(Piece, pk=piece_id)
         like = PieceLike.objects.filter(piece=piece, username=username)
         if len(like) > 0:
-            return JsonResponse({"mensaje": True})
+            return JsonResponse({"liked": True})
         else:
-            return JsonResponse({"mensaje": False})
+            return JsonResponse({"liked": False})
 
 
 @csrf_exempt
