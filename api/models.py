@@ -121,3 +121,8 @@ class PieceForm(ModelForm):
 class PieceCollection(models.Model):
     collection = models.ForeignKey(Collection, on_delete=models.CASCADE, null=False)
     piece = models.ForeignKey(Piece, on_delete=models.CASCADE, null=False)
+
+
+class PieceLike(models.Model):
+    piece = models.ForeignKey(Piece, on_delete=models.CASCADE, null=False)
+    username = models.CharField(max_length=256)
