@@ -27,20 +27,54 @@
                             upvoted: false
                         };
 
-                        piecesService.getLikes(piece_id).then(function (likes) {
-                            tempSong.likes = likes;
-                            piecesService.wasLiked(piece_id, $cookieStore.get('username')).then(function (liked) {
-                                tempSong.upvoted = liked;
-                                $rootScope.songs.push(tempSong);
-                            });
-                        });
+
+                        // piecesService.getLikes(piece_id).then(function (likes) {
+                        //     console.log('dentro de la promesa ' + likes);
+                        //     tempSong.likes = likes;
+                        // });
+
+                        // piecesService.wasLiked(piece_id, $cookieStore.get('username')).then(function (liked) {
+                        //     tempSong.upvoted = liked;
+                        // });
+
+                        $rootScope.songs.push(tempSong);
                     }
                 }, function (response) {
                     $scope.error = true;
                     console.log('Error: ' + response);
+                }).then(function () {
+                    $scope.loadLikes();
+                }).then(function () {
+                    $scope.loadUpvotes();
                 });
             };
             $scope.loadPieces();
+
+            $scope.loadLikes = function () {
+                var song = {};
+                for (var i = 0; i < $rootScope.songs.length; i++) {
+                    (function (song, i) {
+                        song = $rootScope.songs[i];
+                        piecesService.getLikes(song.id).then(function (likes) {
+                            song.likes = likes;
+                            return;
+                        });
+                    }).call(this, song, i)
+                }
+            };
+
+            $scope.loadUpvotes = function () {
+                var song = {};
+                for (var i = 0; i < $rootScope.songs.length; i++) {
+                    (function (song, i) {
+                        song = $rootScope.songs[i];
+                        piecesService.wasLiked(song.id, $cookieStore.get('username')).then(function (liked) {
+                            song.upvoted = liked;
+                            return;
+                        });
+                    }).call(this, song, i)
+                }
+            };
 
             collectionService.list().then(function (data) {
                 $scope.availableCollections = data;
