@@ -35,4 +35,5 @@ urlpatterns = [
     url(r'^pieces/(?P<piece_id>\d+)/unlike$', unlike_piece, name='unlike_piece'),
     url(r'^pieces/(?P<piece_id>\d+)/liked$', is_liked_piece_by_username, name='is_liked_piece_by_username'),
     url(r'^pieces/(?P<piece_id>\d+)/likes$', likes_by_piece, name='likes_by_piece'),
+    url(r'^pieces/rank$', get_most_voted, name='get_most_voted'),
 ]

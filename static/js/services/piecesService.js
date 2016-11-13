@@ -96,6 +96,16 @@
                                return error;
                             });
                         return promise;
+                    },
+                    rankList:function () {
+                        var promise = $http.get('/api/pieces/rank',{})
+                            .then(function (response) {
+                                return response;
+                            }, function (error) {
+                                console.log("entro en error");
+                               return error;
+                            });
+                        return promise;
                     }
 
                 };

@@ -6,7 +6,7 @@ from django.http import JsonResponse
 from django.shortcuts import get_list_or_404, get_object_or_404
 from django.views.decorators.csrf import csrf_exempt
 
-from api.models import Collection, PieceLike
+from api.models import Collection, PieceLike, Rank
 from api.models import Piece, Category, Artist
 
 
@@ -89,7 +89,7 @@ def like_piece(request, piece_id):
     if request.method == 'POST':
         json_body = json.loads(request.body)
         username = json_body['username']
-        piece=get_object_or_404(Piece, pk=piece_id)
+        piece = get_object_or_404(Piece, pk=piece_id)
         new_like = PieceLike(piece=piece, username=username)
         new_like.save()
         return JsonResponse({"mensaje": "successfully liked"})
@@ -100,7 +100,7 @@ def unlike_piece(request, piece_id):
     if request.method == 'POST':
         json_body = json.loads(request.body)
         username = json_body['username']
-        piece=get_object_or_404(Piece, pk=piece_id)
+        piece = get_object_or_404(Piece, pk=piece_id)
         like = PieceLike.objects.filter(piece=piece, username=username)
         like.delete()
         return JsonResponse({"mensaje": "successfully unliked"})
@@ -111,7 +111,7 @@ def is_liked_piece_by_username(request, piece_id):
     if request.method == 'POST':
         json_body = json.loads(request.body)
         username = json_body['username']
-        piece=get_object_or_404(Piece, pk=piece_id)
+        piece = get_object_or_404(Piece, pk=piece_id)
         like = PieceLike.objects.filter(piece=piece, username=username)
         if len(like) > 0:
             return JsonResponse({"liked": True})
@@ -122,9 +122,25 @@ def is_liked_piece_by_username(request, piece_id):
 @csrf_exempt
 def likes_by_piece(request, piece_id):
     if request.method == 'GET':
-        piece=get_object_or_404(Piece, pk=piece_id)
+        piece = get_object_or_404(Piece, pk=piece_id)
         likes = PieceLike.objects.filter(piece=piece)
         if likes is not None:
             return JsonResponse({"likes": len(likes)})
         else:
             return JsonResponse({"likes": 0})
+
+
+@csrf_exempt
+def get_most_voted(request):
+    if request.method == 'GET':
+        pieceLikes = PieceLike.objects.all();
+        if pieceLikes is not None:
+            validated_pieces = []
+            answer = []
+            for pl in pieceLikes:
+                piece = pl.piece
+                if piece.name not in validated_pieces:
+                    validated_pieces.append(piece.name)
+                    rank = Rank(piece_name=piece.name, likes_number=len(PieceLike.objects.filter(piece=piece)))
+                    answer.append(rank)
+            return HttpResponse(serializers.serialize("json", answer))

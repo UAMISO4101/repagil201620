@@ -78,6 +78,7 @@
                     piece.upvoted = true;
                     piecesService.getLikes(piece_id).then(function (likes) {
                         piece.likes = likes;
+                        $scope.loadRank();
                     });
                 });
             };
@@ -89,9 +90,17 @@
                     piece.upvoted = false;
                     piecesService.getLikes(piece_id).then(function (likes) {
                         piece.likes = likes;
+                        $scope.loadRank();
                     });
                 });
             };
+
+            $scope.loadRank = function () {
+                piecesService.rankList().then(function (data) {
+                    $scope.rank = data.data;
+                });
+            };
+            $scope.loadRank();
 
         };
 
