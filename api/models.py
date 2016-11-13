@@ -54,9 +54,9 @@ class ArtistaForm(ModelForm):
     date_range = 100
     this_year = datetime.now().year
     birth_date = forms.DateField(
-        widget= forms.SelectDateWidget(years=range(this_year - date_range, this_year + 1 ),attrs = {
-                'class': 'form-control date-field '
-            }),
+        widget=forms.SelectDateWidget(years=range(this_year - date_range, this_year + 1), attrs={
+            'class': 'form-control date-field '
+        }),
         label='BirthDate'
     )
 
@@ -121,3 +121,13 @@ class PieceForm(ModelForm):
 class PieceCollection(models.Model):
     collection = models.ForeignKey(Collection, on_delete=models.CASCADE, null=False)
     piece = models.ForeignKey(Piece, on_delete=models.CASCADE, null=False)
+
+
+class PieceLike(models.Model):
+    piece = models.ForeignKey(Piece, on_delete=models.CASCADE, null=False)
+    username = models.CharField(max_length=256)
+
+
+class Rank(models.Model):
+    piece_name = models.CharField(max_length=256)
+    likes_number = models.IntegerField()
