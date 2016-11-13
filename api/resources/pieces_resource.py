@@ -1,17 +1,14 @@
 import json
 
-import sys
-from django.contrib.auth.models import User
 from django.core import serializers
-
-from api.models import Piece, Collection
-from django.shortcuts import get_list_or_404
 from django.http import HttpResponse
 from django.http import JsonResponse
 from django.shortcuts import get_list_or_404, get_object_or_404
 from django.views.decorators.csrf import csrf_exempt
 
-from api.models import Piece, Category,Artist
+from api.models import Collection, PieceLike
+from api.models import Piece, Category, Artist
+
 
 ###########################################
 # Resource for operations with Piece class
@@ -22,13 +19,17 @@ def pieces_list(request):
     pieces_list = Piece.objects.all()
     return HttpResponse(serializers.serialize("json", pieces_list))
 
+
 @csrf_exempt
 def collection_by_artist(request, artist_name):
     collection = get_list_or_404(Collection.objects.filter(name=artist_name))
     return HttpResponse(serializers.serialize("json", collection))
+
+
 def piece_by_id(request, piece_id):
-    piece = get_list_or_404(Piece.objects.filter(pk = piece_id))
+    piece = get_list_or_404(Piece.objects.filter(pk=piece_id))
     return HttpResponse(serializers.serialize("json", piece))
+
 
 @csrf_exempt
 def update_piece(request):
@@ -57,7 +58,7 @@ def update_piece(request):
             if duration is not None:
                 selected_piece.duration = duration
             if category is not None:
-                cat = get_object_or_404(Category, pk = category)
+                cat = get_object_or_404(Category, pk=category)
                 selected_piece.category = cat
             if lyrics is not None:
                 selected_piece.lyrics = lyrics
@@ -66,11 +67,12 @@ def update_piece(request):
 
             return JsonResponse({"mensaje": "successfully updated"})
 
+
 @csrf_exempt
 def add_piece(request):
-    if request.method=='POST':
+    if request.method == 'POST':
         jsonPiece = json.loads(request.body)
-        new_piece=Piece(
+        new_piece = Piece(
             name=jsonPiece['body']['name'],
             url=jsonPiece['body']['sound'],
             image_cover=jsonPiece['body']['cover'],
@@ -81,3 +83,48 @@ def add_piece(request):
         new_piece.save();
         return HttpResponse(serializers.serialize("json", [new_piece]))
 
+
+@csrf_exempt
+def like_piece(request, piece_id):
+    if request.method == 'POST':
+        jsonPiece = json.loads(request.body)
+        username = jsonPiece['body']['username']
+        piece=get_object_or_404(Piece, pk=piece_id)
+        new_like = PieceLike(piece=piece, username=username)
+        new_like.save()
+        return JsonResponse({"mensaje": "successfully liked"})
+
+
+@csrf_exempt
+def unlike_piece(request, piece_id):
+    if request.method == 'DELETE':
+        jsonPiece = json.loads(request.body)
+        username = jsonPiece['body']['username']
+        piece=get_object_or_404(Piece, pk=piece_id)
+        like = PieceLike.objects.filter(piece=piece, username=username)
+        like.delete()
+        return JsonResponse({"mensaje": "successfully unliked"})
+
+
+@csrf_exempt
+def is_liked_piece_by_username(request, piece_id):
+    if request.method == 'POST':
+        jsonPiece = json.loads(request.body)
+        username = jsonPiece['body']['username']
+        piece=get_object_or_404(Piece, pk=piece_id)
+        like = PieceLike.objects.filter(piece=piece, username=username)
+        if len(like) > 0:
+            return JsonResponse({"mensaje": True})
+        else:
+            return JsonResponse({"mensaje": False})
+
+
+@csrf_exempt
+def likes_by_piece(request, piece_id):
+    if request.method == 'GET':
+        piece=get_object_or_404(Piece, pk=piece_id)
+        likes = PieceLike.objects.filter(piece=piece)
+        if likes is not None:
+            return JsonResponse({"likes": len(likes)})
+        else:
+            return JsonResponse({"likes": 0})
