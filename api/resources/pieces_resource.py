@@ -87,8 +87,8 @@ def add_piece(request):
 @csrf_exempt
 def like_piece(request, piece_id):
     if request.method == 'POST':
-        jsonPiece = json.loads(request.body)
-        username = jsonPiece['body']['username']
+        json_body = json.loads(request.body)
+        username = json_body['body']['username']
         piece=get_object_or_404(Piece, pk=piece_id)
         new_like = PieceLike(piece=piece, username=username)
         new_like.save()
@@ -98,8 +98,8 @@ def like_piece(request, piece_id):
 @csrf_exempt
 def unlike_piece(request, piece_id):
     if request.method == 'DELETE':
-        jsonPiece = json.loads(request.body)
-        username = jsonPiece['body']['username']
+        json_body = json.loads(request.body)
+        username = json_body['body']['username']
         piece=get_object_or_404(Piece, pk=piece_id)
         like = PieceLike.objects.filter(piece=piece, username=username)
         like.delete()
@@ -109,8 +109,8 @@ def unlike_piece(request, piece_id):
 @csrf_exempt
 def is_liked_piece_by_username(request, piece_id):
     if request.method == 'POST':
-        jsonPiece = json.loads(request.body)
-        username = jsonPiece['body']['username']
+        json_body = json.loads(request.body)
+        username = json_body['body']['username']
         piece=get_object_or_404(Piece, pk=piece_id)
         like = PieceLike.objects.filter(piece=piece, username=username)
         if len(like) > 0:

@@ -9,12 +9,17 @@
                     </a>
                 </div>
                 <div class="top-rgt">
-                    <a ng-click="viewDetail(piece.pk)"><h4>{{ piece.title }}</h4></a>
-                    <p><b>Duration: </b>{{ piece.duration }}</p>
                     <div class="col-md-12" style="padding-left: 0%">
-                    <span class="label label-default" ng-click="showCollections(piece)"
-                          style="background-color: yellow;color: #1c1b17;float: left;font-size: 20px"><a
-                            href="">+</a></span>
+                        <label>
+                            <a style="color:yellow; font-size: 20px" ng-click="viewDetail(piece.pk)">{{ piece.title }}</a>
+                        </label>
+                        <label style="color:yellow; font-size: 15px; float: right">likes</label>
+                        <p><b>Duration: </b>{{ piece.duration }}</p>
+                    </div>
+                    <div class="col-md-12" style="padding-left: 0%">
+                        <span class="label label-default" ng-click="showCollections(piece)"
+                              style="background-color: yellow;color: #1c1b17;float: left;font-size: 20px"><a
+                                href="">+</a></span>
                         <select style="float: left" ng-if="piece.viewCollections"
                                 ng-model="selectedCollection" ng-change="addToCollection(piece, selectedCollection)"
                                 ng-options="collection.fields.name for collection in availableCollections"></select>
