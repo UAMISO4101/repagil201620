@@ -3,10 +3,12 @@
         <div class="col-md-6 topstr-left" data-ng-repeat="piece in songs">
             <div class="tp-lt">
                 <div class="top-lft">
+
                     <a href="" ng-click="viewDetail(piece.id)">
                        <!-- {{  piece.fields.image_cover}}-->
                        <img src='{{piece.image_cover}}' alt=" " class="img-responsive" style="width: 150px;height: 150px">
                     </a>
+                    
                 </div>
                 <div class="top-rgt">
                     <a ng-click="viewDetail(piece.pk)"><h4>{{ piece.title }}</h4></a>
