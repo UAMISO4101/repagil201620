@@ -127,7 +127,16 @@ class PieceLike(models.Model):
     piece = models.ForeignKey(Piece, on_delete=models.CASCADE, null=False)
     username = models.CharField(max_length=256)
 
-
 class Rank(models.Model):
     piece_name = models.CharField(max_length=256)
     likes_number = models.IntegerField()
+
+
+class PlayList(models.Model):
+    name = name = models.CharField(max_length=1000)
+    artist = models.ForeignKey(Artist, on_delete=models.CASCADE, null=True)
+
+
+class PiecePlayList(models.Model):
+    playlist = models.ForeignKey(PlayList, on_delete=models.CASCADE, null=False)
+    piece = models.ForeignKey(Piece, on_delete=models.CASCADE, null=False)
