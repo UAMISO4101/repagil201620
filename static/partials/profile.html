@@ -1,84 +1,46 @@
 <div class="container">
     <div class="row">
-        <div class="col-sm-6">
-            <img src="{{ '/' }}{{ artista.fields.avatar }}" alt=" " class="img-responsive">
-        </div>
-        <div class="col-sm-6">
-            <div class="profile-body">
-                <div class="form-group">
-                    <label>Name</label>
-                    {{ artista.fields.name }}
-                </div>
-                <div class="form-group">
-                    <label>Last Name</label>
-                    {{ artista.fields.last_name }}
-                </div>
-                <div class="form-group">
-                    <label>Artistic Name</label>
-                    {{ artista.fields.name_artistic }}
-                </div>
-                <div class="form-group">
-                    <label>Email</label>
-                    {{ artista.fields.email }}
-                </div>
-                <div class="form-group">
-                    <label>City</label>
-                    {{ artista.fields.city }}
-                </div>
-                <div class="form-group">
-                    <label>Country</label>
-                    {{ artista.fields.country }}
-                </div>
-                <div class="form-group">
-                    <label>Birthdate</label>
-                    {{ artista.fields.birth_date }}
-                </div>
-                <div style="font-size: 200%;float:right;position:relative;">
-                    <a href="">
-                        <span class="label label-default" ng-click="toggleProfileInput()">Edit Profile</span>
-                    </a>
+        <div class="catalog-header banner-header">
+            <div class="banner-header-bg" style="background-image: url({{ '/' }}{{ artista.fields.avatar }}); background-position: center center;">
+            </div>
+            <div class="catalog-headings">
+                <div class="banner-headings clearfix">
+                    <figure class="thumbnail thumbnail-bordered-blur thumbnail-rounded">
+                        <div class="picture overlay-hidden">
+                            <img class="picture-img" alt="" height="160" src="{{ '/' }}{{ artista.fields.avatar }}" width="160"></div>
+                    </figure>
+                    <h1 class="heading-1 ellipsis">{{ artista.fields.name_artistic }}</h1>
+                    <h2 class="heading-4 ellipsis">{{ artista.fields.name }} {{ artista.fields.last_name }}</h2>
                 </div>
             </div>
-            <div class="eve-top" style="color:#fff;" ng-if="viewProfileInput">
-                <div class="form-group">
-                    <label>Name</label>
-                    <input type="text" style="color:#000;width: 100%" ng-model="artista.fields.name"/>
+        </div>
+        <div class="catalog-content">
+            <ul class="nav nav-tabs">
+                <li class="active"><a data-toggle="tab" href="#profile">Information</a></li>
+                <li><a data-toggle="tab" href="#mypieces">My Pieces</a></li>
+            </ul>
+
+            <div class="tab-content">
+                <div id="profile" class="tab-pane fade in active">
+                    <h3 style="color:#ffff00;">Profile</h3>
+                    <p><a href="mailto:{{ artista.fields.email }}"><span class="glyphicon glyphicon-envelope"></span> {{ artista.fields.email }}</a></p>
+
+                    <div class="form-group">
+                        <label class="label-profile"> City </label>
+                        {{ artista.fields.city }}
+                    </div>
+                    <div class="form-group">
+                        <label class="label-profile"> Country </label>
+                        {{ artista.fields.country }}
+                    </div>
+                    <div class="form-group">
+                        <label class="label-profile"> Birthdate </label>
+                        {{ artista.fields.birth_date }}
+                    </div>
                 </div>
-                <div class="form-group">
-                    <label>Last Name</label>
-                    <input type="text" style="color:#000;width: 100%" ng-model="artista.fields.last_name"/>
-                </div>
-                <div class="form-group">
-                    <label>Artistic Name</label>
-                    <input type="text" style="color:#000;width: 100%" ng-model="artista.fields.name_artistic"/>
-                </div>
-                <div class="form-group">
-                    <label>Email</label>
-                    <input type="text" style="color:#000;width: 100%" ng-model="artista.fields.email"/>
-                </div>
-                <div class="form-group">
-                    <label>City</label>
-                    <input type="text" style="color:#000;width: 100%" ng-model="artista.fields.city"/>
-                </div>
-                <div class="form-group">
-                    <label>Country</label>
-                    <input type="text" style="color:#000;width: 100%" ng-model="artista.fields.country"/>
-                </div>
-                <div class="form-group">
-                    <label>Birthdate</label>
-                    <input type="text" style="color:#000;width: 100%" ng-model="artista.fields.birth_date"/>
-                </div>
-                <div class="form-group">
-                    <label style="font-size: 200%" ng-click="saveProfile(artista)">
-                        <a href=""><span class="label label-success">Save</span></a>
-                    </label>
-                </div>
-                <div class="form-group">
-                    <label style="font-size: 200%" ng-click="discardProfile()">
-                        <a href="">
-                            <span class="label label-block label-danger">Cancel</span>
-                        </a>
-                    </label>
+                <div id="mypieces" class="tab-pane fade">
+                    <h3>My Pieces</h3>
+                    <p>Some content in Pieces.</p>
                 </div>
             </div>
         </div>

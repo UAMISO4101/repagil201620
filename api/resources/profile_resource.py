@@ -12,6 +12,8 @@ from ..models import Artist
 @csrf_exempt
 def view_profile(request,user_id):
     artista = get_list_or_404(Artist.objects.filter(userId=user_id))
+    if len(artista) == 0:
+        return JsonResponse({"mensaje": "There are no artist with id" + user_id})
     return HttpResponse(serializers.serialize("json", artista))
 
 @csrf_exempt

@@ -3,6 +3,7 @@ import json
 from django.core import serializers
 from django.http import HttpResponse
 from django.http import JsonResponse
+from django.shortcuts import get_object_or_404
 from django.views.decorators.csrf import csrf_exempt
 
 from api.models import *
@@ -58,3 +59,20 @@ def collections_pieces(request, collection_id):
     except PieceCollection.DoesNotExist:
         answer = []
     return HttpResponse(serializers.serialize("json", answer))
+
+@csrf_exempt
+def collection_delete_by_id(request, collection_id):
+    if request.method == 'DELETE':
+        collection = Collection.objects.get(pk=collection_id)
+        collection.delete()
+        return JsonResponse({"mensaje": "ok"})
+
+@csrf_exempt
+def update_collection(request, collection_id):
+    if request.method == "PUT":
+        json_colection = json.loads(request.body)
+        collection_name = json_colection['name']
+        collection = get_object_or_404(Collection, pk=collection_id)
+        collection.name = collection_name
+        collection.save()
+        return JsonResponse({"mensaje": "successfully updated"})
