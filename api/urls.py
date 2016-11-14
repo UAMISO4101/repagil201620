@@ -5,6 +5,7 @@ from api.resources.awsS3_resource import getCredentials
 from api.resources.category_resource import category_list
 from api.resources.collection_resource import *
 from api.resources.pieces_resource import *
+from api.resources.profile_resource import *
 from api.resources.user_resource import login_view, logout_view, is_logged
 
 urlpatterns = [
@@ -20,6 +21,10 @@ urlpatterns = [
     url(r'^pieces/(?P<piece_id>\d+)/$', piece_by_id, name='piece_by_id'),
     url(r'^pieces/update$', update_piece, name='update_piece'),
     url(r'^pieces/add_piece/$', add_piece, name='add_piece'),
+
+    #profile
+    url(r'^profile/(?P<user_id>\d+)$', view_profile, name='view_profile'),
+    url(r'^profile/update$', update_profile, name='update_profile'),
 
     # collections
     url(r'^collections/create$', create_collection, name='create_collection'),

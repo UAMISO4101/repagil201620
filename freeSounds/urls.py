@@ -22,10 +22,4 @@ urlpatterns = [
     url(r'^api/', include('api.urls')),
     url(r'^admin/', admin.site.urls),
     url(r'^$', index, name='index'),
-    url(r'^logout$', logout, name='logout'),
-    url(r'^login$', login, name='login'),
-    url(r'^register', register,name='register'),
-    url(r'^profile/(?P<id_user>\d+)$', profile, name='profile'),
-    url(r'^pieces/add_piece/(?P<id_user>\d+)$', add_piece, name='add_piece'),
-    url(r'^library/(?P<id_user>\d+)$', library, name='library'),
 ]

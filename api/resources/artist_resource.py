@@ -14,7 +14,7 @@ def create_artist(request):
     if request.method == 'POST':
         jsonUser = json.loads(request.body)
         nombre = jsonUser['body']['nombre']
-        apellido = jsonUser['body']['nombre']
+        apellido = jsonUser['body']['apellido']
         email = jsonUser['body']['email']
         username = jsonUser['body']['username']
         password = jsonUser['body']['password']
