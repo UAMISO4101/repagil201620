@@ -35,6 +35,9 @@
         }).when('/createArtist', {
             templateUrl: 'static/partials/createArtist.html',
             controller: 'ArtistCrtl'
+        }).when('/pieces/bycategory/:piece_category', {
+            templateUrl: 'static/partials/piecesByCategory.html',
+            controller: 'PiecesCrtl'
         }).otherwise({
             redirectTo: '/pieces'
         });

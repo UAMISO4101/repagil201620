@@ -57,14 +57,68 @@
                             });
                         return promise;
                     },
+
 //Puede que me termine volando este pedazo de codigo
-                    categoryQuery:function (category) {
-                        var promise = $http.get('/api/piecesByCategory/'+category, {})
+                    categoryQuery:function (piece_category) {
+                        var promise = $http.get('/api/pieces/bycategory/'+piece_category, {})
                             .then(function (response) {
                                 return response.data;
+                        });
+                        return promise;
+                    },
+
+                    getLikes:function (piece_id) {
+                        var promise = $http.get('/api/pieces/' + piece_id +'/likes',{})
+                            .then(function (response) {
+                                return response.data.likes;
+                            }, function (error) {
+                                console.log("entro en error");
+                               return error;
+                            });
+                        return promise;
+                    },
+                    wasLiked:function (piece_id, username) {
+                        var promise = $http.post('/api/pieces/' + piece_id +'/liked',{username:username})
+                            .then(function (response) {
+                                return response.data.liked;
+                            }, function (error) {
+                                console.log("entro en error");
+                               return error;
+                            });
+                        return promise;
+                    },
+                    like:function (piece_id, username) {
+                        var promise = $http.post('/api/pieces/' + piece_id +'/like',{username:username})
+                            .then(function (response) {
+                                return response;
+                            }, function (error) {
+                                console.log("entro en error");
+                               return error;
+                            });
+                        return promise;
+                    },
+                    unlike:function (piece_id, username) {
+                        var promise = $http.post('/api/pieces/' + piece_id +'/unlike',{username:username})
+                            .then(function (response) {
+                                return response;
+                            }, function (error) {
+                                console.log("entro en error");
+                               return error;
+                            });
+                        return promise;
+                    },
+                    rankList:function () {
+                        var promise = $http.get('/api/pieces/rank', {})
+                            .then(function (response) {
+                                return response;
+                            }, function (error) {
+                                console.log("entro en error");
+                                return error;
                             });
                         return promise;
                     }
+
+
 
                 };
 

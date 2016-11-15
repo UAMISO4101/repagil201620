@@ -10,4 +10,3 @@ admin.site.register(Category)
 admin.site.register(Piece)
 admin.site.register(Collection)
 admin.site.register(Artist)
-
