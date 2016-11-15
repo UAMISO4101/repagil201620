@@ -41,6 +41,9 @@
         }).when('/search_artist/', {
             templateUrl: 'static/partials/searchArtist.html',
             controller: 'ArtistCrtl'
+        }).when('/search_artist/:user_id/pieces', {
+            templateUrl: 'static/partials/searchArtist_Pieces.html',
+            controller: 'ArtistCrtl'
         }).otherwise({
             redirectTo: '/pieces'
         });

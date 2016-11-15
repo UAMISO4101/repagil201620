@@ -5,8 +5,9 @@ from django.http.response import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from django.http import HttpResponse
 from django.core import serializers
+from django.shortcuts import get_list_or_404
 
-from api.models import Artist
+from api.models import Artist,Piece
 
 #Resource del artista que posee las funciones relacionadas a este
 
@@ -43,4 +44,10 @@ def create_artist(request):
 def view_artists(request):
     artists_list = Artist.objects.all()
     return HttpResponse(serializers.serialize("json", artists_list))
+
+@csrf_exempt
+def pieces_by_artist(request, user_id):
+    artista = Artist.objects.get(userId=user_id)
+    pieces = get_list_or_404(Piece.objects.filter(artist=artista))
+    return HttpResponse(serializers.serialize("json", pieces))
 

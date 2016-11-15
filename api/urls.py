@@ -43,5 +43,6 @@ urlpatterns = [
     url(r'^pieces/rank$', get_most_voted, name='get_most_voted'),
 
     #search
-    url(r'^search_artist/$', view_artists, name='view_artists')
+    url(r'^search_artist/$', view_artists, name='view_artists'),
+    url(r'^search_artist/(?P<user_id>\d+)/pieces$', pieces_by_artist, name='pieces_by_artist')
 ]

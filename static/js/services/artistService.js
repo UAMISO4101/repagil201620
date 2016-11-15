@@ -5,7 +5,7 @@
 (function () {
     'use strict';
 
-    var ArtistSvc = function ($http) {
+    var ArtistSvc = function ($resource,$http) {
         var artistService = {
             list: function () {
                 var promise = $http.get('/api/search_artist/', {})
@@ -27,11 +27,18 @@
                     return response.data;
                 });
                 return promise;
-            }
+            },
+            list_pieces: function (user_id) {
+                var promise = $http.get('/api/search_artist/'+user_id+'/pieces', {})
+                    .then(function (response) {
+                        return response.data;
+                    });
+                return promise;
+            },
         };
 
         return artistService;
     };
 
-    angular.module('freesounds.services').factory('artistService', ['$http', ArtistSvc]);
+    angular.module('freesounds.services').factory('artistService', ['$resource','$http', ArtistSvc]);
 }());

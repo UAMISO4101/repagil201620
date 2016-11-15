@@ -1747,7 +1747,7 @@ ul.action li,li.thumbnail-col{
     list-style: none;
 }
 
-span.artistic_name_search.ng-binding {
+span.artistic_name_search.ng-binding, span.name_search.ng-binding {
     position: absolute;
     bottom: 40%;
     text-align: center;
@@ -1756,4 +1756,9 @@ span.artistic_name_search.ng-binding {
 }
 .icon-play:before {
     content: "\25B6";
+}
+
+.searchform {
+    margin-bottom: 10px;
+    position: relative;
 }
