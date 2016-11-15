@@ -38,6 +38,9 @@
         }).when('/view_profile/:user_id', {
             templateUrl: 'static/partials/profile.html',
             controller: 'ProfileCtrl'
+        }).when('/search_artist/', {
+            templateUrl: 'static/partials/searchArtist.html',
+            controller: 'ArtistCrtl'
         }).otherwise({
             redirectTo: '/pieces'
         });

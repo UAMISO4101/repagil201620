@@ -1,0 +1,29 @@
+<div class="topstr">
+    <div class="container">
+        <h1 style="color:#ffff00;">Artists</h1>
+        <hr style="border-bottom: solid 1px #ffff00;"/>
+        <ul class="thumbnail-grid" data-ng-repeat="artist in artists">
+            <li class="thumbnail-col">
+                <figure class="thumbnail thumbnail-blur">
+                    <div class="picture picture-link">
+                        <a href="" ng-click="viewPiecesByArtist(artist.id)">
+                            <img src='{{ artist.avatar }}' alt=" " class="img-responsive"
+                                 style="width: 150px;height: 150px">
+                            <span class="artistic_name_search">{{ artist.name_artistic }}</span>
+                            <span>{{ artist.name }} {{ artist.last_name }}</span>
+                            <ul class="action">
+                                <li class="action-item" role="button">
+                                    <span class="">
+                                        <span class="play-icon play-default">
+                                            <span class="icon icon-play"></span>
+                                        </span>
+                                    </span>
+                                </li>
+                            </ul>
+                        </a>
+                    </div>
+                </figure>
+            </li>
+        </ul>
+    </div>
+</div>

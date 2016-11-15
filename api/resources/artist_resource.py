@@ -3,6 +3,8 @@ import json
 from django.contrib.auth.models import User
 from django.http.response import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
+from django.http import HttpResponse
+from django.core import serializers
 
 from api.models import Artist
 
@@ -35,4 +37,10 @@ def create_artist(request):
             return JsonResponse({"mensaje": mensaje})
         except ValueError, error:
             return JsonResponse({"mensaje": "fallo la creacion"})
+
+
+@csrf_exempt
+def view_artists(request):
+    artists_list = Artist.objects.all()
+    return HttpResponse(serializers.serialize("json", artists_list))
 

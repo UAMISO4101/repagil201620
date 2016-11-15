@@ -8,6 +8,7 @@
 
     var ArtistCrtl = function ($rootScope, $scope, $location, artistService) {
 
+        $rootScope.artists = [];
         $scope.create = function () {
             var res = artistService.create($scope.form).then(function (data) {
                 console.log(JSON.stringify(data));
@@ -20,7 +21,28 @@
                     $scope.mensaje = data.mensaje;
                 }
             })
-        }
+        };
+         $scope.loadArtist = function () {
+                artistService.list().then(function (data) {
+                    for (var i = 0; i < data.length; i++) {
+                        var artist_id = data[i].pk.toString();
+
+                        var tempArtist = {
+                            id: artist_id,
+                            name: data[i].fields.name,
+                            last_name: data[i].fields.last_name,
+                            avatar: data[i].fields.avatar,
+                            name_artistic: data[i].fields.name_artistic,
+                        };
+                        $rootScope.artists.push(tempArtist);
+                    }
+                }, function (response) {
+                    $scope.error = true;
+                    console.log('Error: ' + response);
+                })
+            };
+            $scope.loadArtist();
+
     };
 
     angular.module('freesounds.controllers').controller('ArtistCrtl', ['$rootScope', '$scope', '$location', 'artistService', ArtistCrtl]);

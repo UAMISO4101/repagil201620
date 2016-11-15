@@ -1,6 +1,6 @@
 from django.conf.urls import url
 
-from api.resources.artist_resource import create_artist
+from api.resources.artist_resource import *
 from api.resources.awsS3_resource import getCredentials
 from api.resources.category_resource import category_list
 from api.resources.collection_resource import *
@@ -41,4 +41,7 @@ urlpatterns = [
     url(r'^pieces/(?P<piece_id>\d+)/liked$', is_liked_piece_by_username, name='is_liked_piece_by_username'),
     url(r'^pieces/(?P<piece_id>\d+)/likes$', likes_by_piece, name='likes_by_piece'),
     url(r'^pieces/rank$', get_most_voted, name='get_most_voted'),
+
+    #search
+    url(r'^search_artist/$', view_artists, name='view_artists')
 ]

@@ -552,7 +552,7 @@ ul.f-icons {
 }
 
 .topstr {
-    padding: 5em 0 3em;
+    padding: 2em 0 3em;
 }
 
 .topstr-left {
@@ -1717,4 +1717,43 @@ img.lb-image {
     border-left-color: yellow;
     border-left-width: 2px;
     padding-left: 5px;
+}
+
+.search-control {
+    font-size: 11px;
+    height: 28px;
+    padding-bottom: 6px;
+    padding-top: 6px;
+}
+.page-sidebar .search-control {
+    background-color: #D1D1D7;
+    border: 0;
+    border-radius: 3px;
+    box-sizing: border-box;
+    color: #42424D;
+    display: block;
+    font-family: "Lucida Grande",Arial,sans-serif;
+    font-size: 12px;
+    height: 32px;
+    line-height: 1.33333333;
+    padding: 8px 40px 8px 12px;
+    width: 100%;
+    transition-property: background-color,color;
+    transition-duration: .15s;
+    -webkit-transition-property: background-color,color;
+}
+
+ul.action li,li.thumbnail-col{
+    list-style: none;
+}
+
+span.artistic_name_search.ng-binding {
+    position: absolute;
+    bottom: 40%;
+    text-align: center;
+    color: #ccc;
+    background: #1a1919;
+}
+.icon-play:before {
+    content: "\25B6";
 }
