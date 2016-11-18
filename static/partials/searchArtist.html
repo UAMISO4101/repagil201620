@@ -14,10 +14,13 @@
                         <span>{{ artist.name }} {{ artist.last_name }}</span>
                         <ul class="action">
                             <li class="action-item" role="button">
+                                <a href="#/view_profile/{{ artist.userId }}">
+                                    <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+                                </a>
+                            </li>
+                            <li class="action-item" role="button">
                                 <a href="#/search_artist/{{ artist.userId }}/pieces">
-                                    <span class="play-icon play-default">
-                                       <span class="icon icon-play"></span>
-                                    </span>
+                                    <span class="glyphicon glyphicon-music" aria-hidden="true"></span>
                                 </a>
                             </li>
                         </ul>

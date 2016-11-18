@@ -170,15 +170,12 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <script src="{% static "js/moment.js" %}"></script>
 <script src="https://angular-file-upload.appspot.com/js/ng-file-upload.js"></script>
 <script src="https://sdk.amazonaws.com/js/aws-sdk-2.1.48.min.js"></script>
-<script>
+<script type="text/javascript">
     $("span.menu").click(function () {
         $(".top-menu").slideToggle("slow", function () {
             // Animation complete.
         });
     });
-</script>
-<!-- script for menu -->
-<script>
     $(document).ready(function () {
         var navoffeset = $(".header-bottom").offset().top;
         $(window).scroll(function () {

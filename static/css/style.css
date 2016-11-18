@@ -1762,3 +1762,42 @@ span.artistic_name_search.ng-binding, span.name_search.ng-binding {
     margin-bottom: 10px;
     position: relative;
 }
+
+.menu-left a {
+    color: #FEF356;
+    font-size: 1.1em;
+    font-weight: 700;
+}
+.menu-left li {
+    list-style: none;
+}
+
+.channel-horizontalgrid .thumbnail-grid {
+    overflow: visible;
+}
+.thumbnail-grid-one-line {
+    flex-wrap: nowrap;
+}
+.thumbnail-grid-lines {
+    overflow: hidden;
+}
+.thumbnail-grid {
+    margin-left: -24px;
+    margin-top: -24px;
+    position: relative;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-flex-wrap: wrap;
+    flex-wrap: wrap;
+}
+
+.thumbnail-grid-one-line .thumbnail-col {
+    flex-shrink: 0;
+}
+.thumbnail-col {
+    box-sizing: border-box;
+    margin-left: 24px;
+    margin-top: 24px;
+    position: relative;
+    width: 162px;
+}
