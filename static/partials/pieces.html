@@ -40,42 +40,43 @@
                             </ul>
                         </div>
                     </figure>
-                </li>
-                <!-- Modal -->
-                <div class="modal fade" id="myModal_{{ piece.id }}" role="dialog">
-                    <div class="modal-dialog modal-sm">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                <h4 class="modal-title"><a ng-click="viewDetail({{ piece.id }})">{{ piece.title }}</a>
-                                </h4>
-                            </div>
-                            <div class="modal-body">
-                                <ul>
-                                    <li>
-                                        <a ng-click="viewDetail({{ piece.id }})"><span class="glyphicon glyphicon-eye-open"></span>More information</a>
-                                    </li>
+                    <!-- Modal -->
+                    <div class="modal fade" id="myModal_{{ piece.id }}" role="dialog">
+                        <div class="modal-dialog modal-sm">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                    <h4 class="modal-title"><a ng-click="viewDetail({{ piece.id }})">{{ piece.title }}</a>
+                                    </h4>
+                                </div>
+                                <div class="modal-body" style="width: 300px; height: 200px; overflow: auto">
+                                    <ul>
+                                        <li>
+                                            <a ng-click="viewDetail({{ piece.id }})"><span class="glyphicon glyphicon-eye-open"></span>More information</a>
+                                        </li>
 
-                                    <li>
-                                        <span class="glyphicon glyphicon-plus-sign"></span> Add to collection:
-                                        <select ng-if="piece.viewCollections"
-                                                ng-model="selectedCollection" ng-change="addToCollection(piece, selectedCollection)"
-                                                ng-options="collection.fields.name for collection in availableCollections"></select>
-                                    </li>
-                                    <li>
-                                        <a ng-href="{{ piece.url }}" target="_blank" download="MyGoogleLogo">
-                                            <span class="glyphicon glyphicon-arrow-down" aria-hidden="true"></span>
-                                            Download
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                        <li>
+                                            <span class="glyphicon glyphicon-plus-sign"></span> Add to collection:
+                                            <select ng-model="selectedCollection"
+                                                    ng-change="addToCollection(piece, selectedCollection)"
+                                                    ng-options="collection.fields.name for collection in availableCollections">
+                                            </select>
+                                        </li>
+                                        <li>
+                                            <a ng-href="{{ piece.url }}" target="_blank" download="MyGoogleLogo">
+                                                <span class="glyphicon glyphicon-arrow-down" aria-hidden="true"></span>
+                                                Download
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
+                </li>
             </ul>
         </div>
         <div class="container col-md-2"
