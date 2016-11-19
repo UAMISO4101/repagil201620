@@ -44,13 +44,11 @@
                     <div class="modal fade" id="myModal_{{ piece.id }}" role="dialog">
                         <div class="modal-dialog modal-sm">
                             <div class="modal-content">
-                                <div class="modal-header">
+                                <div class="modal-body" style="width: 300px; height: 200px; overflow: auto">
                                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                                     <h4 class="modal-title"><a ng-click="viewDetail({{ piece.id }})">{{ piece.title }}</a>
                                     </h4>
-                                </div>
-                                <div class="modal-body" style="width: 300px; height: 200px; overflow: auto">
-                                    <ul>
+                                    <ul style="list-style: none;">
                                         <li>
                                             <a ng-click="viewDetail({{ piece.id }})"><span class="glyphicon glyphicon-eye-open"></span>More information</a>
                                         </li>
@@ -68,10 +66,12 @@
                                                 Download
                                             </a>
                                         </li>
+                                        <li class="action-item" role="button">
+                                            <a href="" music-player add-song="piece">
+                                                <span class="glyphicon glyphicon-plus-sign"></span> Add to playlist
+                                            </a>
+                                        </li>
                                     </ul>
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                                 </div>
                             </div>
                         </div>

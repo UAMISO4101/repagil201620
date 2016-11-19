@@ -58,6 +58,12 @@ label {
     color: #fff;
 }
 
+.modal-content  {
+    -webkit-border-radius: 0px !important;
+    -moz-border-radius: 0px !important;
+    border-radius: 0px !important;
+}
+
 .modal-logo {
     font-weight: 400;
     color: #000;
@@ -1870,4 +1876,26 @@ div#details-track {
 
 h4.modal-title{
     color:#1a1919;
+    margin-bottom: 40px;
+
+}
+
+#playlist-container div{
+    display:inline-block;
+    vertical-align:middle;
+}
+
+.modal-playlist{
+    width:550px;
+}
+
+#playlist-title{
+    width:60%;
+    line-height: 60%;
+    margin-left: 40px;
+}
+
+#playlist-remove{
+    margin-left: 30px;
+    color: #000;
 }
