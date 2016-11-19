@@ -1,28 +1,78 @@
 <!-- audio player -->
 <div class="container" ng-controller="AudioPlayerCrtl">
-    <div class="col-md-12" style="background-color: black">
+    <div class="col-md-12 player-freesounds">
         <div class="col">
             <sound-manager></sound-manager>
-            <div style="float: left">
-                <button style="background-color: black" ng-click="togglePlayButton()" ng-if="isPlay" play-music>
-                    <img src="http://images.cwtv.com/images/r14/play2.png" alt=""
-                         class="img-responsive " style="width: 100px;height: 100px;float:left">
-                </button>
-                <button style="background-color: black" ng-click="togglePlayButton()" ng-if="!isPlay" pause-music>
-                    <img src="http://theologygaming.com/wp-content/uploads/2014/08/pause.png" alt=""
-                         class="img-responsive" style="width: 100px;height: 100px;float:left">
-                </button>
-            </div>
-            <div style="float: left;margin-left: 10px">
-                <br>
-                <p style="color: yellow; font-size: medium">
-                    Playing: {{ currentPlaying.title }} by {{ currentPlaying.artist }} ({{ currentPostion }}
-                    / {{ currentDuration }})
-                </p>
-                <div class="seekBase" seek-track>
-                    <div class="seekLoad" ng-style="{width : ( progress + '%' )}" ></div>
+            <section>
+                <div id="controls-player">
+                    <button class="btn btn-default col-sm-1 btn-player btn-previous" prev-track>
+                        <i class="glyphicon glyphicon-backward"></i>
+                    </button>
+                    <button class="btn btn-default col-sm-1 btn-player" ng-click="togglePlayButton()" ng-if="isPlay" play-music>
+                        <i class="glyphicon glyphicon-play"></i>
+                    </button>
+                    <button class="btn btn-default col-sm-1 btn-player" ng-click="togglePlayButton()" ng-if="!isPlay" pause-music>
+                        <i class="glyphicon glyphicon-pause"></i>
+                    </button>
+                    <button class="btn btn-default col-sm-1  btn-player  btn-forward" next-track>
+                        <i class="glyphicon glyphicon-forward"></i>
+                    </button>
                 </div>
-            </div>
+                <div id="details-track">
+                    <div id="slider-track">
+                        <div class="info-position" id="position-current">{{ currentPostion  }}</div>
+                        <div class="seekBase" seek-track>
+                            <div class="seekLoad" ng-style="{width : ( progress + '%' ) }"></div>
+                        </div>
+                        <div class="info-position" id="position-duration">{{ currentDuration  }}</div>
+                    </div>
+                    <div id="info-track">
+                        Currently Playing: {{ currentPlaying.title }} by {{ currentPlaying.artist }}
+                    </div>
+                </div>
+                <div id="controls-player-others">
+                    <div class="progress">
+                        <div class="progress-bar progress-bar-info progress-bar-striped" role="progressbar" aria-valuenow="{{ volume }}" aria-valuemin="0" aria-valuemax="100" style="width: {{ volume }}%;">
+                            {{ volume }}
+                        </div>
+                    </div>
+                    <div class="btn-group">
+                        <button class="btn btn-default" music-volume data-type="decrease"><span data-type="decrease" class="glyphicon glyphicon-volume-down"></span></button>
+                        <button class="btn btn-default" music-volume data-type="increase"><span data-type="increase" class="glyphicon glyphicon-volume-up"></span></button>
+                        <button class="btn btn-default" mute-music><span class="glyphicon glyphicon-volume-off"></span></button>
+                        <button class="btn btn-default" repeat-music><span class="glyphicon glyphicon-repeat"></span></button>
+                        <button class="btn btn-default" data-toggle="modal" data-target="#playlist_modal"><span class="glyphicon glyphicon-list"></span></button>
+                    </div>
+                    <!-- Modal -->
+                    <div class="modal fade" id="playlist_modal" role="dialog">
+                        <div class="modal-dialog modal-sm">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                    <h4 class="modal-title">Playlist</a>
+                                    </h4>
+                                </div>
+                                <div class="modal-body">
+                                    <ul class="list-group">
+                                        <li  class="list-group-item" ng-repeat="song in playlist">
+                                            <a play-from-playlist="song">{{ song.title }}</a>
+                                            -
+                                            <a remove-from-playlist="song" data-index="{{$index}}">
+                                                <small>(remove)</small>
+                                            </a>
+                                            <span ng-if="currentPlaying.id == song.id"> - (current)</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </section>
         </div>
     </div>
 </div>

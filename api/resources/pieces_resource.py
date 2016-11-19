@@ -29,9 +29,11 @@ def collection_by_artist(request, artist_name):
 def piece_by_id(request, piece_id):
     piece = get_list_or_404(Piece.objects.filter(pk=piece_id))
     return HttpResponse(serializers.serialize("json", piece))
+
 @csrf_exempt
-def piece_by_category(request, piece_category):
-    piece = get_list_or_404(Piece.objects.filter(category = piece_category))
+def piece_by_category(request, category_id):
+    category = Category.objects.get(pk = category_id)
+    piece = get_list_or_404(Piece.objects.filter(category = category))
     return HttpResponse(serializers.serialize("json", piece))
 
 @csrf_exempt

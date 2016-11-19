@@ -26,7 +26,7 @@
         }).when('/pieces/:piece_id', {
             templateUrl: 'static/partials/pieceDetail.html',
             controller: 'PieceDetailCrtl'
-                 }).when('/addPiece', {
+        }).when('/addPiece', {
             templateUrl: 'static/partials/addPiece.html',
             controller:'AddPiecesCrtl'
         }).when('/library', {
@@ -35,9 +35,21 @@
         }).when('/createArtist', {
             templateUrl: 'static/partials/createArtist.html',
             controller: 'ArtistCrtl'
-        }).when('/pieces/bycategory/:piece_category', {
+        }).when('/search_category/', {
+            templateUrl: 'static/partials/searchCategories.html',
+            controller: 'CategoryCrtl'
+        }).when('/search_category/:category_id', {
             templateUrl: 'static/partials/piecesByCategory.html',
-            controller: 'PiecesCrtl'
+            controller: 'CategoryCrtl'
+        }).when('/view_profile/:user_id', {
+            templateUrl: 'static/partials/profile.html',
+            controller: 'ProfileCtrl'
+        }).when('/search_artist/', {
+            templateUrl: 'static/partials/searchArtist.html',
+            controller: 'ArtistCrtl'
+        }).when('/search_artist/:user_id/pieces', {
+            templateUrl: 'static/partials/searchArtist_Pieces.html',
+            controller: 'ArtistCrtl'
         }).otherwise({
             redirectTo: '/pieces'
         });

@@ -28,16 +28,6 @@
 
                         };
 
-
-                        // piecesService.getLikes(piece_id).then(function (likes) {
-                        //     console.log('dentro de la promesa ' + likes);
-                        //     tempSong.likes = likes;
-                        // });
-
-                        // piecesService.wasLiked(piece_id, $cookieStore.get('username')).then(function (liked) {
-                        //     tempSong.upvoted = liked;
-                        // });
-
                         $rootScope.songs.push(tempSong);
                     }
                 }, function (response) {

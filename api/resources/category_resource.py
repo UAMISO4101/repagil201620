@@ -16,6 +16,6 @@ def category_list(request):
     return HttpResponse(serializers.serialize("json", category_list))
 
 @csrf_exempt
-def category_by_name_list(request,category_name):
-    category_list = get_list_or_404(Category.objects.filter(name=category_name))
+def category_by_name_list(request,category_id):
+    category_list = get_list_or_404(Category.objects.filter(pk=category_id))
     return HttpResponse(serializers.serialize("json", category_list))

@@ -8,15 +8,19 @@
 
                 var categoryService = {
                     list: function () {
-                        var promise = $http.get('/api/category/', {})
+                        var promise = $http.get('/api/search_category/', {})
                             .then(function (response) {
                                 return response.data;
                             });
                         return promise;
                     },
 
-                    listByName: function(){
-                        var promise = $http.get()
+                    list_pieces: function(category_id){
+                        var promise = $http.get('api/search_category/'+category_id+'/',{})
+                            .then(function (response) {
+                                return response.data;
+                            });
+                        return promise;
                     }
                 };
 
