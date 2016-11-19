@@ -24,7 +24,8 @@
                             image_cover: data[i].fields.image_cover,
                             viewCollections: false,
                             likes: 0,
-                            upvoted: false
+                            upvoted: false,
+
                         };
 
 
@@ -143,7 +144,9 @@
             //FALTA TODO
             piecesService.categoryQuery($routeParams.piece_category).then(function(data){
                 for (var i = 0; i < data.length; i++) {
+
                     var piece_id = data[i].pk.toString();
+                    var piece_category = data[i].fields.category.toString();
 
                     var tempSong = {
                         id: piece_id,
@@ -154,6 +157,7 @@
                         image_cover: data[i].fields.image_cover,
                         viewCollections: false,
                         likes: 0,
+                        category:piece_category,
                         upvoted: false
                     };
 

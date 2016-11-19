@@ -7,7 +7,7 @@ from api.resources.collection_resource import *
 
 
 from api.resources.pieces_resource import pieces_list, piece_by_id, update_piece,add_piece, piece_by_category
-from api.resources.category_resource import category_list
+from api.resources.category_resource import category_list, category_by_name_list
 from api.resources.awsS3_resource import getCredentials
 
 from api.resources.artist_resource import create_artist
@@ -24,6 +24,7 @@ urlpatterns = [
     url(r'^islogged$', is_logged, name="is_logged"),
     url(r'^category/$', category_list, name='category_list'),
     url(r'^credentials/$', getCredentials, name='getCredentials'),
+    url(r'^category/(?P<category_name>\d+)/$', category_by_name_list, name='category_by_name_list'),
 
     # pieces
     url(r'^pieces/$', pieces_list, name='pieces_list'),

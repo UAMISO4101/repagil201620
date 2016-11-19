@@ -13,6 +13,10 @@
                                 return response.data;
                             });
                         return promise;
+                    },
+
+                    listByName: function(){
+                        var promise = $http.get()
                     }
                 };
 
