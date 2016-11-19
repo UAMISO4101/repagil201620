@@ -3,28 +3,42 @@
  * Service para las diferentes funciones definidas para el artista
  */
 (function () {
-        'use strict';
+    'use strict';
 
-        var ArtistSvc = function ($http) {
-            var artistService = {
-                create: function (data) {
-                    var heads = {
-                        'X-Requested-With': 'XMLHttpRequest',
-                        'Content-Type': 'application/x-www-form-urlencoded',
-                    };
-                    var promise = $http.post('/api/createArtist/',
-                        {
-                            headers: heads,
-                            body: data
-                        }).then(function (response) {
+    var ArtistSvc = function ($resource,$http) {
+        var artistService = {
+            list: function () {
+                var promise = $http.get('/api/search_artist/', {})
+                    .then(function (response) {
                         return response.data;
                     });
-                    return promise;
-                }
-            };
-
-            return artistService;
+                return promise;
+            },
+            create: function (data) {
+                var heads = {
+                    'X-Requested-With': 'XMLHttpRequest',
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                };
+                var promise = $http.post('/api/createArtist/',
+                    {
+                        headers: heads,
+                        body: data
+                    }).then(function (response) {
+                    return response.data;
+                });
+                return promise;
+            },
+            list_pieces: function (user_id) {
+                var promise = $http.get('/api/search_artist/'+user_id+'/pieces', {})
+                    .then(function (response) {
+                        return response.data;
+                    });
+                return promise;
+            },
         };
 
-        angular.module('freesounds.services').factory('artistService', ['$http', ArtistSvc]);
-    }());
+        return artistService;
+    };
+
+    angular.module('freesounds.services').factory('artistService', ['$resource','$http', ArtistSvc]);
+}());

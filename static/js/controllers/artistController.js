@@ -6,8 +6,10 @@
 (function () {
     'use strict';
 
-    var ArtistCrtl = function ($rootScope, $scope, $location, artistService) {
+    var ArtistCrtl = function ($rootScope, $scope, $location, $routeParams, $route, artistService) {
 
+        $rootScope.artists = [];
+        $rootScope.pieces = [];
         $scope.create = function () {
             var res = artistService.create($scope.form).then(function (data) {
                 console.log(JSON.stringify(data));
@@ -20,8 +22,55 @@
                     $scope.mensaje = data.mensaje;
                 }
             })
-        }
+        };
+        $scope.loadArtist = function () {
+            artistService.list().then(function (data) {
+                for (var i = 0; i < data.length; i++) {
+                    var artist_id = data[i].pk.toString();
+
+                    var tempArtist = {
+                        id: artist_id,
+                        name: data[i].fields.name,
+                        last_name: data[i].fields.last_name,
+                        avatar: data[i].fields.avatar,
+                        name_artistic: data[i].fields.name_artistic,
+                        userId: data[i].fields.userId
+                    };
+                    $rootScope.artists.push(tempArtist);
+                }
+            }, function (response) {
+                $scope.error = true;
+                console.log('Error: ' + response);
+            })
+        };
+        $scope.loadArtist();
+        $scope.loadArtistPieces = function () {
+            artistService.list_pieces($routeParams.user_id).then(function (data) {
+                for (var i = 0; i < data.length; i++) {
+                    var piece_id = data[i].pk.toString();
+
+                   var tempPiece = {
+                            id: piece_id,
+                            title: data[i].fields.name,
+                            artist: data[i].fields.artist.name,
+                            url: data[i].fields.url,
+                            duration: data[i].fields.duration,
+                            image_cover: data[i].fields.image_cover,
+                            viewCollections: false,
+                            likes: 0,
+                            upvoted: false
+                        };
+                    $rootScope.artist_name = tempPiece.artist;
+                    $rootScope.pieces.push(tempPiece);
+                }
+            }, function (response) {
+                $scope.error = true;
+                console.log(response);
+            })
+        };
+        $scope.loadArtistPieces();
+
     };
 
-    angular.module('freesounds.controllers').controller('ArtistCrtl', ['$rootScope', '$scope', '$location', 'artistService', ArtistCrtl]);
+    angular.module('freesounds.controllers').controller('ArtistCrtl', ['$rootScope', '$scope', '$location', '$routeParams', '$route','artistService', ArtistCrtl]);
 }());

@@ -1,15 +1,11 @@
 <div class="topstr">
-    <div class="container col-md-12">
-        <div class="container col-md-2"
-             style="border-left-style: solid; border-left-color: yellow; border-left-width: 2px">
-            <ul class="menu-left">
-                <li><a href="#search_artist/">Search by artist</a></li>
-                <li><a href="#categories/">Categories</a></li>
-            </ul>
-        </div>
-        <div class="container col-md-8">
-            <ul class="thumbnail-grid">
-                <li class="thumbnail-col"  data-ng-repeat="piece in songs track by $index">
+    <div class="container">
+        <h1 style="color:#ffff00;">{{ artist_name }} Pieces</h1>
+        <hr style="border-bottom: solid 1px #ffff00;"/>
+        <div class="searchform"><label>Search pieces of {{ artist_name }}: <input ng-model="searchText"></label></div>
+           <div class="col-md-6 topstr-left">
+                <ul class="thumbnail-grid">
+                <li class="thumbnail-col"  data-ng-repeat="piece in pieces | filter:searchText">
                     <figure class="thumbnail thumbnail-blur">
                         <div class="picture picture-link">
                             <img src='{{ piece.image_cover }}' alt=" " class="img-responsive"
@@ -78,13 +74,8 @@
                     </div>
                 </li>
             </ul>
-        </div>
-        <div class="container col-md-2"
-             style="border-left-style: solid; border-left-color: yellow; border-left-width: 2px">
-            <h4>Hot pieces</h4>
-            <p ng-repeat="r in rank | orderBy : '-fields.likes_number'">
-                <b>{{ r.fields.piece_name }}</b> {{ r.fields.likes_number }} likes
-            </p>
-        </div>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
     </div>
 </div>
