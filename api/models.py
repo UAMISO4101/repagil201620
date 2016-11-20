@@ -31,6 +31,7 @@ class Piece(models.Model):
     category = models.ForeignKey(Category, null=True, blank=True)
     artist = models.ForeignKey(Artist, on_delete=models.CASCADE, null=True)
     lyrics = models.TextField(blank=True, null=True)
+    artist_name = models.CharField(max_length=100, null=True, blank=True)
 
 
 class Collection(models.Model):

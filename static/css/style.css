@@ -1880,13 +1880,17 @@ h4.modal-title{
 
 }
 
+#playlist-container{
+    height:60px;
+}
+
 #playlist-container div{
     display:inline-block;
     vertical-align:middle;
 }
 
 .modal-playlist{
-    width:550px;
+    width:600px;
 }
 
 #playlist-title{
@@ -1895,7 +1899,16 @@ h4.modal-title{
     margin-left: 40px;
 }
 
+#playlist-duration{
+    margin-right:15px;
+    color: #000;
+}
+
 #playlist-remove{
     margin-left: 30px;
-    color: #000;
+
+}
+
+.playing-song {
+    background-color: #f4e24d;
 }

@@ -52,21 +52,24 @@
                                         <p>PLAY<span>LIST</span></p>
                                     </div>
                                     <ul class="list-group">
-                                        <li  class="list-group-item" ng-repeat="song in playlist">
-                                            <div id = "playlist-container">
+                                        <li  class="list-group-item" ng-repeat="song in playlist" ng-class="currentPlaying.id == song.id? 'playing-song' : ''">
+                                            <div id = "playlist-container" >
                                                 <div id = "playlist-thumbnail">
                                                     <img src='{{ song.image_cover }}' alt=" " class="img-responsive"
                                                     style="width:60px;height:60px;">
                                                 </div>
                                                 <div id = "playlist-title">
-                                                    <a play-from-playlist="song"> {{ song.title }} {{ song.duration }} </a>
+                                                    <a play-from-playlist="song">{{ song.artist}} - {{ song.title }}  </a>
+                                                </div>
+                                                <div id = "playlist-duration">
+                                                    {{ song.duration }}
                                                 </div>
                                                 <div id = "playlist-remove">
                                                     <a remove-from-playlist="song" data-index="{{$index}}">
                                                         <i class="glyphicon glyphicon-remove"></i>
                                                     </a>
                                                 </div>
-                                                <span ng-if="currentPlaying.id == song.id"> - (current)</span>
+
                                             </div>
                                         </li>
                                     </ul>

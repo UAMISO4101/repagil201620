@@ -17,7 +17,11 @@ from api.models import Piece, Category, Artist
 @csrf_exempt
 def pieces_list(request):
     pieces_list = Piece.objects.all()
-    return HttpResponse(serializers.serialize("json", pieces_list))
+    pieces_result = []
+    for piece in pieces_list:
+        piece.artist_name = piece.artist.name
+        pieces_result.append(piece)
+    return HttpResponse(serializers.serialize("json", pieces_result))
 
 
 @csrf_exempt
