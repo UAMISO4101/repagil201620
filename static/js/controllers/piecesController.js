@@ -4,7 +4,7 @@
 (function () {
         'use strict';
 
-        var PiecesCrtl = function ($rootScope, $scope, $location, $cookieStore, piecesService, collectionService) {
+        var PiecesCrtl = function ($rootScope, $scope, $location, $cookieStore, piecesService, artistService, collectionService) {
 
             $scope.selectedCollection = {};
 
@@ -14,11 +14,12 @@
                 piecesService.list().then(function (data) {
                     for (var i = 0; i < data.length; i++) {
                         var piece_id = data[i].pk.toString();
+                        console.log("entro a servicio de artista");
 
                         var tempSong = {
                             id: piece_id,
                             title: data[i].fields.name,
-                            artist: data[i].fields.artist.name,
+                            artist: data[i].fields.artist_name,
                             url: data[i].fields.url,
                             duration: data[i].fields.duration,
                             image_cover: data[i].fields.image_cover,
@@ -128,6 +129,6 @@
 
         };
 
-        angular.module('freesounds.controllers').controller('PiecesCrtl', ['$rootScope', '$scope', '$location', '$cookieStore', 'piecesService', 'collectionService', PiecesCrtl]);
+        angular.module('freesounds.controllers').controller('PiecesCrtl', ['$rootScope', '$scope', '$location', '$cookieStore', 'piecesService', 'artistService', 'collectionService', PiecesCrtl]);
     }()
 );
