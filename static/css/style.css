@@ -1912,3 +1912,12 @@ h4.modal-title{
 .playing-song {
     background-color: #f4e24d;
 }
+
+.modal-piece{
+    width:350px;
+    height:500px;
+}
+
+.modal-text{
+    text-align: center;
+}
