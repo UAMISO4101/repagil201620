@@ -44,6 +44,15 @@
         }).when('/search_artist/:user_id/pieces', {
             templateUrl: 'static/partials/searchArtist_Pieces.html',
             controller: 'ArtistCrtl'
+
+        }).when('/newsfeed/:newsfeed_id', {
+            templateUrl: 'static/partials/newsfeed.html',
+            controller: 'NewsFeedCrtl'
+
+        }).when('/addNews/', {
+            templateUrl: 'static/partials/addToNewsFeed.html',
+            controller: 'NewsFeedCrtl'
+
         }).otherwise({
             redirectTo: '/pieces'
         });

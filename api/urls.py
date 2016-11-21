@@ -45,5 +45,15 @@ urlpatterns = [
 
     #search
     url(r'^search_artist/$', view_artists, name='view_artists'),
-    url(r'^search_artist/(?P<user_id>\d+)/pieces$', pieces_by_artist, name='pieces_by_artist')
+    url(r'^search_artist/(?P<user_id>\d+)/pieces$', pieces_by_artist, name='pieces_by_artist'),
+
+# newsfeedlikes
+    url(r'^newsfeed/(?P<newsfeed_id>\d+)/like$', like_newsfeed, name='like_newsfeed'),
+    url(r'^newsfeed/(?P<newsfeed_id>\d+)/unlike$', unlike_newsfeed, name='unlike_newsfeed'),
+    url(r'^newsfeed/(?P<newsfeed_id>\d+)/liked$', is_liked_newsfeed_by_username, name='is_liked_newsfeed_by_username'),
+    url(r'^newsfeed/(?P<newsfeed_id>\d+)/likes$', likes_by_newsfeed, name='likes_by_newsfeed'),
+# newsfeed
+    url(r'^newsfeed/add_newsfeed/$', add_newsfeed, name='add_newsfeed'),
+    url(r'^newsfeed/$', newsfeed_list, name='newsfeed_list')
+
 ]
