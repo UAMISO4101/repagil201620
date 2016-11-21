@@ -109,6 +109,31 @@
                 </div>
                 <div class="clearfix"></div>
             </div>
+            <div class="comments">
+                <form class="form-horizontal" name="formComment" novalidate>
+                    <div class="form-group">
+                        <div class="input-group">
+                            <label>Email</label>
+                            <input type="email" id="email" name="email" placeholder = "Email" class="form-control" ng-model="comment_form.email" required>
+                        </div>
+                        <div class ="error-register" ng-messages="formComment.email.$error" ng-show="formComment.email.$touched">
+                            <div ng-message="required">You must enter a comment</div>
+                            <div ng-message="minlength">Last Name must have at least 3 characters</div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="input-group">
+                            <label>Comment</label>
+                            <textarea name="text" placeholder = "Your comment here" ng-minlength="3" ng-model="comment_form.text" required></textarea>
+                        </div>
+                        <div class ="error-register" ng-messages="formComment.text.$error" ng-show="formComment.text.$touched">
+                            <div ng-message="required">You must enter a comment</div>
+                            <div ng-message="minlength">Last Name must have at least 3 characters</div>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-modal" ng-click="saveComment(piece)">Save comment</button>
+                </form>
+            </div>
         </div>
     </div>
 </div>

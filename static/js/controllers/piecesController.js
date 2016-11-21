@@ -109,6 +109,21 @@
                 });
             };
 
+            $scope.saveComment = function () {
+                var res = piecesService.comment($scope.comment_form, $http).then(function (data) {
+                    console.log(JSON.stringify(data));
+                    $scope.show = true;
+                    if (data.mensaje == 'ok') {
+                        $scope.success = true;
+                        $scope.mensaje = 'Comment was save successfully';
+                    } else {
+                        console.log('Error:' + data);
+                        $scope.error = true;
+                        $scope.mensaje = data.mensaje;
+                    }
+                })
+            };
+
             $scope.downVote = function (piece) {
                 var username = $cookieStore.get('username');
                 var piece_id = piece.id;

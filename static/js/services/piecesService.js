@@ -106,7 +106,17 @@
                                return error;
                             });
                         return promise;
-                    }
+                    },
+                    comment:function (piece_id, email, text) {
+                        var promise = $http.post('/api/pieces/' + piece_id +'/comment',{email:email, text:text})
+                            .then(function (response) {
+                                return response;
+                            }, function (error) {
+                                console.log("entro en error");
+                               return error;
+                            });
+                        return promise;
+                    },
 
                 };
 

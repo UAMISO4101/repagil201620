@@ -7,7 +7,7 @@ from django.shortcuts import get_list_or_404, get_object_or_404
 from django.views.decorators.csrf import csrf_exempt
 
 from api.models import Collection, PieceLike, Rank
-from api.models import Piece, Category, Artist
+from api.models import Piece, Category, Artist,Comments
 
 
 ###########################################
@@ -148,3 +148,14 @@ def get_most_voted(request):
                     rank = Rank(piece_name=piece.name, likes_number=len(PieceLike.objects.filter(piece=piece)))
                     answer.append(rank)
             return HttpResponse(serializers.serialize("json", answer))
+
+@csrf_exempt
+def comment_piece(request,piece_id):
+    if request.method == 'POST':
+        json_body = json.loads(request.body)
+        email = json_body['email']
+        text = json_body['text']
+        piece = get_object_or_404(Piece, pk=piece_id)
+        new_comment = Comments(piece=piece, email=email, text=text)
+        new_comment.save()
+        return JsonResponse({"mensaje": "successfully commented"})
