@@ -28,13 +28,20 @@
                 });
                 return promise;
             },
-            list_pieces: function (user_id) {
-                var promise = $http.get('/api/search_artist/'+user_id+'/pieces', {})
+            list_pieces: function (id) {
+                var promise = $http.get('/api/search_artist/'+id+'/pieces', {})
                     .then(function (response) {
                         return response.data;
                     });
                 return promise;
             },
+            findById: function (user_id) {
+                var promise = $http.get('/api/artist/'+user_id, {})
+                    .then(function (response) {
+                        return response.data;
+                    });
+                return promise;
+            }
         };
 
         return artistService;

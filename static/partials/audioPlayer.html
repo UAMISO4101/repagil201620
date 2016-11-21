@@ -45,22 +45,32 @@
                     </div>
                     <!-- Modal -->
                     <div class="modal fade" id="playlist_modal" role="dialog">
-                        <div class="modal-dialog modal-sm">
+                        <div class="modal-dialog modal-sm modal-playlist">
                             <div class="modal-content">
-                                <div class="modal-header">
-                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                    <h4 class="modal-title">Playlist</a>
-                                    </h4>
-                                </div>
                                 <div class="modal-body">
+                                    <div class = "modal-logo">
+                                        <p>PLAY<span>LIST</span></p>
+                                    </div>
                                     <ul class="list-group">
-                                        <li  class="list-group-item" ng-repeat="song in playlist">
-                                            <a play-from-playlist="song">{{ song.title }}</a>
-                                            -
-                                            <a remove-from-playlist="song" data-index="{{$index}}">
-                                                <small>(remove)</small>
-                                            </a>
-                                            <span ng-if="currentPlaying.id == song.id"> - (current)</span>
+                                        <li  class="list-group-item" ng-repeat="song in playlist" ng-class="currentPlaying.id == song.id? 'playing-song' : ''">
+                                            <div id = "playlist-container" >
+                                                <div id = "playlist-thumbnail">
+                                                    <img src='{{ song.image_cover }}' alt=" " class="img-responsive"
+                                                    style="width:60px;height:60px;">
+                                                </div>
+                                                <div id = "playlist-title">
+                                                    <a play-from-playlist="song">{{ song.artist}} - {{ song.title }}  </a>
+                                                </div>
+                                                <div id = "playlist-duration">
+                                                    {{ song.duration }}
+                                                </div>
+                                                <div id = "playlist-remove">
+                                                    <a remove-from-playlist="song" data-index="{{$index}}">
+                                                        <i class="glyphicon glyphicon-remove"></i>
+                                                    </a>
+                                                </div>
+
+                                            </div>
                                         </li>
                                     </ul>
                                 </div>

@@ -58,6 +58,12 @@ label {
     color: #fff;
 }
 
+.modal-content  {
+    -webkit-border-radius: 0px !important;
+    -moz-border-radius: 0px !important;
+    border-radius: 0px !important;
+}
+
 .modal-logo {
     font-weight: 400;
     color: #000;
@@ -1870,4 +1876,48 @@ div#details-track {
 
 h4.modal-title{
     color:#1a1919;
+    margin-bottom: 40px;
+
+}
+
+#playlist-container{
+    height:60px;
+}
+
+#playlist-container div{
+    display:inline-block;
+    vertical-align:middle;
+}
+
+.modal-playlist{
+    width:600px;
+}
+
+#playlist-title{
+    width:60%;
+    line-height: 60%;
+    margin-left: 40px;
+}
+
+#playlist-duration{
+    margin-right:15px;
+    color: #000;
+}
+
+#playlist-remove{
+    margin-left: 30px;
+
+}
+
+.playing-song {
+    background-color: #f4e24d;
+}
+
+.modal-piece{
+    width:350px;
+    height:500px;
+}
+
+.modal-text{
+    text-align: center;
 }

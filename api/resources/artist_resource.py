@@ -51,3 +51,8 @@ def pieces_by_artist(request, user_id):
     pieces = get_list_or_404(Piece.objects.filter(artist=artista))
     return HttpResponse(serializers.serialize("json", pieces))
 
+@csrf_exempt
+def artist_by_id(request, id):
+    artista = Artist.objects.filter(pk=id)
+    return HttpResponse(serializers.serialize("json", artista))
+

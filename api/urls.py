@@ -24,6 +24,7 @@ from api.resources.user_resource import login_view, logout_view, is_logged
 
 urlpatterns = [
     url(r'^createArtist/$', create_artist, name='create_artist'),
+    url(r'^artist/(?P<id>\d+)/$', artist_by_id, name='artist_by_id'),
     url(r'^logout$', logout_view, name="logout"),
     url(r'^login/$', login_view, name="login"),
     url(r'^islogged$', is_logged, name="is_logged"),
