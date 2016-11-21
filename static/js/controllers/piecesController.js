@@ -6,6 +6,14 @@
 
         var PiecesCrtl = function ($rootScope, $scope, $location, $cookieStore, piecesService, artistService, collectionService) {
 
+            console.log($cookieStore.get('username'));
+
+            if(typeof $cookieStore.get('username') !== "undefined") {
+                console.log("entra a condicion");
+                $rootScope.authenticated = true;
+                $rootScope.auth_user = $cookieStore.get('username');
+            }
+
             $scope.selectedCollection = {};
 
             $rootScope.songs = [];

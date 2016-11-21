@@ -65,7 +65,9 @@
             userService.logout($http).then(function (data) {
                     if (data.mensaje == 'ok') {
                         $rootScope.authenticated = false;
-                        $location.url("/#");
+                        $rootScope.auth_user = '';
+                        $cookieStore.remove('username');
+                        $location.url("/pieces");
                     }
                 });
         }
