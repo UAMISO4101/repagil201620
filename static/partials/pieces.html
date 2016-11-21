@@ -15,7 +15,7 @@
                             <img src='{{ piece.image_cover }}' alt=" " class="img-responsive"
                                  style="width: 150px;height: 150px">
                             <span class="artistic_name_search"><a
-                                    ng-click="viewDetail({{ piece.id }})">{{ piece.title }}</a></span>
+                                    ng-click="viewDetail(piece.id)">{{ piece.title }}</a></span>
                             <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>{{ piece.likes }}
                             <ul class="action">
                                 <li class="action-item" role="button">
@@ -41,7 +41,7 @@
                         </div>
                     </figure>
                     <!-- Modal -->
-                    <div class="modal fade" id="myModal_{{ piece.id }}" role="dialog">
+                    <div np-app="api" class="modal fade" class="myModal" id="myModal_{{ piece.id }}" role="dialog">
                         <div class="modal-dialog modal-sm modal-piece">
                             <div class="modal-content">
                                 <div class="modal-body" style=" overflow: auto">
@@ -49,12 +49,12 @@
                                     <div class = "modal-logo">
                                         <p>SONG <span>OPTIONS</span></p>
                                     </div>
-                                    <h3 class="modal-title modal-text"><a ng-click="viewDetail({{ piece.id }})">{{ piece.title }}</a></h3>
-                                    <h4 class="modal-title modal-text"><a ng-click="viewDetail({{ piece.id }})">{{ piece.artist }}</a></h4>
+                                    <h3 class="modal-title modal-text"><a ng-click="viewDetail(piece.id)">{{ piece.title }}</a></h3>
+                                    <h4 class="modal-title modal-text"><a ng-click="viewDetail(piece.id)">{{ piece.artist }}</a></h4>
                                     <ul class="list-group">
                                         <li class="list-group-item playing-song">
                                             <span class="glyphicon glyphicon-eye-open"></span>
-                                            <a ng-click="viewDetail({{ piece.id }})">More information</a>
+                                            <a ng-click="viewDetail(piece.id)">More information</a>
                                         </li>
 
                                         <li class="list-group-item playing-song">
