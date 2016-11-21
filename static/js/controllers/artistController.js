@@ -10,6 +10,7 @@
 
         $rootScope.artists = [];
         $rootScope.pieces = [];
+
         $scope.create = function () {
             var res = artistService.create($scope.form).then(function (data) {
                 console.log(JSON.stringify(data));
@@ -71,6 +72,7 @@
         $scope.loadArtistPieces();
 
     };
+
 
     angular.module('freesounds.controllers').controller('ArtistCrtl', ['$rootScope', '$scope', '$location', '$routeParams', '$route','artistService', ArtistCrtl]);
 }());

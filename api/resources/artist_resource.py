@@ -5,9 +5,9 @@ from django.http.response import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from django.http import HttpResponse
 from django.core import serializers
-from django.shortcuts import get_list_or_404
+from django.shortcuts import get_list_or_404,get_object_or_404
 
-from api.models import Artist,Piece
+from api.models import Artist,Piece,NewsFeed,NewsFeedLike
 
 #Resource del artista que posee las funciones relacionadas a este
 
@@ -55,4 +55,65 @@ def pieces_by_artist(request, user_id):
 def artist_by_id(request, id):
     artista = Artist.objects.filter(pk=id)
     return HttpResponse(serializers.serialize("json", artista))
+
+def add_newsfeed(request):
+    if request.method == 'POST':
+        jsonnewsfeed = json.loads(request.body)
+        new_newsfeed = NewsFeed(
+            title=jsonnewsfeed['body']['title'],
+            content=jsonnewsfeed['body']['content'],
+            artist = Artist.objects.get(userId__username=jsonnewsfeed['body']['artist']),
+            image = jsonnewsfeed['body']['url']
+        );
+        new_newsfeed.save();
+        return HttpResponse(serializers.serialize("json", [new_newsfeed]))
+
+@csrf_exempt
+def like_newsfeed(request,newsfeed_id):
+    if request.method == 'POST':
+        json_body = json.loads(request.body)
+        username = json_body['username']
+        newsfeed =get_object_or_404(NewsFeed, pk=newsfeed_id)
+        new_like = NewsFeedLike(newsfeed=newsfeed, username=username)
+        new_like.save()
+        return JsonResponse({"mensaje": "successfully liked"})
+
+@csrf_exempt
+def unlike_newsfeed(request, newsfeed_id):
+    if request.method == 'POST':
+        json_body = json.loads(request.body)
+        username = json_body['username']
+        newsfeed = get_object_or_404(NewsFeed, pk=newsfeed_id)
+        like = NewsFeedLike.objects.filter(newsfeed=newsfeed, username=username)
+        like.delete()
+        return JsonResponse({"mensaje": "successfully unliked"})
+
+
+@csrf_exempt
+def is_liked_newsfeed_by_username(request, newsfeed_id):
+    if request.method == 'POST':
+        json_body = json.loads(request.body)
+        username = json_body['username']
+        newsfeed = get_object_or_404(NewsFeed, pk=newsfeed_id)
+        like = NewsFeedLike.objects.filter(newsfeed=newsfeed_id, username=username)
+        if len(like) > 0:
+            return JsonResponse({"liked": True})
+        else:
+            return JsonResponse({"liked": False})
+
+
+@csrf_exempt
+def likes_by_newsfeed(request, newsfeed_id):
+    if request.method == 'GET':
+        newsfeed = get_object_or_404(NewsFeed, pk=newsfeed_id)
+        likes = NewsFeedLike.objects.filter(newsfeed=newsfeed)
+        if likes is not None:
+            return JsonResponse({"likes": len(likes)})
+        else:
+            return JsonResponse({"likes": 0})
+@csrf_exempt
+def newsfeed_list(request):
+    newsfeed_list = NewsFeed.objects.all()
+    return HttpResponse(serializers.serialize("json", newsfeed_list))
+
 
