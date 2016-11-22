@@ -107,12 +107,12 @@
                             });
                         return promise;
                     },
-                    comment: function (data) {
+                    comment: function (data, piece_id) {
                         var heads = {
                             'X-Requested-With': 'XMLHttpRequest',
                             'Content-Type': 'application/x-www-form-urlencoded',
                         };
-                        var promise = $http.post('/api/pieces/add_comment',
+                        var promise = $http.post('/api/pieces/add_comment/'+piece_id,
                             {
                                 headers: heads,
                                 body: data

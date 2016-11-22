@@ -62,8 +62,8 @@
 
 
 
-        $scope.saveComment = function () {
-            var res = piecesService.comment($scope.form).then(function (data) {
+        $scope.saveComment = function (piece) {
+            var res = piecesService.comment($scope.form, piece.pk).then(function (data) {
                 console.log(JSON.stringify(data));
                 $scope.show = true;
                 if (data.mensaje == 'ok') {

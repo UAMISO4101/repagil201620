@@ -154,23 +154,22 @@ def get_most_voted(request):
             return HttpResponse(serializers.serialize("json", answer))
 
 @csrf_exempt
-def add_comment(request):
+def add_comment(request,piece_id):
     if request.method == 'POST':
         json_body = json.loads(request.body)
-        email = json_body['email']
-        text = json_body['text']
-        piece_id = json_body['piece_id']
+        email = json_body['body']['email']
+        text = json_body['body']['text']
         piece = get_object_or_404(Piece, pk=piece_id)
         new_comment = Comments(piece=piece, email=email, text=text)
         new_comment.save()
-        return JsonResponse({"mensaje": "successfully commented"})
+        return JsonResponse({"mensaje": "ok"})
 
 @csrf_exempt
 def comments_piece(request,piece_id):
     if request.method == 'GET':
-        piece = get_object_or_404(Piece, pk=piece_id)
-        comments = Comments.objects.filter(piece=piece)
+        piece_obj = Piece.objects.filter(pk=piece_id)
+        comments = Comments.objects.filter(piece=piece_obj)
         if comments is not None:
-            return JsonResponse({"comments": comments})
+            return HttpResponse(serializers.serialize("json", comments))
         else:
             return JsonResponse({"comments": 'No comments'})
