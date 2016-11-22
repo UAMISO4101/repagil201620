@@ -124,7 +124,8 @@
                     get_comments:function (piece_id) {
                         var promise = $http.get('/api/pieces/' + piece_id +'/comments', {})
                             .then(function (response) {
-                                return response;
+                                console.log(response.data);
+                                return response.data;
                             }, function (error) {
                                 console.log("entro en error");
                                 return error;
