@@ -29,9 +29,13 @@ def collection_by_artist(request, artist_name):
     collection = get_list_or_404(Collection.objects.filter(name=artist_name))
     return HttpResponse(serializers.serialize("json", collection))
 
-
+@csrf_exempt
 def piece_by_id(request, piece_id):
-    piece = get_list_or_404(Piece.objects.filter(pk=piece_id))
+    piece_result = Piece.objects.get(pk=piece_id)
+    artist = Artist.objects.get(pk=piece_result.artist.id)
+    piece_result.artist_name = artist.name
+    piece = []
+    piece.append(piece_result)
     return HttpResponse(serializers.serialize("json", piece))
 
 
@@ -150,12 +154,23 @@ def get_most_voted(request):
             return HttpResponse(serializers.serialize("json", answer))
 
 @csrf_exempt
-def comment_piece(request,piece_id):
+def add_comment(request):
     if request.method == 'POST':
         json_body = json.loads(request.body)
         email = json_body['email']
         text = json_body['text']
+        piece_id = json_body['piece_id']
         piece = get_object_or_404(Piece, pk=piece_id)
         new_comment = Comments(piece=piece, email=email, text=text)
         new_comment.save()
         return JsonResponse({"mensaje": "successfully commented"})
+
+@csrf_exempt
+def comments_piece(request,piece_id):
+    if request.method == 'GET':
+        piece = get_object_or_404(Piece, pk=piece_id)
+        comments = Comments.objects.filter(piece=piece)
+        if comments is not None:
+            return JsonResponse({"comments": comments})
+        else:
+            return JsonResponse({"comments": 'No comments'})

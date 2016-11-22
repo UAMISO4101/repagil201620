@@ -20,6 +20,8 @@ urlpatterns = [
     # pieces
     url(r'^pieces/$', pieces_list, name='pieces_list'),
     url(r'^pieces/(?P<piece_id>\d+)/$', piece_by_id, name='piece_by_id'),
+    url(r'^pieces/(?P<piece_id>\d+)/comments$', comments_piece, name='comments_piece'),
+    url(r'^pieces/add_comment$', add_comment, name='add_comment'),
     url(r'^pieces/update$', update_piece, name='update_piece'),
     url(r'^pieces/add_piece/$', add_piece, name='add_piece'),
 

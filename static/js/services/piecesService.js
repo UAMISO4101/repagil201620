@@ -32,7 +32,7 @@
                                 headers: heads,
                                 body: data
                             }
-                            )
+                        )
                             .then(function (response) {
                                 return response.data;
                             }, function (error) {
@@ -48,12 +48,12 @@
 
                         var promise = $http.post('/api/pieces/add_piece/',{body:data}
 
-                            )
+                        )
                             .then(function (response) {
                                 return response.data;
                             }, function (error) {
                                 console.log("entro en error");
-                               return error;
+                                return error;
                             });
                         return promise;
                     },
@@ -63,7 +63,7 @@
                                 return response.data.likes;
                             }, function (error) {
                                 console.log("entro en error");
-                               return error;
+                                return error;
                             });
                         return promise;
                     },
@@ -73,7 +73,7 @@
                                 return response.data.liked;
                             }, function (error) {
                                 console.log("entro en error");
-                               return error;
+                                return error;
                             });
                         return promise;
                     },
@@ -83,7 +83,7 @@
                                 return response;
                             }, function (error) {
                                 console.log("entro en error");
-                               return error;
+                                return error;
                             });
                         return promise;
                     },
@@ -93,7 +93,7 @@
                                 return response;
                             }, function (error) {
                                 console.log("entro en error");
-                               return error;
+                                return error;
                             });
                         return promise;
                     },
@@ -103,17 +103,31 @@
                                 return response;
                             }, function (error) {
                                 console.log("entro en error");
-                               return error;
+                                return error;
                             });
                         return promise;
                     },
-                    comment:function (piece_id, email, text) {
-                        var promise = $http.post('/api/pieces/' + piece_id +'/comment',{email:email, text:text})
+                    comment: function (data) {
+                        var heads = {
+                            'X-Requested-With': 'XMLHttpRequest',
+                            'Content-Type': 'application/x-www-form-urlencoded',
+                        };
+                        var promise = $http.post('/api/pieces/add_comment',
+                            {
+                                headers: heads,
+                                body: data
+                            }).then(function (response) {
+                            return response.data;
+                        });
+                        return promise;
+                    },
+                    get_comments:function (piece_id) {
+                        var promise = $http.get('/api/pieces/' + piece_id +'/comments', {})
                             .then(function (response) {
                                 return response;
                             }, function (error) {
                                 console.log("entro en error");
-                               return error;
+                                return error;
                             });
                         return promise;
                     },
