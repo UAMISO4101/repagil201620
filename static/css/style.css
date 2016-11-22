@@ -700,7 +700,7 @@ ul.f-icons {
     -o-background-size: cover;
     -moz-background-size: cover;
     -ms-background-size: cover;
-    min-height: 350px;
+    min-height: 400px;
     width: 100%;
 }
 
@@ -1291,7 +1291,7 @@ img.lb-image {
     }
 
     .banner-1 {
-        min-height: 220px;
+        min-height: 350px;
     }
 
     .pages {
@@ -1911,4 +1911,13 @@ h4.modal-title{
 
 .playing-song {
     background-color: #f4e24d;
+}
+
+.modal-piece{
+    width:350px;
+    height:500px;
+}
+
+.modal-text{
+    text-align: center;
 }

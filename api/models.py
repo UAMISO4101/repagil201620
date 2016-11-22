@@ -141,3 +141,15 @@ class PlayList(models.Model):
 class PiecePlayList(models.Model):
     playlist = models.ForeignKey(PlayList, on_delete=models.CASCADE, null=False)
     piece = models.ForeignKey(Piece, on_delete=models.CASCADE, null=False)
+
+class NewsFeed(models.Model):
+    title=models.CharField(max_length=256)
+    content = models.CharField(max_length=2000)
+    artist = models.ForeignKey(Artist, on_delete=models.CASCADE, null=False)
+    image=models.CharField(max_length=600)
+
+class NewsFeedLike(models.Model):
+    newsfeed = models.ForeignKey(NewsFeed, on_delete=models.CASCADE, null=False)
+    username = models.CharField(max_length=256)
+
+
