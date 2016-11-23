@@ -7,7 +7,7 @@ from django.shortcuts import get_list_or_404, get_object_or_404
 from django.views.decorators.csrf import csrf_exempt
 
 from api.models import Collection, PieceLike, Rank
-from api.models import Piece, Category, Artist
+from api.models import Piece, Category, Artist, Comments
 
 
 ###########################################
@@ -30,8 +30,20 @@ def collection_by_artist(request, artist_name):
     return HttpResponse(serializers.serialize("json", collection))
 
 
+@csrf_exempt
 def piece_by_id(request, piece_id):
-    piece = get_list_or_404(Piece.objects.filter(pk=piece_id))
+    piece_result = Piece.objects.get(pk=piece_id)
+    artist = Artist.objects.get(pk=piece_result.artist.id)
+    piece_result.artist_name = artist.name
+    piece = []
+    piece.append(piece_result)
+    return HttpResponse(serializers.serialize("json", piece))
+
+
+@csrf_exempt
+def piece_by_category(request, category_id):
+    category = Category.objects.get(pk=category_id)
+    piece = get_list_or_404(Piece.objects.filter(category=category))
     return HttpResponse(serializers.serialize("json", piece))
 
 
@@ -154,3 +166,26 @@ class PieceRequest:
         self.duration = json_piece['body']['fields']['duration']
         self.category = json_piece['body']['fields']['category']
         self.lyrics = json_piece['body']['fields']['lyrics']
+
+
+@csrf_exempt
+def add_comment(request, piece_id):
+    if request.method == 'POST':
+        json_body = json.loads(request.body)
+        email = json_body['body']['email']
+        text = json_body['body']['text']
+        piece = get_object_or_404(Piece, pk=piece_id)
+        new_comment = Comments(piece=piece, email=email, text=text)
+        new_comment.save()
+        return JsonResponse({"mensaje": "ok"})
+
+
+@csrf_exempt
+def comments_piece(request, piece_id):
+    if request.method == 'GET':
+        piece_obj = Piece.objects.filter(pk=piece_id)
+        comments = Comments.objects.filter(piece=piece_obj)
+        if comments is not None:
+            return HttpResponse(serializers.serialize("json", comments))
+        else:
+            return JsonResponse({"comments": 'No comments'})
