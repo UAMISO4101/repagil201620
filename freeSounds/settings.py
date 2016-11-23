@@ -88,14 +88,6 @@ DATABASES = {
         'TEST': {
             'ENGINE': 'django.db.backends.sqlite3',
         }
-        # 'NAME': 'freesounds',
-        # 'USER': 'postgres',
-        # 'PASSWORD': 'postgres',
-        # 'HOST': 'localhost',
-        # 'PORT': '5432',
-        # 'TEST': {
-        #     'ENGINE': 'django.db.backends.sqlite3',
-        # }
     }
 }
 
