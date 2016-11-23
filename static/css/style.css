@@ -74,12 +74,28 @@ label {
     text-align: center;
 }
 
+.title-logo {
+    font-weight: 400;
+    color: #FFF;
+    text-transform: uppercase;
+    font-family: 'Six Caps', sans-serif;
+    letter-spacing: 4px;
+    font-size: 60px;
+    text-align: center;
+}
+.lyric-piece{
+    color: #FFF;
+    width: 50%;
+    margin: 0 auto;
+    text-align: justify;
+}
+
 .btn-modal {
     color: #fff;
     background-color: #f0ad4e;
 }
 
-.modal-logo span {
+.modal-logo span, .title-logo span{
     color: #FEF356;
 }
 
@@ -700,7 +716,7 @@ ul.f-icons {
     -o-background-size: cover;
     -moz-background-size: cover;
     -ms-background-size: cover;
-    min-height: 350px;
+    min-height: 400px;
     width: 100%;
 }
 
@@ -1291,7 +1307,7 @@ img.lb-image {
     }
 
     .banner-1 {
-        min-height: 220px;
+        min-height: 350px;
     }
 
     .pages {
@@ -1918,6 +1934,31 @@ h4.modal-title{
     height:500px;
 }
 
+.comments {
+    margin-top: 20px;
+    background: #333;
+    padding: 10px;
+    border-radius: 5px;
+}
+
 .modal-text{
     text-align: center;
+}
+
+ul.comments-inner {
+    list-style: none;
+    color: #fff;
+    height: 200px;
+    overflow-y: auto;
+}
+
+ul.comment {
+    list-style: none;
+    margin: 25px 0px;
+    color: #FEF356;
+}
+
+li.text-comment {
+    margin-left: 10px;
+    color: #fff;
 }

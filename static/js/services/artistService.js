@@ -35,13 +35,77 @@
                     });
                 return promise;
             },
-            findById: function (user_id) {
+              findById: function (user_id) {
                 var promise = $http.get('/api/artist/'+user_id, {})
                     .then(function (response) {
                         return response.data;
                     });
                 return promise;
-            }
+            },
+            list_newsfeed: function () {
+                var promise = $http.get('/api/newsfeed', {})
+                    .then(function (response) {
+                        return response.data;
+                    });
+                return promise;
+            },
+             getLikes:function (newsfeed_id) {
+                        var promise = $http.get('/api/newsfeed/' + newsfeed_id +'/likes',{})
+                            .then(function (response) {
+                                return response.data.likes;
+                            }, function (error) {
+                                console.log("entro en error");
+                               return error;
+                            });
+                        return promise;
+                    },
+                    wasLiked:function (newsfeed_id, username) {
+                        var promise = $http.post('/api/newsfeed/' + newsfeed_id +'/liked',{username:username})
+                            .then(function (response) {
+                                return response.data.liked;
+                            }, function (error) {
+                                console.log("entro en error");
+                               return error;
+                            });
+                        return promise;
+                    },
+                    like:function (newsfeed_id, username) {
+                        var promise = $http.post('/api/newsfeed/' + newsfeed_id +'/like',{username:username})
+                            .then(function (response) {
+                                return response;
+                            }, function (error) {
+                                console.log("entro en error");
+                               return error;
+                            });
+                        return promise;
+                    },
+                    unlike:function (newsfeed_id, username) {
+                        var promise = $http.post('/api/newsfeed/' + newsfeed_id +'/unlike',{username:username})
+                            .then(function (response) {
+                                return response;
+                            }, function (error) {
+                                console.log("entro en error");
+                               return error;
+                            });
+                        return promise;
+                    },
+            add:function (data) {
+                        var heads = {
+                            'X-Requested-With': 'XMLHttpRequest',
+                            'Content-Type': 'application/x-www-form-urlencoded',
+                        };
+
+                        var promise = $http.post('/api/newsfeed/add_newsfeed/',{body:data}
+
+                            )
+                            .then(function (response) {
+                                return response.data;
+                            }, function (error) {
+                                console.log("entro en error");
+                               return error;
+                            });
+                        return promise;
+                    }
         };
 
         return artistService;
