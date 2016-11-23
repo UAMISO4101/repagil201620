@@ -6,6 +6,12 @@
 
         var PiecesCrtl = function ($rootScope, $scope, $location, $cookieStore, $routeParams, piecesService, artistService, collectionService) {
 
+            if(typeof $cookieStore.get('username') !== "undefined") {
+                console.log("entra a condicion");
+                $rootScope.authenticated = true;
+                $rootScope.auth_user = $cookieStore.get('username');
+            }
+
             $scope.selectedCollection = {};
 
             $rootScope.songs = [];
@@ -133,7 +139,6 @@
 
 
         $scope.listByCategory = function () {
-            //FALTA TODO
             piecesService.categoryQuery($routeParams.piece_category).then(function(data){
                 for (var i = 0; i < data.length; i++) {
 
