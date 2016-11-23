@@ -2,7 +2,7 @@ from django.conf.urls import url
 
 from api.resources.artist_resource import *
 from api.resources.awsS3_resource import getCredentials
-from api.resources.category_resource import category_list
+from api.resources.category_resource import *
 from api.resources.collection_resource import *
 from api.resources.pieces_resource import *
 from api.resources.profile_resource import *
@@ -16,6 +16,7 @@ urlpatterns = [
     url(r'^islogged$', is_logged, name="is_logged"),
     url(r'^category/$', category_list, name='category_list'),
     url(r'^credentials/$', getCredentials, name='getCredentials'),
+    url(r'^category/(?P<category_name>\d+)/$', category_by_name_list, name='category_by_name_list'),
 
     # pieces
     url(r'^pieces/$', pieces_list, name='pieces_list'),
@@ -48,6 +49,8 @@ urlpatterns = [
     #search
     url(r'^search_artist/$', view_artists, name='view_artists'),
     url(r'^search_artist/(?P<user_id>\d+)/pieces$', pieces_by_artist, name='pieces_by_artist'),
+    url(r'^search_category/$', category_list, name='category_list'),
+    url(r'^search_category/(?P<category_id>\d+)/$', piece_by_category, name='piece_by_category'),
 
 # newsfeedlikes
     url(r'^newsfeed/(?P<newsfeed_id>\d+)/like$', like_newsfeed, name='like_newsfeed'),
@@ -59,3 +62,4 @@ urlpatterns = [
     url(r'^newsfeed/$', newsfeed_list, name='newsfeed_list')
 
 ]
+

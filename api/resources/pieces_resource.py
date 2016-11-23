@@ -38,6 +38,11 @@ def piece_by_id(request, piece_id):
     piece.append(piece_result)
     return HttpResponse(serializers.serialize("json", piece))
 
+@csrf_exempt
+def piece_by_category(request, category_id):
+    category = Category.objects.get(pk = category_id)
+    piece = get_list_or_404(Piece.objects.filter(category = category))
+    return HttpResponse(serializers.serialize("json", piece))
 
 @csrf_exempt
 def update_piece(request):
@@ -90,6 +95,8 @@ def add_piece(request):
         );
         new_piece.save();
         return HttpResponse(serializers.serialize("json", [new_piece]))
+
+
 
 
 @csrf_exempt
