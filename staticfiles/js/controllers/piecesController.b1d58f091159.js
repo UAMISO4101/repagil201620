@@ -4,13 +4,7 @@
 (function () {
         'use strict';
 
-<<<<<<< HEAD
-
-        var PiecesCrtl = function ($rootScope, $scope, $location, $cookieStore, $routeParams, piecesService, artistService, collectionService) {
-
-=======
         var PiecesCrtl = function ($rootScope, $scope, $location, $cookieStore, piecesService, artistService, collectionService) {
->>>>>>> 618e744b78ffb67c7d4dde2f804cb77285fcf230
 
             $scope.selectedCollection = {};
 
@@ -30,12 +24,7 @@
                             image_cover: data[i].fields.image_cover,
                             viewCollections: false,
                             likes: 0,
-<<<<<<< HEAD
-                            upvoted: false,
-
-=======
                             upvoted: false
->>>>>>> 618e744b78ffb67c7d4dde2f804cb77285fcf230
                         };
 
                         $rootScope.songs.push(tempSong);
@@ -139,53 +128,8 @@
             };
             $scope.loadRank();
 
-<<<<<<< HEAD
-
-
-
-        $scope.listByCategory = function () {
-            //FALTA TODO
-            piecesService.categoryQuery($routeParams.piece_category).then(function(data){
-                for (var i = 0; i < data.length; i++) {
-
-                    var piece_id = data[i].pk.toString();
-                    var piece_category = data[i].fields.category.toString();
-
-                    var tempSong = {
-                        id: piece_id,
-                        title: data[i].fields.name,
-                        artist: data[i].fields.artist.name,
-                        url: data[i].fields.url,
-                        duration: data[i].fields.duration,
-                        image_cover: data[i].fields.image_cover,
-                        viewCollections: false,
-                        likes: 0,
-                        category:piece_category,
-                        upvoted: false
-                    };
-
-                    $rootScope.songs.push(tempSong);
-                }
-                }, function (response) {
-                    $scope.error = true;
-                    console.log('Error: ' + response);
-                }).then(function () {
-                    $scope.loadLikes();
-                }).then(function () {
-                    $scope.loadUpvotes();
-                });
-        };
-        $scope.listByCategory();
-    };
-
-
-
-        angular.module('freesounds.controllers').controller('PiecesCrtl', ['$rootScope', '$scope', '$location', '$cookieStore', '$routeParams', 'piecesService', 'artistService', 'collectionService', PiecesCrtl]);
-
-=======
         };
 
         angular.module('freesounds.controllers').controller('PiecesCrtl', ['$rootScope', '$scope', '$location', '$cookieStore', 'piecesService', 'artistService', 'collectionService', PiecesCrtl]);
->>>>>>> 618e744b78ffb67c7d4dde2f804cb77285fcf230
     }()
 );
