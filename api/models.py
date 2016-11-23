@@ -152,4 +152,7 @@ class NewsFeedLike(models.Model):
     newsfeed = models.ForeignKey(NewsFeed, on_delete=models.CASCADE, null=False)
     username = models.CharField(max_length=256)
 
-
+class Comments(models.Model):
+    text = models.CharField(max_length=1000)
+    piece = models.ForeignKey(Piece, on_delete=models.CASCADE, null=False)
+    email = models.CharField(max_length=1000)

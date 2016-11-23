@@ -14,7 +14,6 @@
                 piecesService.list().then(function (data) {
                     for (var i = 0; i < data.length; i++) {
                         var piece_id = data[i].pk.toString();
-                        console.log("entro a servicio de artista");
 
                         var tempSong = {
                             id: piece_id,
@@ -72,6 +71,8 @@
             });
 
             $scope.viewDetail = function (piece_id) {
+                $("body").removeClass("modal-open");
+                $(".modal-backdrop").remove();
                 $location.url('/pieces/' + piece_id);
             };
 
