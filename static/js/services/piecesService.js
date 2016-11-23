@@ -57,6 +57,16 @@
                             });
                         return promise;
                     },
+
+//Puede que me termine volando este pedazo de codigo
+                    categoryQuery:function (piece_category) {
+                        var promise = $http.get('/api/pieces/bycategory/'+piece_category, {})
+                            .then(function (response) {
+                                return response.data;
+                        });
+                        return promise;
+                    },
+
                     getLikes:function (piece_id) {
                         var promise = $http.get('/api/pieces/' + piece_id +'/likes',{})
                             .then(function (response) {
@@ -98,7 +108,7 @@
                         return promise;
                     },
                     rankList:function () {
-                        var promise = $http.get('/api/pieces/rank',{})
+                        var promise = $http.get('/api/pieces/rank', {})
                             .then(function (response) {
                                 return response;
                             }, function (error) {
@@ -132,6 +142,8 @@
                             });
                         return promise;
                     },
+
+
 
                 };
 

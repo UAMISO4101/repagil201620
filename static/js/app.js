@@ -35,6 +35,12 @@
         }).when('/createArtist', {
             templateUrl: 'static/partials/createArtist.html',
             controller: 'ArtistCrtl'
+        }).when('/search_category/', {
+            templateUrl: 'static/partials/searchCategories.html',
+            controller: 'CategoryCrtl'
+        }).when('/search_category/:category_id', {
+            templateUrl: 'static/partials/piecesByCategory.html',
+            controller: 'CategoryCrtl'
         }).when('/view_profile/:user_id', {
             templateUrl: 'static/partials/profile.html',
             controller: 'ProfileCtrl'
