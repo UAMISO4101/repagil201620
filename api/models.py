@@ -31,6 +31,7 @@ class Piece(models.Model):
     category = models.ForeignKey(Category, null=True, blank=True)
     artist = models.ForeignKey(Artist, on_delete=models.CASCADE, null=True)
     lyrics = models.TextField(blank=True, null=True)
+    artist_name = models.CharField(max_length=100, null=True, blank=True)
 
 
 class Collection(models.Model):
@@ -54,9 +55,9 @@ class ArtistaForm(ModelForm):
     date_range = 100
     this_year = datetime.now().year
     birth_date = forms.DateField(
-        widget= forms.SelectDateWidget(years=range(this_year - date_range, this_year + 1 ),attrs = {
-                'class': 'form-control date-field '
-            }),
+        widget=forms.SelectDateWidget(years=range(this_year - date_range, this_year + 1), attrs={
+            'class': 'form-control date-field '
+        }),
         label='BirthDate'
     )
 
@@ -121,3 +122,37 @@ class PieceForm(ModelForm):
 class PieceCollection(models.Model):
     collection = models.ForeignKey(Collection, on_delete=models.CASCADE, null=False)
     piece = models.ForeignKey(Piece, on_delete=models.CASCADE, null=False)
+
+
+class PieceLike(models.Model):
+    piece = models.ForeignKey(Piece, on_delete=models.CASCADE, null=False)
+    username = models.CharField(max_length=256)
+
+class Rank(models.Model):
+    piece_name = models.CharField(max_length=256)
+    likes_number = models.IntegerField()
+
+
+class PlayList(models.Model):
+    name = name = models.CharField(max_length=1000)
+    artist = models.ForeignKey(Artist, on_delete=models.CASCADE, null=True)
+
+
+class PiecePlayList(models.Model):
+    playlist = models.ForeignKey(PlayList, on_delete=models.CASCADE, null=False)
+    piece = models.ForeignKey(Piece, on_delete=models.CASCADE, null=False)
+
+class NewsFeed(models.Model):
+    title=models.CharField(max_length=256)
+    content = models.CharField(max_length=2000)
+    artist = models.ForeignKey(Artist, on_delete=models.CASCADE, null=False)
+    image=models.CharField(max_length=600)
+
+class NewsFeedLike(models.Model):
+    newsfeed = models.ForeignKey(NewsFeed, on_delete=models.CASCADE, null=False)
+    username = models.CharField(max_length=256)
+
+class Comments(models.Model):
+    text = models.CharField(max_length=1000)
+    piece = models.ForeignKey(Piece, on_delete=models.CASCADE, null=False)
+    email = models.CharField(max_length=1000)

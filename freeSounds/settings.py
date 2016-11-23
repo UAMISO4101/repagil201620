@@ -44,14 +44,14 @@ INSTALLED_APPS = [
     'api'
 ]
 
-MIDDLEWARE = [
-    'django.middleware.security.SecurityMiddleware',
+MIDDLEWARE_CLASSES = [
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'django.middleware.security.SecurityMiddleware',
 ]
 
 ROOT_URLCONF = 'freeSounds.urls'
@@ -88,6 +88,14 @@ DATABASES = {
         'TEST': {
             'ENGINE': 'django.db.backends.sqlite3',
         }
+        # 'NAME': 'freesounds',
+        # 'USER': 'postgres',
+        # 'PASSWORD': 'postgres',
+        # 'HOST': 'localhost',
+        # 'PORT': '5432',
+        # 'TEST': {
+        #     'ENGINE': 'django.db.backends.sqlite3',
+        # }
     }
 }
 

@@ -9,6 +9,8 @@
         $scope.isNewCollection = true;
         $scope.newCollection = {};
         $scope.validationError = false;
+        $scope.editmode = false;
+        $scope.newName = null;
 
         $scope.toggleIsNewCollection = function () {
             $scope.isNewCollection = !$scope.isNewCollection;
@@ -73,6 +75,26 @@
                 } else {
                     $rootScope.songs = [];
                 }
+            });
+        };
+
+        $scope.deleteCollection = function (collection_id) {
+            collectionService.delete(collection_id).then(function (data) {
+                $scope.loadCollections();
+            });
+        };
+
+        $scope.toogleEditMode = function (collection) {
+            if (collection.editmode === null) {
+                collection.editmode = false;
+            }
+            collection.editmode = !collection.editmode;
+            collection.newName = collection.fields.name;
+        };
+
+        $scope.editCollection = function (collection) {
+            collectionService.update(collection.pk, collection.newName).then(function (data) {
+                $scope.loadCollections();
             });
         };
     };

@@ -4,7 +4,7 @@
 (function () {
     'use strict';
 
-    var AudioPlayerCrtl = function ($rootScope, $scope, $location, piecesService, angularPlayer) {
+    var AudioPlayerCrtl = function ($rootScope, $scope, $location, piecesService, artistService, angularPlayer) {
 
         $rootScope.isPlay = true;
         $rootScope.togglePlayButton = function () {
@@ -18,17 +18,19 @@
                 var tempSong = {
                     id: data[i].pk.toString(),
                     title: data[i].fields.name,
-                    artist: data[i].fields.artist.name,
+                    artist: data[i].fields.artist_name,
                     url: data[i].fields.url,
                     duration: data[i].fields.duration,
                     image_cover: data[i].fields.image_cover,
                     viewCollections: false
                 };
 
+
+
                 $rootScope.songs.push(tempSong);
             }
         };
     };
 
-    angular.module('freesounds.controllers').controller('AudioPlayerCrtl', ['$rootScope', '$scope', '$location', 'piecesService', 'angularPlayer', AudioPlayerCrtl]);
+    angular.module('freesounds.controllers').controller('AudioPlayerCrtl', ['$rootScope', '$scope', '$location', 'piecesService', 'artistService', 'angularPlayer', AudioPlayerCrtl]);
 }());

@@ -4,7 +4,7 @@
 (function () {
     'use strict';
 
-    var PieceDetailCrtl = function ($rootScope, $scope, $location, $routeParams, $route, piecesService, categoryService) {
+    var PieceDetailCrtl = function ($rootScope, $scope, $http, $location, $routeParams, $route, piecesService, categoryService) {
 
         $scope.viewLyricsInput = false;
         $scope.viewPieceInput = false;
@@ -60,6 +60,28 @@
             }
         };
 
+
+
+        $scope.saveComment = function (piece) {
+            var res = piecesService.comment($scope.form, piece.pk).then(function (data) {
+                console.log(JSON.stringify(data));
+                $scope.show = true;
+                if (data.mensaje == 'ok') {
+                    $scope.success = true;
+                    $scope.mensaje = 'Comment was save successfully';
+                } else {
+                    console.log('Error:' + data);
+                    $scope.error = true;
+                    $scope.mensaje = data.mensaje;
+                }
+            })
+        };
+
+        piecesService.get_comments($routeParams.piece_id).then(function (data) {
+            $scope.comments = data;
+        });
+
+
         $scope.savePiece = function (piece) {
             if (!piece.fields.lyrics || 0 === piece.fields.lyrics.length) {
                 $scope.lyricsErrorMessage = 'Lyrics of a piece must not be empty !!';
@@ -80,5 +102,5 @@
 
     };
 
-    angular.module('freesounds.controllers').controller('PieceDetailCrtl', ['$rootScope', '$scope', '$location', '$routeParams', '$route', 'piecesService', 'categoryService', PieceDetailCrtl]);
+    angular.module('freesounds.controllers').controller('PieceDetailCrtl', ['$rootScope', '$scope', '$http','$location', '$routeParams', '$route', 'piecesService', 'categoryService', PieceDetailCrtl]);
 }());
