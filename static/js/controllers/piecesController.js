@@ -7,6 +7,10 @@
 
         var PiecesCrtl = function ($rootScope, $scope, $location, $cookieStore, $routeParams, piecesService, artistService, collectionService) {
 
+            if(typeof $cookieStore.get('username') !== "undefined") {
+                $rootScope.authenticated = true;
+                $rootScope.auth_user = $cookieStore.get('username');
+            }
 
             $scope.selectedCollection = {};
 
