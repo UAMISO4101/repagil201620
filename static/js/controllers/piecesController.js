@@ -4,7 +4,13 @@
 (function () {
         'use strict';
 
-        var PiecesCrtl = function ($rootScope, $scope, $location, $cookieStore, piecesService, artistService, collectionService) {
+
+        var PiecesCrtl = function ($rootScope, $scope, $location, $cookieStore, $routeParams, piecesService, artistService, collectionService) {
+
+            if(typeof $cookieStore.get('username') !== "undefined") {
+                $rootScope.authenticated = true;
+                $rootScope.auth_user = $cookieStore.get('username');
+            }
 
             $scope.selectedCollection = {};
 
@@ -24,7 +30,8 @@
                             image_cover: data[i].fields.image_cover,
                             viewCollections: false,
                             likes: 0,
-                            upvoted: false
+                            upvoted: false,
+
                         };
 
                         $rootScope.songs.push(tempSong);
@@ -128,8 +135,47 @@
             };
             $scope.loadRank();
 
-        };
 
-        angular.module('freesounds.controllers').controller('PiecesCrtl', ['$rootScope', '$scope', '$location', '$cookieStore', 'piecesService', 'artistService', 'collectionService', PiecesCrtl]);
+
+
+        $scope.listByCategory = function () {
+            //FALTA TODO
+            piecesService.categoryQuery($routeParams.piece_category).then(function(data){
+                for (var i = 0; i < data.length; i++) {
+
+                    var piece_id = data[i].pk.toString();
+                    var piece_category = data[i].fields.category.toString();
+
+                    var tempSong = {
+                        id: piece_id,
+                        title: data[i].fields.name,
+                        artist: data[i].fields.artist.name,
+                        url: data[i].fields.url,
+                        duration: data[i].fields.duration,
+                        image_cover: data[i].fields.image_cover,
+                        viewCollections: false,
+                        likes: 0,
+                        category:piece_category,
+                        upvoted: false
+                    };
+
+                    $rootScope.songs.push(tempSong);
+                }
+                }, function (response) {
+                    $scope.error = true;
+                    console.log('Error: ' + response);
+                }).then(function () {
+                    $scope.loadLikes();
+                }).then(function () {
+                    $scope.loadUpvotes();
+                });
+        };
+        $scope.listByCategory();
+    };
+
+
+
+        angular.module('freesounds.controllers').controller('PiecesCrtl', ['$rootScope', '$scope', '$location', '$cookieStore', '$routeParams', 'piecesService', 'artistService', 'collectionService', PiecesCrtl]);
+
     }()
 );

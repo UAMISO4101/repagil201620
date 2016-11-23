@@ -7,7 +7,7 @@ from django.shortcuts import get_list_or_404, get_object_or_404
 from django.views.decorators.csrf import csrf_exempt
 
 from api.models import Collection, PieceLike, Rank
-from api.models import Piece, Category, Artist,Comments
+from api.models import Piece, Category, Artist, Comments
 
 
 ###########################################
@@ -29,6 +29,7 @@ def collection_by_artist(request, artist_name):
     collection = get_list_or_404(Collection.objects.filter(name=artist_name))
     return HttpResponse(serializers.serialize("json", collection))
 
+
 @csrf_exempt
 def piece_by_id(request, piece_id):
     piece_result = Piece.objects.get(pk=piece_id)
@@ -40,6 +41,30 @@ def piece_by_id(request, piece_id):
 
 
 @csrf_exempt
+def piece_by_category(request, category_id):
+    category = Category.objects.get(pk=category_id)
+    piece = get_list_or_404(Piece.objects.filter(category=category))
+    return HttpResponse(serializers.serialize("json", piece))
+
+
+def update_from_request(selected_piece, request):
+    if request.name is not None:
+        selected_piece.name = request.name
+    if request.url is not None:
+        selected_piece.url = request.url
+    if request.image_cover is not None:
+        selected_piece.image_cover = request.image_cover
+    if request.duration is not None:
+        selected_piece.duration = request.duration
+    if request.category is not None:
+        cat = get_object_or_404(Category, pk=request.category)
+        selected_piece.category = cat
+    if request.lyrics is not None:
+        selected_piece.lyrics = request.lyrics
+    return selected_piece
+
+
+@csrf_exempt
 def update_piece(request):
     if request.method == "POST":
         jsonPiece = json.loads(request.body)
@@ -48,31 +73,10 @@ def update_piece(request):
         if len(pieces) == 0:
             return JsonResponse({"mensaje": "There are no pieces with id" + piece_id})
         else:
-            name = jsonPiece['body']['fields']['name']
-            url = jsonPiece['body']['fields']['url']
-            image_cover = jsonPiece['body']['fields']['image_cover']
-            duration = jsonPiece['body']['fields']['duration']
-            category = jsonPiece['body']['fields']['category']
-            lyrics = jsonPiece['body']['fields']['lyrics']
-
+            request = PieceRequest(jsonPiece)
             selected_piece = pieces[0]
-
-            if name is not None:
-                selected_piece.name = name
-            if url is not None:
-                selected_piece.url = url
-            if image_cover is not None:
-                selected_piece.image_cover = image_cover
-            if duration is not None:
-                selected_piece.duration = duration
-            if category is not None:
-                cat = get_object_or_404(Category, pk=category)
-                selected_piece.category = cat
-            if lyrics is not None:
-                selected_piece.lyrics = lyrics
-
+            selected_piece = update_from_request(selected_piece, request)
             selected_piece.save()
-
             return JsonResponse({"mensaje": "successfully updated"})
 
 
@@ -153,8 +157,19 @@ def get_most_voted(request):
                     answer.append(rank)
             return HttpResponse(serializers.serialize("json", answer))
 
+
+class PieceRequest:
+    def __init__(self, json_piece):
+        self.name = json_piece['body']['fields']['name']
+        self.url = json_piece['body']['fields']['url']
+        self.image_cover = json_piece['body']['fields']['image_cover']
+        self.duration = json_piece['body']['fields']['duration']
+        self.category = json_piece['body']['fields']['category']
+        self.lyrics = json_piece['body']['fields']['lyrics']
+
+
 @csrf_exempt
-def add_comment(request,piece_id):
+def add_comment(request, piece_id):
     if request.method == 'POST':
         json_body = json.loads(request.body)
         email = json_body['body']['email']
@@ -164,8 +179,9 @@ def add_comment(request,piece_id):
         new_comment.save()
         return JsonResponse({"mensaje": "ok"})
 
+
 @csrf_exempt
-def comments_piece(request,piece_id):
+def comments_piece(request, piece_id):
     if request.method == 'GET':
         piece_obj = Piece.objects.filter(pk=piece_id)
         comments = Comments.objects.filter(piece=piece_obj)

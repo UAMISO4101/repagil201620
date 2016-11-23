@@ -57,6 +57,19 @@
                             });
                         return promise;
                     },
+<<<<<<< HEAD
+
+//Puede que me termine volando este pedazo de codigo
+                    categoryQuery:function (piece_category) {
+                        var promise = $http.get('/api/pieces/bycategory/'+piece_category, {})
+                            .then(function (response) {
+                                return response.data;
+                        });
+                        return promise;
+                    },
+
+=======
+>>>>>>> 618e744b78ffb67c7d4dde2f804cb77285fcf230
                     getLikes:function (piece_id) {
                         var promise = $http.get('/api/pieces/' + piece_id +'/likes',{})
                             .then(function (response) {
@@ -98,7 +111,11 @@
                         return promise;
                     },
                     rankList:function () {
+<<<<<<< HEAD
+                        var promise = $http.get('/api/pieces/rank', {})
+=======
                         var promise = $http.get('/api/pieces/rank',{})
+>>>>>>> 618e744b78ffb67c7d4dde2f804cb77285fcf230
                             .then(function (response) {
                                 return response;
                             }, function (error) {
@@ -133,6 +150,11 @@
                         return promise;
                     },
 
+<<<<<<< HEAD
+
+
+=======
+>>>>>>> 618e744b78ffb67c7d4dde2f804cb77285fcf230
                 };
 
                 return piecesService;

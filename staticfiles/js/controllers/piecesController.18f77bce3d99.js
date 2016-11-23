@@ -4,13 +4,9 @@
 (function () {
         'use strict';
 
-<<<<<<< HEAD
 
         var PiecesCrtl = function ($rootScope, $scope, $location, $cookieStore, $routeParams, piecesService, artistService, collectionService) {
 
-=======
-        var PiecesCrtl = function ($rootScope, $scope, $location, $cookieStore, piecesService, artistService, collectionService) {
->>>>>>> 618e744b78ffb67c7d4dde2f804cb77285fcf230
 
             $scope.selectedCollection = {};
 
@@ -30,12 +26,8 @@
                             image_cover: data[i].fields.image_cover,
                             viewCollections: false,
                             likes: 0,
-<<<<<<< HEAD
                             upvoted: false,
 
-=======
-                            upvoted: false
->>>>>>> 618e744b78ffb67c7d4dde2f804cb77285fcf230
                         };
 
                         $rootScope.songs.push(tempSong);
@@ -139,7 +131,6 @@
             };
             $scope.loadRank();
 
-<<<<<<< HEAD
 
 
 
@@ -182,10 +173,5 @@
 
         angular.module('freesounds.controllers').controller('PiecesCrtl', ['$rootScope', '$scope', '$location', '$cookieStore', '$routeParams', 'piecesService', 'artistService', 'collectionService', PiecesCrtl]);
 
-=======
-        };
-
-        angular.module('freesounds.controllers').controller('PiecesCrtl', ['$rootScope', '$scope', '$location', '$cookieStore', 'piecesService', 'artistService', 'collectionService', PiecesCrtl]);
->>>>>>> 618e744b78ffb67c7d4dde2f804cb77285fcf230
     }()
 );
