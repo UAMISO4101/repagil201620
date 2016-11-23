@@ -19,7 +19,7 @@ def pieces_list(request):
     pieces_list = Piece.objects.all()
     pieces_result = []
     for piece in pieces_list:
-        piece.artist_name = piece.artist.name
+        piece.artist_name = piece.artist.name_artistic
         pieces_result.append(piece)
     return HttpResponse(serializers.serialize("json", pieces_result))
 
